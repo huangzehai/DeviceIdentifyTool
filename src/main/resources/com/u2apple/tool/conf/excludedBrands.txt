@@ -1,0 +1,4 @@
+4G
+qcom
+LTE 4G
+Android

@@ -1,0 +1,2 @@
+<ProductId c="type=m&amp;resolution=${resolution}&amp;partation_0.regex.^.*cache\|${partitions.cachePartition.size?c}\|${partitions.cachePartition.path}.*$&amp;partation_1.regex.^.*data\|${partitions.dataPartition.size?c}\|${partitions.dataPartition.path}.*$&amp;partation_2.regex.^.*system\|${partitions.systemPartition.size?c}\|${partitions.systemPartition.path}.*$">${productId}</ProductId>
+<ProductId c="type=m">${knockOffProductId}</ProductId>

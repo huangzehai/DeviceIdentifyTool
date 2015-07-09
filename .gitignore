@@ -1,0 +1,4 @@
+/target/
+configuration.properties
+dataSource.properties
+config.properties
