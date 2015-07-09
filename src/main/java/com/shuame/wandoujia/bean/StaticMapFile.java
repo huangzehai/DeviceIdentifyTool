@@ -32,14 +32,9 @@ public class StaticMapFile {
 	private List<Device> _devices;
 
 	/** 硬件列表（VID） */
-	@XmlElementWrapper(name = "VIDs")
-	@XmlElement(name = "VID")
+//	@XmlElementWrapper(name = "VIDs")
+//	@XmlElement(name = "VID")
 	private List<VID> _vids;
-
-	/** VEN列表 */
-	@XmlElementWrapper(name = "VENs")
-	@XmlElement(name = "VEN")
-	private List<VEN> _vens;
 
 	public int getVersion() {
 		return _version;
@@ -51,7 +46,7 @@ public class StaticMapFile {
 
 	public List<Device> getDevices() {
 		if (_devices == null) {
-			_devices = new ArrayList<Device>();
+			_devices = new ArrayList<>();
 		}
 		return _devices;
 	}
@@ -66,24 +61,13 @@ public class StaticMapFile {
 
 	public List<VID> getVids() {
 		if (_vids == null) {
-			_vids = new ArrayList<VID>();
+			_vids = new ArrayList<>();
 		}
 		return _vids;
 	}
 
 	public void setVids(List<VID> vids) {
 		_vids = vids;
-	}
-
-	public List<VEN> getVens() {
-		if (_vens == null) {
-			_vens = new ArrayList<VEN>();
-		}
-		return _vens;
-	}
-
-	public void setVens(List<VEN> vens) {
-		_vens = vens;
 	}
 
 	@Override
