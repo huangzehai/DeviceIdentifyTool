@@ -4,7 +4,7 @@
         <RuleItem>
             <key>model</key>
             <operator>equalsIgnoreCase</operator>
-            <value>Android,4G,UOOGOU,GM,LTE 4G,SmartPhone,LTE4G,G4,OPPO,YOORD,Allwinner-Tablet,SPHS on Hsdroid,Multi By Java,ZD,wellphone,CPU6595,AOLE,小米,4G定制版,ZHUOMI,4G-LTE</value>
+            <value>Android,4G,UOOGOU,GM,LTE 4G,SmartPhone,LTE4G,G4,OPPO,YOORD,Allwinner-Tablet,SPHS on Hsdroid,Multi By Java,ZD,wellphone,CPU6595,AOLE,小米,4G定制版,ZHUOMI,4G-LTE,ãã</value>
         </RuleItem>
     </Rule>
 </Rules>
