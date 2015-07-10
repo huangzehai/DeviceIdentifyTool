@@ -5,6 +5,10 @@
  */
 package com.u2apple.tool.ui;
 
+import com.shuame.wandoujia.bean.Device;
+import com.shuame.wandoujia.bean.Modal;
+import com.shuame.wandoujia.bean.ProductId;
+import com.shuame.wandoujia.bean.Value;
 import com.u2apple.tool.ui.worker.FilterWorker;
 import com.u2apple.tool.ui.worker.WhiteListDeviceRankingWorker;
 import com.u2apple.tool.ui.worker.DeviceRankingWorker;
@@ -19,17 +23,18 @@ import com.u2apple.tool.service.IdentifyAnalyticsService;
 import com.u2apple.tool.filter.DevicePatternFilter;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
-import com.u2apple.tool.model.Model;
-import com.u2apple.tool.model.ProductId;
 import com.u2apple.tool.ui.table.DeviceDetailTableModel;
 import com.u2apple.tool.ui.table.DeviceTableModel;
 import com.u2apple.tool.core.KnockOffTool;
 import com.u2apple.tool.core.RecognitionTool;
 import com.u2apple.tool.core.TestCaseTool;
+import com.u2apple.tool.dao.DeviceXmlDao;
+import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import com.u2apple.tool.ui.worker.ExcludeFilterWorker;
 import com.u2apple.tool.ui.worker.NewDeviceFilterWorker;
 import com.u2apple.tool.ui.worker.QueryFilterWorker;
 import com.u2apple.tool.util.AndroidDeviceUtils;
+import com.u2apple.tool.util.ConditionUtils;
 import com.u2apple.tool.util.CsvUtils;
 import com.u2apple.tool.util.QueryPattern;
 import java.io.IOException;
@@ -50,6 +55,7 @@ import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 
@@ -58,6 +64,8 @@ import org.dom4j.DocumentException;
  * @author Adam
  */
 public class MainFrame extends javax.swing.JFrame {
+
+    private DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
 
     /**
      * Creates new form RecognitionToolJFrame
@@ -113,6 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
         deviceCountButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        flushButton = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         resolutionLabel = new javax.swing.JLabel();
         resolutionComboBox = new javax.swing.JComboBox();
@@ -436,6 +445,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        flushButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/disk.png"))); // NOI18N
+        flushButton.setToolTipText("Flush devices to file");
+        flushButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flushButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -473,9 +490,12 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(deviceCountButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(googleButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(baiduButton)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(googleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(baiduButton))
+                    .addComponent(flushButton))
                 .addGap(94, 94, 94))
         );
         jPanel13Layout.setVerticalGroup(
@@ -510,7 +530,8 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(knockOffCheckBox))
                             .addComponent(updateTestCaseButton)
                             .addComponent(sortButton)))
-                    .addComponent(updateButton)))
+                    .addComponent(updateButton)
+                    .addComponent(flushButton)))
         );
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Knock-Off"));
@@ -701,11 +722,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1050,11 +1070,17 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (StringUtils.isBlank(product)) {
             JOptionPane.showMessageDialog(jPanel13, "Product should not be blank.");
         } else {
-            //Disable.
-            RecognitionTool.addDevice(productId, brand, product, alias, type);
+//            RecognitionTool.addDevice(productId, brand, product, alias, type);
+            Device device = new Device();
+            device.setProductId(productId);
+            device.setBrand(brand);
+            device.setProduct(product);
+            device.setAlias(alias);
+            if(type!=0){
+                device.setType(type);
+            }     
+            deviceXmlDao.addDevice(device);
             resultTextArea.setText("Add device " + productId);
-//            String xml = RecognitionTool.getDevice(productId, brand, product, alias);
-//            resultTextArea.setText(xml);
         }
     }
 
@@ -1279,7 +1305,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (!StringUtils.equalsIgnoreCase(Constants.RECOVERY_VID, vid)) {
                 vidSet.add(Constants.RECOVERY_VID);
             }
-            
+
             if (!StringUtils.equalsIgnoreCase(Constants.COMMON_VID, vid)) {
                 vidSet.add(Constants.COMMON_VID);
             }
@@ -1306,14 +1332,11 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
 
-            ProductId aProductId = new ProductId(productId, conditions);
-            Model aModel = new Model(model, aProductId);
-            RecognitionTool.addModel(vids, aModel);
+            addModel(productId, conditions, model, vids);
 
             //Update log
 //            DeviceLogDao dao = new DeviceLogDao();
 //            dao.updateDeviceLog(productId, vids, aModel);
-
             resultTextArea.append(System.getProperty("line.separator"));
             resultTextArea.append("Add model " + model + " to " + Arrays.toString(vids));
         }
@@ -1321,15 +1344,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void errorRecognitionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_errorRecognitionButtonActionPerformed
 //        new ErrorDeviceWorker(this.deviceTable).execute();
-        IdentifyAnalyticsService service=new IdentifyAnalyticsService();
+        IdentifyAnalyticsService service = new IdentifyAnalyticsService();
         try {
-            List<List<AndroidDeviceRanking>> deviceList=  service.analytics();
-            String csv=CsvUtils.toCsv(deviceList);
+            List<List<AndroidDeviceRanking>> deviceList = service.analytics();
+            String csv = CsvUtils.toCsv(deviceList);
             Files.write(Paths.get(Constants.IDENTIFY_ANALYTICS_FILE), csv.getBytes());
         } catch (SQLException | IOException ex) {
-             JOptionPane.showMessageDialog(jPanel13,ex.getMessage());     
+            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
         }
-       JOptionPane.showMessageDialog(jPanel13, "Identity analytics result has been generated.");        
+        JOptionPane.showMessageDialog(jPanel13, "Identity analytics result has been generated.");
     }//GEN-LAST:event_errorRecognitionButtonActionPerformed
 
     private void updateModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateModelButtonActionPerformed
@@ -1363,15 +1386,33 @@ public class MainFrame extends javax.swing.JFrame {
                     conditions.put(condition2.toLowerCase(), condition2Value);
                 }
             }
-            ProductId aProductId = new ProductId(productId, conditions);
-            Model aModel = new Model(model, aProductId);
-            RecognitionTool.addModel(vids, aModel);
-            //Update log
-//            DeviceLogDao dao = new DeviceLogDao();
-//            dao.updateDeviceLog(productId, vids, aModel);
+            addModel(productId, conditions, model, vids);
             resultTextArea.append(System.getProperty("line.separator"));
             resultTextArea.append("Add model " + model + " to " + Arrays.toString(vids));
         }
+    }
+
+    private void addModel(String productId, Map<String, String> conditions, String model, String[] vids) {
+        //TODO
+//            ProductId aProductId = new ProductId(productId, conditions);
+//            Model aModel = new Model(model, aProductId);
+//            RecognitionTool.addModel(vids, aModel);
+        //Update log
+//            DeviceLogDao dao = new DeviceLogDao();
+//            dao.updateDeviceLog(productId, vids, aModel);
+        Modal newModel = new Modal();
+        ProductId newProductId = new ProductId();
+        newProductId.setValue(productId);
+        newProductId.setCondition(ConditionUtils.build(conditions));
+        List<ProductId> productIds = new ArrayList<>();
+        productIds.add(newProductId);
+        newModel.setProductId(productIds);
+        Value value = new Value();
+        value.setValue(model);
+        List<Value> values = new ArrayList<>();
+        values.add(value);
+        newModel.setValues(values);
+        deviceXmlDao.addModel(vids, newModel);
     }
 
     private void queryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryButtonActionPerformed
@@ -1469,7 +1510,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortButtonActionPerformed
         String vid = vidTextField.getText();
         if (StringUtils.isNotBlank(vid) && vid.length() == 4) {
-            RecognitionTool.sortModel(vid);
+//            RecognitionTool.sortModel(vid);
+            deviceXmlDao.format(vid);
             resultTextArea.setText("Sorting  " + vid + " is done.");
         } else {
             JOptionPane.showMessageDialog(jPanel13, "Vid is blank or invalid.");
@@ -1506,12 +1548,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void deviceCountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deviceCountButtonActionPerformed
-        try {
-            int deviceCount = RecognitionTool.getDeviceCount();
-            resultTextArea.setText("Device count: " + deviceCount);
-        } catch (DocumentException ex) {
-            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
-        }
+//            int deviceCount = RecognitionTool.getDeviceCount();
+        int deviceCount = deviceXmlDao.deviceCount();
+        resultTextArea.setText("Device count: " + deviceCount);
+
     }//GEN-LAST:event_deviceCountButtonActionPerformed
 
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
@@ -1604,29 +1644,29 @@ public class MainFrame extends javax.swing.JFrame {
                 AndroidDevice device = devices.get(0);
                 switch (condition) {
                     case "Board":
-                    condition2TextField.setText(device.getRoProductBoard());
-                    break;
+                        condition2TextField.setText(device.getRoProductBoard());
+                        break;
                     case "Brand":
-                    condition2TextField.setText(device.getRoProductBrand());
-                    break;
+                        condition2TextField.setText(device.getRoProductBrand());
+                        break;
                     case "Cpu":
-                    condition2TextField.setText(device.getCpuHardware());
-                    break;
+                        condition2TextField.setText(device.getCpuHardware());
+                        break;
                     case "Device":
-                    condition2TextField.setText(device.getRoProductDevice());
-                    break;
+                        condition2TextField.setText(device.getRoProductDevice());
+                        break;
                     case "Hardware":
-                    condition2TextField.setText(device.getRoHardware());
-                    break;
+                        condition2TextField.setText(device.getRoHardware());
+                        break;
                     case "Manufacturer":
-                    condition2TextField.setText(device.getRoProductManufacturer());
-                    break;
+                        condition2TextField.setText(device.getRoProductManufacturer());
+                        break;
                     case "Adb_Device":
-                    condition2TextField.setText(device.getAdbDevice());
-                    break;
+                        condition2TextField.setText(device.getAdbDevice());
+                        break;
                     case "Display_ID":
-                    condition2TextField.setText(device.getRoBuildDisplayId());
-                    break;
+                        condition2TextField.setText(device.getRoBuildDisplayId());
+                        break;
                 }
             }
         }
@@ -1645,29 +1685,29 @@ public class MainFrame extends javax.swing.JFrame {
                 AndroidDevice device = devices.get(0);
                 switch (condition) {
                     case "Board":
-                    conditionTextField.setText(device.getRoProductBoard());
-                    break;
+                        conditionTextField.setText(device.getRoProductBoard());
+                        break;
                     case "Brand":
-                    conditionTextField.setText(device.getRoProductBrand());
-                    break;
+                        conditionTextField.setText(device.getRoProductBrand());
+                        break;
                     case "Cpu":
-                    conditionTextField.setText(device.getCpuHardware());
-                    break;
+                        conditionTextField.setText(device.getCpuHardware());
+                        break;
                     case "Device":
-                    conditionTextField.setText(device.getRoProductDevice());
-                    break;
+                        conditionTextField.setText(device.getRoProductDevice());
+                        break;
                     case "Hardware":
-                    conditionTextField.setText(device.getRoHardware());
-                    break;
+                        conditionTextField.setText(device.getRoHardware());
+                        break;
                     case "Manufacturer":
-                    conditionTextField.setText(device.getRoProductManufacturer());
-                    break;
+                        conditionTextField.setText(device.getRoProductManufacturer());
+                        break;
                     case "Adb_Device":
-                    conditionTextField.setText(device.getAdbDevice());
-                    break;
+                        conditionTextField.setText(device.getAdbDevice());
+                        break;
                     case "Display_ID":
-                    conditionTextField.setText(device.getRoBuildDisplayId());
-                    break;
+                        conditionTextField.setText(device.getRoBuildDisplayId());
+                        break;
                 }
             }
         }
@@ -1680,6 +1720,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void existCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_existCheckBoxActionPerformed
+
+    private void flushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flushButtonActionPerformed
+        try {
+            deviceXmlDao.flush();
+        } catch (JAXBException ex) {
+            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
+        }
+    }//GEN-LAST:event_flushButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1746,6 +1794,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox existInVidCheckBox;
     private javax.swing.JButton existenceFilterButton;
     private javax.swing.JButton filterButton;
+    private javax.swing.JButton flushButton;
     private javax.swing.JButton googleButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

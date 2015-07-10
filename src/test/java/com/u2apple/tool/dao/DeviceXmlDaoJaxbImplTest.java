@@ -8,7 +8,6 @@ package com.u2apple.tool.dao;
 import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.ProductId;
-import com.shuame.wandoujia.bean.StaticMapFile;
 import com.shuame.wandoujia.bean.Value;
 import java.util.ArrayList;
 import java.util.List;

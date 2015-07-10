@@ -118,8 +118,8 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             VID v = getVid(getStaticMapFile().getVids(), vid);
             jaxbMarshaller.marshal(v, file);
-            changedVids.remove(vid);
         }
+        changedVids.clear();
     }
 
     @Override
@@ -158,9 +158,8 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
 
     @Override
     public void format(String vid) {
-        Set<String> vids = new HashSet<>();
-        vids.add(vid);
-        StaticMapFileUtils.format(getStaticMapFile(), false, vids);
+        changedVids.add(vid);
+        StaticMapFileUtils.format(getStaticMapFile(), false, changedVids);
     }
 
 }

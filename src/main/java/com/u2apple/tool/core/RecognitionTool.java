@@ -27,6 +27,7 @@ public class RecognitionTool {
         return xmlEditor.getDeviceCount();
     }
 
+    @Deprecated
     public static void addDevice(String productId, String brand, String product, String alias, int type) {
         DeviceXmlDaoImpl deviceXmlDao = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         Device device = DeviceFactory.createDevice(productId, brand, product, alias, type);
@@ -47,6 +48,7 @@ public class RecognitionTool {
      * @param vids
      * @param model
      */
+     @Deprecated
     public static void addModel(String[] vids, Model model) {
         DeviceXmlDaoImpl deviceXmlDao = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         try {
@@ -57,6 +59,7 @@ public class RecognitionTool {
         }
     }
 
+     @Deprecated
     public static void sortModel(String vid) {
         DeviceXmlDaoImpl xmlEditor = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         try {
