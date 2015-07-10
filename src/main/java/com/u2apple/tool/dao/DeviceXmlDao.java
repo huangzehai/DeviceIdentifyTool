@@ -26,4 +26,10 @@ public interface DeviceXmlDao {
 
     void flush() throws PropertyException, JAXBException;
 
+    boolean modelExists(String vid, String text);
+
+    boolean modelExists(String text);
+
+    boolean productIdExists(String productId);
+
 }

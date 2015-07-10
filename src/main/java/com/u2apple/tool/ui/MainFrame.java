@@ -57,7 +57,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
-import org.dom4j.DocumentException;
 
 /**
  *
@@ -65,7 +64,7 @@ import org.dom4j.DocumentException;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
+    private final DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
 
     /**
      * Creates new form RecognitionToolJFrame
@@ -189,11 +188,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
             public void removeUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                productIdExistCheckBox.setSelected(RecognitionTool.isProductIdExist(productId));
+                productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));
             }
             public void insertUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                productIdExistCheckBox.setSelected(RecognitionTool.isProductIdExist(productId));
+                productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));
             }
         });
 

@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
-
+@Deprecated
 public class RecognitionTool {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RecognitionTool.class);
@@ -74,6 +74,7 @@ public class RecognitionTool {
         return FreemarkerUtils.generate(device, "device.ftl");
     }
 
+      @Deprecated
     public static boolean modelExists(String text) {
         if (StringUtils.isBlank(text)) {
             return false;
@@ -88,6 +89,7 @@ public class RecognitionTool {
         return false;
     }
 
+      @Deprecated
     public static boolean modelExists(String vid, String text) {
         if (StringUtils.isBlank(vid) || StringUtils.isBlank(text)) {
             return false;
@@ -97,6 +99,7 @@ public class RecognitionTool {
         return modelsOfVid == null ? false : modelsOfVid.contains(text.toLowerCase());
     }
 
+    @Deprecated
     public static boolean isProductIdExist(String productId) {
         Set<String> productIds = DeviceCache.getProductIds();
         return productIds.contains(productId);

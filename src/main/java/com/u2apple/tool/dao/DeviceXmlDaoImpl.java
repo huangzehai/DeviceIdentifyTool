@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
-
+@Deprecated
 public class DeviceXmlDaoImpl {
 
     private String devicesFile;

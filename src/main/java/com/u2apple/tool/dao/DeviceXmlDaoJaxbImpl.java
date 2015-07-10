@@ -9,6 +9,7 @@ import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.StaticMapFile;
 import com.shuame.wandoujia.bean.VID;
+import com.shuame.wandoujia.bean.Value;
 import com.u2apple.tool.constant.Configuration;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.util.StaticMapFileUtils;
@@ -26,6 +27,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -103,7 +105,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(getStaticMapFile() , file);
+            jaxbMarshaller.marshal(getStaticMapFile(), file);
             isDeviceChanged = false;
         }
     }
@@ -160,6 +162,66 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     public void format(String vid) {
         changedVids.add(vid);
         StaticMapFileUtils.format(getStaticMapFile(), false, changedVids);
+    }
+
+    @Override
+    public boolean modelExists(String vid, String text) {
+        boolean exists = false;
+        if (StringUtils.isBlank(vid) || StringUtils.isBlank(text)) {
+            return exists;
+        }
+        List<VID> vids = getStaticMapFile().getVids();
+        VID v = getVid(vids, vid);
+        return modelExists(v, text);
+    }
+
+    private boolean modelExists(VID vid, String text) {
+        boolean exists = false;
+        if (vid != null) {
+            List<Modal> models = vid.getModals();
+            for (Modal model : models) {
+                List<Value> values = model.getValues();
+                for (Value value : values) {
+                    if (value.getValue().equalsIgnoreCase(text)) {
+                        exists = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return exists;
+    }
+
+    @Override
+    public boolean modelExists(String text) {
+        boolean exists = false;
+        if (StringUtils.isBlank(text)) {
+            return exists;
+        }
+        List<VID> vids = getStaticMapFile().getVids();
+        for (VID vid : vids) {
+            if (modelExists(vid, text)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
+    }
+
+    @Override
+    public boolean productIdExists(String productId) {
+        boolean exists = false;
+        if (StringUtils.isBlank(productId)) {
+            return exists;
+        }
+        List<Device> devices = getStaticMapFile().getDevices();
+        for (Device device : devices) {
+            if (device.getProductId().equalsIgnoreCase(productId)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
 
 }

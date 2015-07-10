@@ -28,6 +28,7 @@ import javax.xml.bind.Unmarshaller;
  *
  * @author Adam
  */
+@Deprecated
 public class DeviceCache {
 
     private static final Set<String> productIds = new HashSet<>();
@@ -46,7 +47,7 @@ public class DeviceCache {
         }
     }
 
-    public static void loadProductIds() throws JAXBException {
+    private static void loadProductIds() throws JAXBException {
         File file = new File(Configuration.getProperty(Constants.DEVICES_XML));
         JAXBContext jaxbContext = JAXBContext.newInstance(StaticMapFile.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -59,7 +60,7 @@ public class DeviceCache {
         }
     }
 
-    public static void loadModels() throws JAXBException {
+    private static void loadModels() throws JAXBException {
         File dir = new File(Configuration.getProperty(Constants.VID_DIR));
         if (dir.exists()) {
             File[] vidFiles = dir.listFiles();

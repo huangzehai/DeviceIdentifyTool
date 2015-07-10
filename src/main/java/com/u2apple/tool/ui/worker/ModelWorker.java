@@ -7,6 +7,8 @@ package com.u2apple.tool.ui.worker;
 
 import com.u2apple.tool.model.ModelWorkderResult;
 import com.u2apple.tool.core.RecognitionTool;
+import com.u2apple.tool.dao.DeviceXmlDao;
+import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +25,9 @@ public class ModelWorker extends SwingWorker<ModelWorkderResult, Void> {
     private final String vid;
     private final JCheckBox existCheckBox;
     private final JCheckBox existInVidCheckBox;
+    private final DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
 
-    public ModelWorker(String vid, String model,JCheckBox existCheckBox, JCheckBox existInVidCheckBox) {
+    public ModelWorker(String vid, String model, JCheckBox existCheckBox, JCheckBox existInVidCheckBox) {
         this.model = model;
         this.vid = vid;
         this.existCheckBox = existCheckBox;
@@ -33,8 +36,10 @@ public class ModelWorker extends SwingWorker<ModelWorkderResult, Void> {
 
     @Override
     protected ModelWorkderResult doInBackground() throws Exception {
-        boolean existingInGlobal = RecognitionTool.modelExists(model);
-        boolean existingInVid = RecognitionTool.modelExists(vid, model);
+//        boolean existingInGlobal = RecognitionTool.modelExists(model);
+        boolean existingInGlobal = deviceXmlDao.modelExists(model);
+//        boolean existingInVid = RecognitionTool.modelExists(vid, model);
+        boolean existingInVid = deviceXmlDao.modelExists(vid, model);
         return new ModelWorkderResult(existingInGlobal, existingInVid);
     }
 
