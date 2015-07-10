@@ -23,15 +23,17 @@ public class Constants {
 
     //Long time.
     public static final int TIMEOUT_LONG = 100;
-    
+
     //Short time.
-    public static final int TIMEOUT_SHORT=5;
-    
-    public static final String ANDROID_DEVICES_JSON_FILE="androidDevices.json";
-    
-    public static final String IDENTIFY_ANALYTICS_FILE=System.getProperty("user.home")+"/identify-analytics.csv";
-    
-    public static final String DEVICES_XML="devicesXml";
-    public static final String VID_DIR="vidDir";
+    public static final int TIMEOUT_SHORT = 5;
+
+    public static final String ANDROID_DEVICES_JSON_FILE = "androidDevices.json";
+
+    public static final String IDENTIFY_ANALYTICS_FILE = System.getProperty("user.home") + "/identify-analytics.csv";
+
+    public static final String DEVICES_XML = "devicesXml";
+    public static final String VID_DIR = "vidDir";
+
+    public static final String VID_FILE_FORMAT = "vidFileFormat";
 
 }

@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @XmlType(name = "Device", namespace = "http://www.wandoujia.com/schema/1.0.0")
@@ -21,8 +20,8 @@ public class Device {
     private String _productId;
 
     /**  */
-    // @XmlElement(name = "Manufactory")
-    @XmlTransient
+     @XmlElement(name = "Manufactory")
+//    @XmlTransient
     private String _manufactory;
 
     /**  */

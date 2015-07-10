@@ -22,12 +22,12 @@ public class Modal {
 
     /**  */
     @XmlElement(name = "ProductId")
-    // private String _productId;
+
     private List<ProductId> _productIds;
 
     public List<Value> getValues() {
         if (_values == null) {
-            _values = new ArrayList<Value>();
+            _values = new ArrayList<>();
         }
         return _values;
     }
@@ -38,7 +38,7 @@ public class Modal {
 
     public List<ProductId> getProductId() {
         if (_productIds == null) {
-            _productIds = new ArrayList<ProductId>();
+            _productIds = new ArrayList<>();
         }
         return _productIds;
     }
@@ -46,14 +46,6 @@ public class Modal {
     public void setProductId(List<ProductId> productIds) {
         _productIds = productIds;
     }
-
-    // public String getProductId() {
-    // return _productId;
-    // }
-    //
-    // public void setProductId(String productId) {
-    // _productId = productId;
-    // }
 
     @Override
     public String toString() {

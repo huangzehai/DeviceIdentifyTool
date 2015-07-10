@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import org.dom4j.DocumentException;
 
-import com.u2apple.tool.dao.DeviceXmlDao;
+import com.u2apple.tool.dao.DeviceXmlDaoImpl;
 import com.u2apple.tool.model.Device;
 import java.util.Map;
 import java.util.Set;
@@ -23,12 +23,12 @@ public class RecognitionTool {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RecognitionTool.class);
 
     public static int getDeviceCount() throws DocumentException {
-        DeviceXmlDao xmlEditor = new DeviceXmlDao(Configuration.getDevicesXml());
+        DeviceXmlDaoImpl xmlEditor = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         return xmlEditor.getDeviceCount();
     }
 
     public static void addDevice(String productId, String brand, String product, String alias, int type) {
-        DeviceXmlDao deviceXmlDao = new DeviceXmlDao(Configuration.getDevicesXml());
+        DeviceXmlDaoImpl deviceXmlDao = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         Device device = DeviceFactory.createDevice(productId, brand, product, alias, type);
         try {
             deviceXmlDao.addDevice(device);
@@ -48,7 +48,7 @@ public class RecognitionTool {
      * @param model
      */
     public static void addModel(String[] vids, Model model) {
-        DeviceXmlDao deviceXmlDao = new DeviceXmlDao(Configuration.getDevicesXml());
+        DeviceXmlDaoImpl deviceXmlDao = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         try {
             deviceXmlDao.addModel(vids, model);
             DeviceCache.addModel(vids, model.getValues());
@@ -58,7 +58,7 @@ public class RecognitionTool {
     }
 
     public static void sortModel(String vid) {
-        DeviceXmlDao xmlEditor = new DeviceXmlDao(Configuration.getDevicesXml());
+        DeviceXmlDaoImpl xmlEditor = new DeviceXmlDaoImpl(Configuration.getDevicesXml());
         try {
             xmlEditor.sortModels(vid);
         } catch (DocumentException | IOException ex) {
