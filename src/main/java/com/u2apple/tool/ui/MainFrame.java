@@ -96,7 +96,6 @@ public class MainFrame extends javax.swing.JFrame {
         aliasTextField = new javax.swing.JTextField();
         typeComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        productIdExistCheckBox = new javax.swing.JCheckBox();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         resultTextArea = new javax.swing.JTextArea();
@@ -131,8 +130,6 @@ public class MainFrame extends javax.swing.JFrame {
         modelTextField = new javax.swing.JTextField();
         vidLabel = new javax.swing.JLabel();
         vidTextField = new javax.swing.JTextField();
-        existCheckBox = new javax.swing.JCheckBox();
-        existInVidCheckBox = new javax.swing.JCheckBox();
         conditionComboBox = new javax.swing.JComboBox();
         conditionTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -189,7 +186,6 @@ public class MainFrame extends javax.swing.JFrame {
             public void removeUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
                 boolean exists=deviceXmlDao.productIdExists(productId);
-                productIdExistCheckBox.setSelected(exists);
                 if(exists){
                     productIdTextField.setBackground(Color.GREEN);
                 }else{
@@ -199,7 +195,6 @@ public class MainFrame extends javax.swing.JFrame {
             public void insertUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
                 boolean exists=deviceXmlDao.productIdExists(productId);
-                productIdExistCheckBox.setSelected(exists);
                 if(exists){
                     productIdTextField.setBackground(Color.GREEN);
                 }else{
@@ -229,15 +224,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel2.setText("Type:");
 
-        productIdExistCheckBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        productIdExistCheckBox.setText("Product ID");
-        productIdExistCheckBox.setEnabled(false);
-        productIdExistCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productIdExistCheckBoxActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -251,23 +237,18 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(brandTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addComponent(productIdTextField))
                 .addGap(37, 37, 37)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(productLabel)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(productLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(productTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(productIdExistCheckBox))
+                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(aliasLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(aliasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(aliasLabel)
+                .addGap(18, 18, 18)
+                .addComponent(aliasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,10 +257,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productIdLabel)
                     .addComponent(productIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productIdExistCheckBox)
                     .addComponent(jLabel2)
                     .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productLabel)
                     .addComponent(productTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -625,25 +605,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        existCheckBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        existCheckBox.setText("Global");
-        existCheckBox.setToolTipText("Model exist?");
-        existCheckBox.setEnabled(false);
-        existCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                existCheckBoxActionPerformed(evt);
-            }
-        });
-
-        existInVidCheckBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        existInVidCheckBox.setText("VID");
-        existInVidCheckBox.setEnabled(false);
-        existInVidCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                existInVidCheckBoxActionPerformed(evt);
-            }
-        });
-
         conditionComboBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         conditionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID" }));
         conditionComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -684,20 +645,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(modelLabel)
                     .addComponent(vidLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(modelTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(vidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(existCheckBox)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(existInVidCheckBox))
-                    .addComponent(vid2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                        .addComponent(vid2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(155, 155, 155)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(condition2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -724,10 +680,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(condition2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(condition2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel)
-                    .addComponent(modelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(existCheckBox)
-                    .addComponent(existInVidCheckBox))
-                .addGap(0, 4, Short.MAX_VALUE))
+                    .addComponent(modelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1295,7 +1249,7 @@ public class MainFrame extends javax.swing.JFrame {
         String vid = vidTextField.getText();
         String model = modelTextField.getText();
         if (StringUtils.isNotBlank(vid) && StringUtils.isNotBlank(model)) {
-            new ModelWorker(vid, model, existCheckBox, existInVidCheckBox, modelTextField).execute();
+            new ModelWorker(vid, model, modelTextField).execute();
         }
     }
 
@@ -1729,14 +1683,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_conditionComboBoxActionPerformed
 
-    private void existInVidCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existInVidCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_existInVidCheckBoxActionPerformed
-
-    private void existCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_existCheckBoxActionPerformed
-
     private void flushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flushButtonActionPerformed
         try {
             deviceXmlDao.flush();
@@ -1745,10 +1691,6 @@ public class MainFrame extends javax.swing.JFrame {
             resultTextArea.setText("Flush is failed as " + ex.getMessage());
         }
     }//GEN-LAST:event_flushButtonActionPerformed
-
-    private void productIdExistCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productIdExistCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_productIdExistCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1811,8 +1753,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable deviceTable;
     private javax.swing.JButton errorRecognitionButton;
     private javax.swing.JButton excludeFilterButton;
-    private javax.swing.JCheckBox existCheckBox;
-    private javax.swing.JCheckBox existInVidCheckBox;
     private javax.swing.JButton filterButton;
     private javax.swing.JButton flushButton;
     private javax.swing.JButton googleButton;
@@ -1841,7 +1781,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel partitionLabel;
     private javax.swing.JTextField partitionTextField;
     private javax.swing.JButton productIdButton;
-    private javax.swing.JCheckBox productIdExistCheckBox;
     private javax.swing.JLabel productIdLabel;
     private javax.swing.JTextField productIdTextField;
     private javax.swing.JLabel productLabel;
