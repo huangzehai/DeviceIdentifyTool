@@ -5,6 +5,7 @@
  */
 package com.u2apple.tool.ui;
 
+import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.persistence.Pool;
 import com.u2apple.tool.persistence.SshTunnel;
 import java.awt.Image;
@@ -36,7 +37,7 @@ public class Application {
         //Release resource when shutdown.
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
-            public void run() {           
+            public void run() {
                 Pool.close();
                 SshTunnel.close();
             }
@@ -45,8 +46,8 @@ public class Application {
 
     private static void init() {
         //Set window icon.
-        Toolkit toolKit=Toolkit.getDefaultToolkit();
-        Image image=   toolKit.createImage(Application.class.getClassLoader().getResource("com/u2apple/tool/icon/tools.png"));
+        Toolkit toolKit = Toolkit.getDefaultToolkit();
+        Image image = toolKit.createImage(Application.class.getClassLoader().getResource(Constants.APPLICATION_ICON));
         //Setting look and feel.
         try {
             UIManager.setLookAndFeel(

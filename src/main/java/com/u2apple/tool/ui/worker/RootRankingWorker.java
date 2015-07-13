@@ -5,7 +5,8 @@
  */
 package com.u2apple.tool.ui.worker;
 
-import com.u2apple.tool.dao.NonRecognitionRankingDao;
+import com.u2apple.tool.dao.AndroidDeviceDao;
+import com.u2apple.tool.dao.AndroidDeviceDaoImpl;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
 import javax.swing.JTable;
@@ -25,7 +26,8 @@ public class RootRankingWorker extends AbstractDeviceRankingWorker {
 
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
-        return new NonRecognitionRankingDao().getMobileRootSpiritDevices(days);
+        AndroidDeviceDao dao = new AndroidDeviceDaoImpl();
+        return dao.getUnidentifiedDevicesOfRootSpirit(days);
     }
 
 }

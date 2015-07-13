@@ -35,5 +35,7 @@ public class Constants {
     public static final String VID_DIR = "vidDir";
 
     public static final String VID_FILE_FORMAT = "vidFileFormat";
+    
+    public static final String APPLICATION_ICON="com/u2apple/tool/icon/tools.png";
 
 }

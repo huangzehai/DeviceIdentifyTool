@@ -5,7 +5,6 @@
  */
 package com.u2apple.tool.ui.worker;
 
-import com.u2apple.tool.filter.ExcludeFilter;
 import com.u2apple.tool.filter.Filter;
 import com.u2apple.tool.filter.QueryFilter;
 import com.u2apple.tool.model.AndroidDeviceRanking;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.u2apple.tool.mappers.RootDeviceMapper">
+    <resultMap id="androidDeviceRankingResultMap" type="AndroidDeviceRanking">
+        <result property="vid" column="vid"/>
+        <result property="roProductModel" column="ro_product_model"/>
+        <result property="roProductBrand" column="ro_product_brand"/>
+        <result property="count" column="count"/>
+    </resultMap>
+
+    <select id="selectUnidentifiedDevices" parameterType="int" resultMap="androidDeviceRankingResultMap">
+        select vid, ro_product_brand,ro_product_model ,count(*) as count from log_root_solution_201507 where created_at > subdate(curdate(), #{days}) and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
+    </select>
+    
+</mapper>

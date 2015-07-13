@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.u2apple.tool.dao;
+package com.u2apple.tool.mappers;
 
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
@@ -12,11 +12,6 @@ import java.util.List;
  *
  * @author Adam
  */
-public interface AndroidDeviceDao {
-
-    int getCount();
-
-    List<AndroidDeviceRanking> getUnidentifiedDevices(int days);
-     List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days);
-
+public interface RootDeviceMapper {
+     List<AndroidDeviceRanking> selectUnidentifiedDevices(int days);
 }

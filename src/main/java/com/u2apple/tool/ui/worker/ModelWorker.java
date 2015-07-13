@@ -6,7 +6,6 @@
 package com.u2apple.tool.ui.worker;
 
 import com.u2apple.tool.model.ModelWorkderResult;
-import com.u2apple.tool.core.RecognitionTool;
 import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import java.util.concurrent.ExecutionException;

@@ -18,24 +18,39 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public final class MyBatisHelper {
 
-    private static SqlSessionFactory sqlSessionFactory;
+    private static SqlSessionFactory statSqlSessionFactory;
+     private static SqlSessionFactory rootSqlSessionFactory;
 
     private MyBatisHelper() {
 
     }
 
-    public static SqlSessionFactory getSqlSessionFactory() throws IOException, JSchException {
-        if (sqlSessionFactory == null) {
-            createSqlSessionFactory();
+    public static SqlSessionFactory getStatSqlSessionFactory() throws IOException, JSchException {
+        if (statSqlSessionFactory == null) {
+            createStatSqlSessionFactory();
         }
-        return sqlSessionFactory;
+        return statSqlSessionFactory;
     }
 
-    private static void createSqlSessionFactory() throws IOException, JSchException {
+    private static void createStatSqlSessionFactory() throws IOException, JSchException {
         SshTunnel.doStatSshTunnel();
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        statSqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    }
+    
+       public static SqlSessionFactory getRootSqlSessionFactory() throws IOException, JSchException {
+        if (rootSqlSessionFactory == null) {
+            createRootSqlSessionFactory();
+        }
+        return rootSqlSessionFactory;
+    }
+
+    private static void createRootSqlSessionFactory() throws IOException, JSchException {
+        SshTunnel.doStatSshTunnel();
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        rootSqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"root");
     }
     
 }

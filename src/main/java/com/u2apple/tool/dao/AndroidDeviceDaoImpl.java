@@ -7,6 +7,7 @@ package com.u2apple.tool.dao;
 
 import com.jcraft.jsch.JSchException;
 import com.u2apple.tool.mappers.AndroidDeviceMapper;
+import com.u2apple.tool.mappers.RootDeviceMapper;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import com.u2apple.tool.persistence.MyBatisHelper;
 import java.io.IOException;
@@ -21,9 +22,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
 
     private final SqlSessionFactory sqlSessionFactory;
+    private final SqlSessionFactory rootSqlSessionFactory;
 
     public AndroidDeviceDaoImpl() throws IOException, JSchException {
-             this.sqlSessionFactory = MyBatisHelper.getSqlSessionFactory();
+        this.sqlSessionFactory = MyBatisHelper.getStatSqlSessionFactory();
+        this.rootSqlSessionFactory = MyBatisHelper.getRootSqlSessionFactory();
     }
 
     @Override
@@ -37,6 +40,13 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
     public List<AndroidDeviceRanking> getUnidentifiedDevices(int days) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
+        return mapper.selectUnidentifiedDevices(days);
+    }
+
+    @Override
+    public List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days) {
+        SqlSession sqlSession = rootSqlSessionFactory.openSession();
+        RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
         return mapper.selectUnidentifiedDevices(days);
     }
 
