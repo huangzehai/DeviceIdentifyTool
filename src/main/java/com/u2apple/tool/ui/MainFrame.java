@@ -37,6 +37,7 @@ import com.u2apple.tool.util.AndroidDeviceUtils;
 import com.u2apple.tool.util.ConditionUtils;
 import com.u2apple.tool.util.CsvUtils;
 import com.u2apple.tool.util.QueryPattern;
+import java.awt.Color;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -188,11 +189,23 @@ public class MainFrame extends javax.swing.JFrame {
             }
             public void removeUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));
+                boolean exists=deviceXmlDao.productIdExists(productId);
+                productIdExistCheckBox.setSelected(exists);
+                if(exists){
+                    productIdTextField.setBackground(Color.GREEN);
+                }else{
+                    productIdTextField.setBackground(Color.WHITE);
+                }
             }
             public void insertUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));
+                boolean exists=deviceXmlDao.productIdExists(productId);
+                productIdExistCheckBox.setSelected(exists);
+                if(exists){
+                    productIdTextField.setBackground(Color.GREEN);
+                }else{
+                    productIdTextField.setBackground(Color.WHITE);
+                }
             }
         });
 
@@ -220,6 +233,11 @@ public class MainFrame extends javax.swing.JFrame {
         productIdExistCheckBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         productIdExistCheckBox.setText("Product ID");
         productIdExistCheckBox.setEnabled(false);
+        productIdExistCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productIdExistCheckBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1279,7 +1297,7 @@ public class MainFrame extends javax.swing.JFrame {
         String vid = vidTextField.getText();
         String model = modelTextField.getText();
         if (StringUtils.isNotBlank(vid) && StringUtils.isNotBlank(model)) {
-            new ModelWorker(vid, model, existCheckBox, existInVidCheckBox).execute();
+            new ModelWorker(vid, model, existCheckBox, existInVidCheckBox,modelTextField).execute();
         }
     }
 
@@ -1728,6 +1746,10 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
         }
     }//GEN-LAST:event_flushButtonActionPerformed
+
+    private void productIdExistCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productIdExistCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productIdExistCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments

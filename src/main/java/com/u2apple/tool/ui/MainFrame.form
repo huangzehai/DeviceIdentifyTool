@@ -223,7 +223,7 @@
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="productIdTextFieldPropertyChange"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="productIdTextField.getDocument().addDocumentListener(new DocumentListener(){&#xa;    public void changedUpdate(DocumentEvent e) { &#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;         productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));   &#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;    String productId=productIdTextField.getText();&#xa;         productIdExistCheckBox.setSelected(deviceXmlDao.productIdExists(productId));   &#xa;  }&#xa;});"/>
+                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="productIdTextField.getDocument().addDocumentListener(new DocumentListener(){&#xa;    public void changedUpdate(DocumentEvent e) { &#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceXmlDao.productIdExists(productId);&#xa;       productIdExistCheckBox.setSelected(exists);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceXmlDao.productIdExists(productId);&#xa;       productIdExistCheckBox.setSelected(exists);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }  &#xa;  }&#xa;});"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="brandLabel">
@@ -301,6 +301,9 @@
                     <Property name="text" type="java.lang.String" value="Product ID"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productIdExistCheckBoxActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
