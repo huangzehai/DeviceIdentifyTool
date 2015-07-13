@@ -1092,9 +1092,9 @@ public class MainFrame extends javax.swing.JFrame {
             device.setBrand(brand);
             device.setProduct(product);
             device.setAlias(alias);
-            if(type!=0){
+            if (type != 0) {
                 device.setType(type);
-            }     
+            }
             deviceXmlDao.addDevice(device);
             resultTextArea.setText("Add device " + productId);
         }
@@ -1295,7 +1295,7 @@ public class MainFrame extends javax.swing.JFrame {
         String vid = vidTextField.getText();
         String model = modelTextField.getText();
         if (StringUtils.isNotBlank(vid) && StringUtils.isNotBlank(model)) {
-            new ModelWorker(vid, model, existCheckBox, existInVidCheckBox,modelTextField).execute();
+            new ModelWorker(vid, model, existCheckBox, existInVidCheckBox, modelTextField).execute();
         }
     }
 
@@ -1742,7 +1742,7 @@ public class MainFrame extends javax.swing.JFrame {
             deviceXmlDao.flush();
             resultTextArea.setText("Flush is done.");
         } catch (JAXBException ex) {
-           resultTextArea.setText("Flush is failed as "+ex.getMessage());
+            resultTextArea.setText("Flush is failed as " + ex.getMessage());
         }
     }//GEN-LAST:event_flushButtonActionPerformed
 

@@ -143,6 +143,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             if (v == null) {
                 v = new VID();
                 v.setValue(vid);
+                vs.add(v);
             }
             v.getModals().add(model);
         }
@@ -150,12 +151,14 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     }
 
     private VID getVid(List<VID> vids, String vid) {
+        VID result = null;
         for (VID v : vids) {
             if (v.getValue().equalsIgnoreCase(vid)) {
-                return v;
+                result = v;
+                break;
             }
         }
-        return null;
+        return result;
     }
 
     @Override
