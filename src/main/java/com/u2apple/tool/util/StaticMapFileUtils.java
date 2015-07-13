@@ -76,12 +76,32 @@ public final class StaticMapFileUtils {
             }
         });
 
-        //Reverse contained model.
         List<Modal> models = vid.getModals();
+        //Merge models.
+        fastMmergeModels(models);
+
+        //Reverse contained model.
         for (int i = 0; i < models.size(); i++) {
             for (int j = i + 1; j < models.size(); j++) {
                 if (valueContains(models.get(j).getValues(), models.get(i).getValues())) {
                     models.add(i, models.remove(j));
+                }
+            }
+        }
+
+    }
+
+    /**
+     * Merage after sorting.
+     *
+     * @param models
+     */
+    private static void fastMmergeModels(List<Modal> models) {
+        for (int i = 0; i < models.size() - 1; i++) {
+            {
+                if (models.get(i).getValues().equals(models.get(i + 1).getValues())) {
+                    models.get(i).getProductId().addAll(models.get(i + 1).getProductId());
+                    models.remove(i + 1);
                 }
             }
         }

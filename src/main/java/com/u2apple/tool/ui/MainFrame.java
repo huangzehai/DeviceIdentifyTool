@@ -26,7 +26,6 @@ import com.u2apple.tool.model.AndroidDeviceRanking;
 import com.u2apple.tool.ui.table.DeviceDetailTableModel;
 import com.u2apple.tool.ui.table.DeviceTableModel;
 import com.u2apple.tool.core.KnockOffTool;
-import com.u2apple.tool.core.RecognitionTool;
 import com.u2apple.tool.core.TestCaseTool;
 import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
@@ -154,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
         rootSpritButton = new javax.swing.JButton();
         filterButton = new javax.swing.JButton();
         matchButton = new javax.swing.JButton();
-        existenceFilterButton = new javax.swing.JButton();
+        newDeviceFilterButton = new javax.swing.JButton();
         excludeFilterButton = new javax.swing.JButton();
         queryFilterButton = new javax.swing.JButton();
         removeDeviceButton = new javax.swing.JButton();
@@ -502,18 +501,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(sortButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(connectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deviceCountButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(googleButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(baiduButton))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(googleButton)
                     .addComponent(flushButton))
-                .addGap(94, 94, 94))
+                .addGap(26, 26, 26)
+                .addComponent(baiduButton)
+                .addGap(54, 54, 54))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,11 +845,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        existenceFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/brand-new.png"))); // NOI18N
-        existenceFilterButton.setToolTipText("Brand new devices filter");
-        existenceFilterButton.addActionListener(new java.awt.event.ActionListener() {
+        newDeviceFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/brand-new.png"))); // NOI18N
+        newDeviceFilterButton.setToolTipText("Brand new devices filter");
+        newDeviceFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                existenceFilterButtonActionPerformed(evt);
+                newDeviceFilterButtonActionPerformed(evt);
             }
         });
 
@@ -900,7 +898,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(matchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(existenceFilterButton)
+                        .addComponent(newDeviceFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(excludeFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -952,7 +950,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(detailCheckBox))
                             .addComponent(othersDevicesButton)
                             .addComponent(matchButton)
-                            .addComponent(existenceFilterButton)
+                            .addComponent(newDeviceFilterButton)
                             .addComponent(excludeFilterButton)
                             .addComponent(queryFilterButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -1608,13 +1606,13 @@ public class MainFrame extends javax.swing.JFrame {
         updateTestCase();
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void existenceFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existenceFilterButtonActionPerformed
+    private void newDeviceFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newDeviceFilterButtonActionPerformed
         DeviceTableModel deviceTableModel = (DeviceTableModel) deviceTable.getModel();
         List<AndroidDeviceRanking> androidDevices = deviceTableModel.getAndroidDevices();
         if (androidDevices != null && androidDevices.size() > 0) {
             new NewDeviceFilterWorker(androidDevices, deviceTable).execute();
         }
-    }//GEN-LAST:event_existenceFilterButtonActionPerformed
+    }//GEN-LAST:event_newDeviceFilterButtonActionPerformed
 
     private void excludeFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excludeFilterButtonActionPerformed
         DeviceTableModel deviceTableModel = (DeviceTableModel) deviceTable.getModel();
@@ -1742,8 +1740,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void flushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flushButtonActionPerformed
         try {
             deviceXmlDao.flush();
+            resultTextArea.setText("Flush is done.");
         } catch (JAXBException ex) {
-            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
+           resultTextArea.setText("Flush is failed as "+ex.getMessage());
         }
     }//GEN-LAST:event_flushButtonActionPerformed
 
@@ -1814,7 +1813,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton excludeFilterButton;
     private javax.swing.JCheckBox existCheckBox;
     private javax.swing.JCheckBox existInVidCheckBox;
-    private javax.swing.JButton existenceFilterButton;
     private javax.swing.JButton filterButton;
     private javax.swing.JButton flushButton;
     private javax.swing.JButton googleButton;
@@ -1838,6 +1836,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton modelButton;
     private javax.swing.JLabel modelLabel;
     private javax.swing.JTextField modelTextField;
+    private javax.swing.JButton newDeviceFilterButton;
     private javax.swing.JButton othersDevicesButton;
     private javax.swing.JLabel partitionLabel;
     private javax.swing.JTextField partitionTextField;

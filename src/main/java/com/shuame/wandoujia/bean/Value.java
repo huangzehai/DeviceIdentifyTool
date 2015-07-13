@@ -1,6 +1,6 @@
 package com.shuame.wandoujia.bean;
 
-
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 ;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
  * Modal下的Value节点.
@@ -19,16 +19,20 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  * @version 1.0
  *
  */
+
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Value")
 @XmlType(name = "Value", namespace = "http://www.wandoujia.com/schema/1.0.0")
 public class Value {
+
     @XmlAttribute(name = "m")
     private String _method;
     @XmlValue
     private String _value;
 
     private class Method {
+
         public static final String EQUALS = "equals";
         public static final String REGEXP = "regexp";
     }
@@ -49,6 +53,29 @@ public class Value {
         _value = value;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Value other = (Value) obj;
+        if (!Objects.equals(this._method, other._method)) {
+            return false;
+        }
+        if (!Objects.equals(this._value, other._value)) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {

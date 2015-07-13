@@ -26,13 +26,8 @@ public class NewDeviceFilterWorker extends AbstractDeviceRankingWorker {
 
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
-        try{
         Filter filter = new NewDeviceFilter();
-         filter.filter(androidDevices);
-        }catch(Exception e){
-           e.printStackTrace();
-        }
-        return androidDevices;
+        return filter.filter(androidDevices);
     }
 
 }

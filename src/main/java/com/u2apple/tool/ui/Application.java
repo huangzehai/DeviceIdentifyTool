@@ -6,6 +6,8 @@
 package com.u2apple.tool.ui;
 
 import com.u2apple.tool.constant.Constants;
+import com.u2apple.tool.dao.DeviceXmlDao;
+import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import com.u2apple.tool.persistence.Pool;
 import com.u2apple.tool.persistence.SshTunnel;
 import java.awt.Image;
@@ -16,13 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.xml.bind.JAXBException;
 
 /**
  *
  * @author Adam
  */
 public class Application {
-
     /**
      * @param args the command line arguments
      */
@@ -40,6 +42,11 @@ public class Application {
             public void run() {
                 Pool.close();
                 SshTunnel.close();
+                try {
+                    new DeviceXmlDaoJaxbImpl().flush();
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -6,7 +6,6 @@
 package com.u2apple.tool.filter;
 
 import com.u2apple.tool.model.AndroidDeviceRanking;
-import com.u2apple.tool.core.RecognitionTool;
 import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import com.u2apple.tool.util.AndroidDeviceUtils;
@@ -27,7 +26,7 @@ public class NewDeviceFilter implements Filter {
     @Override
     public List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> devices) {
         List<AndroidDeviceRanking> newDevices = new ArrayList<>();
-        if (devices != null && !devices.isEmpty()) {
+        if (devices != null) {
             String productId;
             for (AndroidDeviceRanking device : devices) {
                 productId = AndroidDeviceUtils.getProductId(device.getRoProductBrand(), device.getRoProductModel());
