@@ -9,7 +9,6 @@ import com.u2apple.tool.annotation.Key;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
-import com.u2apple.tool.core.RecognitionTool;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -32,10 +31,10 @@ public final class AndroidDeviceUtils {
         brandProps = new Properties();
         try {
             //init brands.
-            InputStream is = RecognitionTool.class.getResourceAsStream(Constants.BRAND_CONF);
+            InputStream is = AndroidDeviceUtils.class.getResourceAsStream(Constants.BRAND_CONF);
             brandProps.load(is);
         } catch (IOException ex) {
-            Logger.getLogger(RecognitionTool.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AndroidDeviceUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

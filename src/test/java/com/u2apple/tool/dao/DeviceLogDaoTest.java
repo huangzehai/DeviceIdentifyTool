@@ -5,8 +5,8 @@
  */
 package com.u2apple.tool.dao;
 
-import com.u2apple.tool.dao.DeviceLogDao;
-import com.u2apple.tool.model.Device;
+import com.shuame.wandoujia.bean.Device;
+
 import com.u2apple.tool.model.Model;
 import com.u2apple.tool.model.ProductId;
 import java.util.LinkedHashMap;

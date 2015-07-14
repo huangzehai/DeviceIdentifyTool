@@ -5,7 +5,6 @@
  */
 package com.u2apple.tool.constant;
 
-import com.u2apple.tool.core.RecognitionTool;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -22,7 +21,7 @@ public class Configuration {
     private static Properties properties ;
 
     static {
-        InputStream inputStream = RecognitionTool.class.getResourceAsStream(Constants.CONFIGURATION);
+        InputStream inputStream = Configuration.class.getResourceAsStream(Constants.CONFIGURATION);
         properties = new Properties();
         try {
             properties.load(inputStream);

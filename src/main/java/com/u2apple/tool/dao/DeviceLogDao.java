@@ -8,7 +8,8 @@ package com.u2apple.tool.dao;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.u2apple.tool.model.Device;
+import com.shuame.wandoujia.bean.Device;
+
 import com.u2apple.tool.model.Model;
 import com.u2apple.tool.model.ProductId;
 import java.util.ArrayList;
