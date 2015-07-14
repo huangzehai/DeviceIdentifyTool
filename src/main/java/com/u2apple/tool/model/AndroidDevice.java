@@ -1,34 +1,63 @@
 package com.u2apple.tool.model;
 
 import com.u2apple.tool.annotation.Key;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class AndroidDevice {
+
+    @XmlTransient
     private String macAddress;
     @Key("vid")
+    @XmlElement(name = "vid")
     private String vid;
+    @XmlTransient
     private String pid;
+    @XmlTransient
     private String prot;
+    @XmlTransient
     private String sn;
+    @XmlTransient
     private String adbDevice;
     @Key("model")
+    @XmlElement(name = "model")
     private String roProductModel;
     @Key("brand")
+    @XmlElement(name = "brand")
     private String roProductBrand;
+    @XmlTransient
     private String roProductDevice;
+    @XmlTransient
     private String roProductBoard;
+    @XmlTransient
     private String roProductManufacturer;
+    @XmlTransient
     private String roHardware;
+    @XmlTransient
     private String roBuildDisplayId;
+    @XmlTransient
     private String customProps;
+    @XmlTransient
     private String androidVersion;
+    @XmlTransient
     private String createdAt;
+    @XmlTransient
     private String identified;
+    @XmlTransient
     private String productId;
+    @XmlTransient
     private String resolution;
+    @XmlTransient
     private String partitions;
+    @XmlTransient
     private String cpuHardware;
+    @XmlTransient
     private String returnProductId;
     // Only for generate unit test case.
+    @XmlTransient
     private String[] vids;
 
     public AndroidDevice(String vid, String roProductModel, String roProductBrand, String productId) {

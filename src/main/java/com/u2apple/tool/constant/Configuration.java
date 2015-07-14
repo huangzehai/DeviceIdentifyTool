@@ -17,26 +17,19 @@ import org.slf4j.LoggerFactory;
 public class Configuration {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(Configuration.class);
-    private static String devicesXml;
-    private static Properties properties ;
+    private static final Properties properties;
 
     static {
         InputStream inputStream = Configuration.class.getResourceAsStream(Constants.CONFIGURATION);
         properties = new Properties();
         try {
             properties.load(inputStream);
-            devicesXml = properties.getProperty("devicesXml");
         } catch (IOException ex) {
             logger.error("Fail to load configuration.properties", ex);
         }
     }
 
-    @Deprecated
-    public static String getDevicesXml() {
-        return devicesXml;
-    }
-    
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         return properties.getProperty(key);
     }
 

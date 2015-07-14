@@ -37,5 +37,6 @@ public class Constants {
     public static final String VID_FILE_FORMAT = "vidFileFormat";
     
     public static final String APPLICATION_ICON="com/u2apple/tool/icon/tools.png";
+     public static final String CHECKED_DEVICES = System.getProperty("user.home") + "/checkedDevices.xml";
 
 }

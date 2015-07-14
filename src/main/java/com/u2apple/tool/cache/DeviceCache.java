@@ -5,107 +5,81 @@
  */
 package com.u2apple.tool.cache;
 
-import com.shuame.wandoujia.bean.Device;
-import com.shuame.wandoujia.bean.Modal;
-import com.shuame.wandoujia.bean.StaticMapFile;
-import com.shuame.wandoujia.bean.VID;
-import com.shuame.wandoujia.bean.Value;
-import com.u2apple.tool.constant.Configuration;
 import com.u2apple.tool.constant.Constants;
+import com.u2apple.tool.model.AndroidDeviceRanking;
+import com.u2apple.tool.model.CheckedDevices;
 import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 
 /**
  *
  * @author Adam
  */
-@Deprecated
 public class DeviceCache {
 
-    private static final Set<String> productIds = new HashSet<>();
-    private static final Map<String, Set<String>> models = new HashMap<>();
+    private static CheckedDevices checkedDevices;
+    private static boolean changed = false;
 
-    static {
-        init();
+    private static CheckedDevices getCheckedDevices() throws JAXBException {
+        if (checkedDevices == null) {
+            loadCheckedDevices();
+        }
+        return checkedDevices;
     }
 
-    private static void init() {
+    public static void markDeviceChecked(AndroidDeviceRanking androidDevice) throws JAXBException {
+        getCheckedDevices().getDevices().add(androidDevice);
+        changed = true;
+    }
+
+    private static void loadCheckedDevices() throws JAXBException {
+        File file = new File(Constants.CHECKED_DEVICES);
+        if (file.exists()) {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CheckedDevices.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            checkedDevices = (CheckedDevices) jaxbUnmarshaller.unmarshal(file);
+        } else {
+            checkedDevices = new CheckedDevices();
+            checkedDevices.setDevices(new ArrayList<AndroidDeviceRanking>());
+        }
+
+    }
+
+    public static void flush() throws PropertyException, JAXBException {
+        if (changed) {
+            File file = new File(Constants.CHECKED_DEVICES);
+            JAXBContext jaxbContext = JAXBContext.newInstance(CheckedDevices.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(checkedDevices, file);
+        }
+    }
+
+    public static boolean isChecked(AndroidDeviceRanking device) {
+        boolean isChecked = false;
+        List<AndroidDeviceRanking> devices = null;
         try {
-            loadProductIds();
-            loadModels();
+            devices = getCheckedDevices().getDevices();
         } catch (JAXBException ex) {
             Logger.getLogger(DeviceCache.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private static void loadProductIds() throws JAXBException {
-        File file = new File(Configuration.getProperty(Constants.DEVICES_XML));
-        JAXBContext jaxbContext = JAXBContext.newInstance(StaticMapFile.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        StaticMapFile staticMapFile = (StaticMapFile) jaxbUnmarshaller.unmarshal(file);
-        if (staticMapFile != null) {
-            List<Device> devices = staticMapFile.getDevices();
-            for (Device device : devices) {
-                productIds.add(device.getProductId());
-            }
-        }
-    }
-
-    private static void loadModels() throws JAXBException {
-        File dir = new File(Configuration.getProperty(Constants.VID_DIR));
-        if (dir.exists()) {
-            File[] vidFiles = dir.listFiles();
-            for (File vidFile : vidFiles) {
-                JAXBContext jaxbContext = JAXBContext.newInstance(VID.class);
-                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                VID vid = (VID) jaxbUnmarshaller.unmarshal(vidFile);
-                if (vid != null) {
-                    Set<String> set = new HashSet<>();
-                    List<Modal> modals = vid.getModals();
-                    for (Modal modal : modals) {
-                        for (Value value : modal.getValues()) {
-                            set.add(value.getValue().toLowerCase());
-                        }
-                    }
-                    models.put(vid.getValue(), set);
+        if (devices != null) {
+            for (AndroidDeviceRanking checkedDevice : devices) {
+                if (device.getVid().equalsIgnoreCase(checkedDevice.getVid()) && device.getRoProductBrand().equalsIgnoreCase(checkedDevice.getRoProductBrand()) && device.getRoProductModel().equalsIgnoreCase(checkedDevice.getRoProductModel())) {
+                    isChecked = true;
+                    break;
                 }
             }
         }
+        return isChecked;
     }
-
-    public static Set<String> getProductIds() {
-        return productIds;
-    }
-
-    public static void addProductId(String productId) {
-        productIds.add(productId);
-    }
-
-    public static void addModel(final String[] vids, final List<String> ms) {
-        for (String vid : vids) {
-            if (models.containsKey(vid)) {
-                models.get(vid).addAll(ms);
-            } else {
-                models.put(vid, new HashSet<String>() {
-                    {
-                        addAll(ms);
-                    }
-                });
-            }
-        }
-    }
-
-    public static Map<String, Set<String>> getModels() {
-        return models;
-    }
-
 }

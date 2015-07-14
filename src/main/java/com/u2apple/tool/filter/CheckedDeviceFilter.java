@@ -5,18 +5,26 @@
  */
 package com.u2apple.tool.filter;
 
+import com.u2apple.tool.cache.DeviceCache;
 import com.u2apple.tool.model.AndroidDeviceRanking;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Adam
  */
-public class ReadFilter implements Filter {
+public class CheckedDeviceFilter implements Filter {
 
     @Override
     public List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> androidDevices) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<AndroidDeviceRanking> filteredDevices = new ArrayList<>();
+        for (AndroidDeviceRanking device : androidDevices) {
+            if (!DeviceCache.isChecked(device)) {
+                filteredDevices.add(device);
+            }
+        }
+        return filteredDevices;
     }
-    
+
 }

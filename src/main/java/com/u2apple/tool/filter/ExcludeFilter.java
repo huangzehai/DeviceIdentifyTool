@@ -42,12 +42,12 @@ public class ExcludeFilter implements Filter {
         List<AndroidDeviceRanking> newDevices = new ArrayList<>();
         if (androidDevices != null) {
             for (AndroidDeviceRanking device : androidDevices) {
-                if (StringUtils.isNotBlank(device.getRoProductModel()) &&!rulesmatches(device)) {
+                if (StringUtils.isNotBlank(device.getRoProductModel()) && !rulesmatches(device)) {
                     newDevices.add(device);
                 }
             }
         }
-        return newDevices;
+        return new CheckedDeviceFilter().filter(newDevices);
     }
 
     private boolean rulesmatches(AndroidDeviceRanking androidDevice) {

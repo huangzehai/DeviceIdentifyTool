@@ -9,6 +9,7 @@ import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.ProductId;
 import com.shuame.wandoujia.bean.Value;
+import com.u2apple.tool.cache.DeviceCache;
 import com.u2apple.tool.ui.worker.FilterWorker;
 import com.u2apple.tool.ui.worker.WhiteListDeviceRankingWorker;
 import com.u2apple.tool.ui.worker.DeviceRankingWorker;
@@ -37,12 +38,16 @@ import com.u2apple.tool.util.ConditionUtils;
 import com.u2apple.tool.util.CsvUtils;
 import com.u2apple.tool.util.QueryPattern;
 import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -51,6 +56,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -1023,6 +1029,32 @@ public class MainFrame extends javax.swing.JFrame {
                     }
                 }
         );
+
+        deviceTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table = (JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2) {
+                    String vid = (String) deviceTable.getValueAt(row, 0);
+                    String model = (String) deviceTable.getValueAt(row, 1);
+                    String brand = (String) deviceTable.getValueAt(row, 2);
+                    AndroidDeviceRanking androidDevice = new AndroidDeviceRanking();
+                    androidDevice.setVid(vid);
+                    androidDevice.setRoProductModel(model);
+                    androidDevice.setRoProductBrand(brand);
+                    androidDevice.setCheckDate(new Date());
+                    try {
+                        DeviceCache.markDeviceChecked(androidDevice);
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    DeviceTableModel tableModel = (DeviceTableModel) deviceTable.getModel();
+                    tableModel.removeRow(row);
+                }
+            }
+        });
     }
 
     private void deviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deviceButtonActionPerformed
