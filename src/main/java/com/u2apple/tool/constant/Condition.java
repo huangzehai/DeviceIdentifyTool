@@ -15,6 +15,6 @@ public final class Condition {
 
     }
 
-    public static final String BRAND = "brand";
+   public static final String BRAND = "brand";
 
 }

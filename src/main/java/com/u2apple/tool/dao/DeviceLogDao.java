@@ -9,9 +9,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.shuame.wandoujia.bean.Device;
+import com.shuame.wandoujia.bean.Modal;
+import com.shuame.wandoujia.bean.ProductId;
 
-import com.u2apple.tool.model.Model;
-import com.u2apple.tool.model.ProductId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -35,7 +35,7 @@ public class DeviceLogDao {
         return db.getCollection("log");
     }
 
-    public void updateDeviceLog(String productId, String[] vids, Model model) {
+    public void updateDeviceLog(String productId, String[] vids, Modal model) {
         MongoCollection<Document> deviceLog = getDeviceLog();
         Document filter = new Document("product-id", productId);
         Document doc = getDeviceLog().find(filter).first();
@@ -72,11 +72,11 @@ public class DeviceLogDao {
         return doc;
     }
 
-    private Document convertModel(String[] vids, Model model) {
+    private Document convertModel(String[] vids, Modal model) {
         Document doc = new Document();
         doc.append("vids", Arrays.asList(vids));
         doc.append("values", model.getValues());
-        doc.append("productIds", convertProductIds(model.getProductIds()));
+        doc.append("productIds", convertProductIds(model.getProductId()));
         doc.append("created", new Date());
         return doc;
     }
@@ -92,8 +92,8 @@ public class DeviceLogDao {
     private Document convertProductId(ProductId productId) {
         Document doc = new Document();
         doc.append("values", productId.getValue());
-        if (productId.getConditions() != null && !productId.getConditions().isEmpty()) {
-            doc.append("conditions", productId.getConditions());
+        if (productId.getCondition() != null && !productId.getCondition().isEmpty()) {
+            doc.append("conditions", productId.getCondition());
         }
         return doc;
     }

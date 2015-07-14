@@ -91,8 +91,8 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
 
     @Override
     public void flush() throws PropertyException, JAXBException {
-        if (getStaticMapFile() != null) {
-            StaticMapFileUtils.format(getStaticMapFile(), isDeviceChanged, changedVids);
+        if (staticMapFile != null) {
+            StaticMapFileUtils.format(staticMapFile, isDeviceChanged, changedVids);
             flushDevices();
             flushVids();
         }

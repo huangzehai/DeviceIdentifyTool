@@ -6,10 +6,14 @@
 package com.u2apple.tool.dao;
 
 import com.shuame.wandoujia.bean.Device;
+import com.shuame.wandoujia.bean.Modal;
+import com.shuame.wandoujia.bean.ProductId;
+import com.shuame.wandoujia.bean.Value;
+import com.u2apple.tool.util.ConditionUtils;
+import java.util.ArrayList;
 
-import com.u2apple.tool.model.Model;
-import com.u2apple.tool.model.ProductId;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -68,8 +72,18 @@ public class DeviceLogDaoTest {
         String[] vids = {"04E8"};
         String modelString = "SM-G9006V";
         Map<String, String> conditions = new LinkedHashMap<>();
-        ProductId aProductId = new ProductId(productId, conditions);
-        Model model = new Model(modelString, aProductId);
+        ProductId aProductId = new ProductId();
+        aProductId.setValue(productId);
+        aProductId.setCondition(ConditionUtils.build(conditions));
+        Modal model = new Modal();
+        List<ProductId> productIds=new ArrayList<>();
+        productIds.add(aProductId);
+        model.setProductId(productIds);
+        Value value=new Value();
+        value.setValue(modelString);
+        List<Value> values=new ArrayList<>();
+        values.add(value);
+        model.setValues(values);
         dao.updateDeviceLog(productId, vids, model);
     }
 

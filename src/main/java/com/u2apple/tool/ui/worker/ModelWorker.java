@@ -5,7 +5,7 @@
  */
 package com.u2apple.tool.ui.worker;
 
-import com.u2apple.tool.model.ModelWorkderResult;
+import com.u2apple.tool.model.ModelExistence;
 import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import java.awt.Color;
@@ -19,7 +19,7 @@ import javax.swing.SwingWorker;
  *
  * @author Adam
  */
-public class ModelWorker extends SwingWorker<ModelWorkderResult, Void> {
+public class ModelWorker extends SwingWorker<ModelExistence, Void> {
 
     private final String model;
     private final String vid;
@@ -33,18 +33,18 @@ public class ModelWorker extends SwingWorker<ModelWorkderResult, Void> {
     }
 
     @Override
-    protected ModelWorkderResult doInBackground() throws Exception {
+    protected ModelExistence doInBackground() throws Exception {
 //        boolean existingInGlobal = RecognitionTool.modelExists(model);
         boolean existingInGlobal = deviceXmlDao.modelExists(model);
 //        boolean existingInVid = RecognitionTool.modelExists(vid, model);
         boolean existingInVid = deviceXmlDao.modelExists(vid, model);
-        return new ModelWorkderResult(existingInGlobal, existingInVid);
+        return new ModelExistence(existingInGlobal, existingInVid);
     }
 
     @Override
     protected void done() {
         try {
-            ModelWorkderResult result = get();
+            ModelExistence result = get();
             if (result.isExistingInVid() && result.isExistingInGlobal()) {
                 modelTextField.setBackground(Color.GREEN);
             } else if (result.isExistingInGlobal()) {
