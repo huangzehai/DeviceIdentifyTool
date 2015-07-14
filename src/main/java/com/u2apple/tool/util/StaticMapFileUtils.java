@@ -63,20 +63,20 @@ public final class StaticMapFileUtils {
     }
 
     private static void sortModels(VID vid) {
+         List<Modal> models = vid.getModals();
         //Sort model values.
-        for (Modal model : vid.getModals()) {
+        for (Modal model : models) {
             sortValue(model.getValues());
         }
 
         //Sort models.
-        Collections.sort(vid.getModals(), new Comparator<Modal>() {
+        Collections.sort(models, new Comparator<Modal>() {
             @Override
             public int compare(Modal o1, Modal o2) {
-                return o1.getValues().get(0).getValue().compareTo(o2.getValues().get(0).getValue());
+                return o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue());
             }
         });
 
-        List<Modal> models = vid.getModals();
         //Merge models.
         fastMmergeModels(models);
 

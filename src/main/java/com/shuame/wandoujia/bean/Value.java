@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
+import org.apache.commons.lang3.StringUtils;
 ;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -56,6 +57,12 @@ public class Value {
     @Override
     public int hashCode() {
         int hash = 5;
+        if (this._value != null) {
+            hash += this._value.toLowerCase().hashCode();
+        }
+        if (this._method != null) {
+            hash += this._method.hashCode();
+        }
         return hash;
     }
 
@@ -71,7 +78,7 @@ public class Value {
         if (!Objects.equals(this._method, other._method)) {
             return false;
         }
-        if (!Objects.equals(this._value, other._value)) {
+        if (!StringUtils.equalsIgnoreCase(this._value, other._value)) {
             return false;
         }
         return true;
