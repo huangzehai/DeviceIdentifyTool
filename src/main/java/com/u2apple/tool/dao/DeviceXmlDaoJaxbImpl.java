@@ -35,7 +35,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
 
-    private static StaticMapFile staticMapFile;
+    private static volatile  StaticMapFile staticMapFile;
 
     /**
      * 机型识别配置文件的文件名正则表达式.
