@@ -80,11 +80,15 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     @Override
     public StaticMapFile getStaticMapFile() {
         if (staticMapFile == null) {
-            try {
-                loadStaticMapFile();
-                loadVids();
-            } catch (JAXBException ex) {
-                Logger.getLogger(DeviceXmlDaoJaxbImpl.class.getName()).log(Level.SEVERE, null, ex);
+            synchronized (StaticMapFile.class) {
+                if (staticMapFile == null) {
+                    try {
+                        loadStaticMapFile();
+                        loadVids();
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(DeviceXmlDaoJaxbImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         return staticMapFile;

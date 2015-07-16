@@ -39,15 +39,15 @@ public class ExcludeFilter implements Filter {
 
     @Override
     public List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> androidDevices) {
-        List<AndroidDeviceRanking> newDevices = new ArrayList<>();
+        List<AndroidDeviceRanking> filteredDevices = new ArrayList<>();
         if (androidDevices != null) {
             for (AndroidDeviceRanking device : androidDevices) {
-                if (StringUtils.isNotBlank(device.getRoProductModel()) && !rulesmatches(device)) {
-                    newDevices.add(device);
+                if (StringUtils.isNotBlank(device.getRoProductModel()) && !rulesmatches(device) && !StringUtils.equalsIgnoreCase(device.getRoProductBrand(), device.getRoProductModel())) {
+                    filteredDevices.add(device);
                 }
             }
         }
-        return new CheckedDeviceFilter().filter(newDevices);
+        return new CheckedDeviceFilter().filter(filteredDevices);
     }
 
     private boolean rulesmatches(AndroidDeviceRanking androidDevice) {
