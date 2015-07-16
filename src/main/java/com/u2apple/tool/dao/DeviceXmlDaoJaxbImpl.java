@@ -77,7 +77,8 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
         }
     }
 
-    private StaticMapFile getStaticMapFile() {
+    @Override
+    public StaticMapFile getStaticMapFile() {
         if (staticMapFile == null) {
             try {
                 loadStaticMapFile();

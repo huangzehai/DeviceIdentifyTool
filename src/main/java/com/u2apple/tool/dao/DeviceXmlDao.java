@@ -7,6 +7,7 @@ package com.u2apple.tool.dao;
 
 import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
+import com.shuame.wandoujia.bean.StaticMapFile;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.PropertyException;
 
@@ -31,5 +32,7 @@ public interface DeviceXmlDao {
     boolean modelExists(String text);
 
     boolean productIdExists(String productId);
+
+    StaticMapFile getStaticMapFile();
 
 }
