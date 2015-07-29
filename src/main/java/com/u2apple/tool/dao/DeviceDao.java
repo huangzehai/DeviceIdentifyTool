@@ -47,7 +47,7 @@ public class DeviceDao {
 
     private static final String GET_MAC_ADDRESS_BY_QQ = "select pc_mac_address as mac_address from api_device_binding where qq=?  order by id desc limit 1";
     
-    private static final String  MODEL_AND_PRODUCT_ID_ANALYTICS_SQL="select return_product_id,ro_product_model, count(*) as count from %s where created_at > '2015-06-09' and return_product_id !='' and return_product_id  != 'android-device' and ro_product_model !='' group by return_product_id,ro_product_model order by return_product_id, count desc";
+    private static final String  MODEL_AND_PRODUCT_ID_ANALYTICS_SQL="select return_product_id,ro_product_model, count(*) as count from %s where created_at > subdate(curdate(), INTERVAL 3 DAY) and return_product_id !='' and return_product_id  != 'android-device' and ro_product_model !='' group by return_product_id,ro_product_model order by return_product_id, count desc";
 
     public AndroidDevice getLatestDevice() {
         AndroidDevice device = null;

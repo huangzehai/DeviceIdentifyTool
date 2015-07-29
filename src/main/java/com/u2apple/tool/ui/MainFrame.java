@@ -1443,9 +1443,9 @@ public class MainFrame extends javax.swing.JFrame {
         int limit = (int) queryLimitSpinner.getValue();
         boolean isAll = allCheckBox.isSelected();
         if (StringUtils.isBlank(vid)) {
-            JOptionPane.showMessageDialog(jPanel13, "Vid should not be blank.");
+            JOptionPane.showMessageDialog(jPanel1, "Vid should not be blank.");
         } else if (StringUtils.isBlank(model)) {
-            JOptionPane.showMessageDialog(jPanel13, "Model should not be blank.");
+            JOptionPane.showMessageDialog(jPanel1, "Model should not be blank.");
         } else {
             SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll, this.deviceDetailTable);
             deviceWorker.execute();

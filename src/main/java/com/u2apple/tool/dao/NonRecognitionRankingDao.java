@@ -65,7 +65,7 @@ public class NonRecognitionRankingDao {
             }
             index++;
         }
-        queryBuilder.append(")  group by vid, ro_product_model,ro_product_brand order by count desc limit 2000");
+        queryBuilder.append(")  group by vid, ro_product_model,ro_product_brand order by count desc limit 1000");
         return queryBuilder.toString();
     }
 
