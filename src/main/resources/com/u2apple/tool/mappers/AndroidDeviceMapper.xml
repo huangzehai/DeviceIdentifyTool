@@ -15,7 +15,7 @@
     </select>
     
     <select id="selectUnidentifiedDevices" parameterType="int" resultMap="androidDeviceRankingResultMap">
-        select vid, ro_product_model, ro_product_brand, count(*) as count from log_device_init_201507 where created_at > subdate(curdate(), #{days}) and identified='0' and ro_product_model is not null and ro_product_model != '' and ro_product_brand is not null and ro_product_brand != ''  group by vid, ro_product_model,ro_product_brand order by count desc limit 2000
+        select vid, ro_product_model, ro_product_brand, count(*) as count from log_device_init_201508 where created_at > subdate(curdate(), #{days}) and identified='0' and ro_product_model is not null and ro_product_model != '' and ro_product_brand is not null and ro_product_brand != ''  group by vid, ro_product_model,ro_product_brand order by count desc limit 1000
     </select>
     
 </mapper>

@@ -1464,7 +1464,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (StringUtils.isNotBlank(brand) || StringUtils.isNotBlank(model)) {
 
             StringBuilder commandBuilder = new StringBuilder();
-            commandBuilder.append("explorer \"https://www.google.com.hk/#safe=strict&q=");
+            commandBuilder.append("explorer \"https://www.google.com/webhp?hl=zh-CN#hl=zh-CN&q=");
             //Append query.
             if (StringUtils.equalsIgnoreCase(model, brand) || StringUtils.containsIgnoreCase(model, brand)) {
                 commandBuilder.append(model);
