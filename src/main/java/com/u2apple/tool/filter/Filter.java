@@ -13,6 +13,5 @@ import java.util.List;
  * @author Adam
  */
 public interface Filter {
-
     List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> androidDevices);
 }

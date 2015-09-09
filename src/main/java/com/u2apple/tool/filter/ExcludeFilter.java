@@ -41,11 +41,9 @@ public class ExcludeFilter implements Filter {
     public List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> androidDevices) {
         List<AndroidDeviceRanking> filteredDevices = new ArrayList<>();
         if (androidDevices != null) {
-            for (AndroidDeviceRanking device : androidDevices) {
-                if (StringUtils.isNotBlank(device.getRoProductModel()) && !rulesmatches(device) && !StringUtils.equalsIgnoreCase(device.getRoProductBrand(), device.getRoProductModel())) {
-                    filteredDevices.add(device);
-                }
-            }
+            androidDevices.stream().filter((device) -> (StringUtils.isNotBlank(device.getRoProductModel()) && !rulesmatches(device) && !StringUtils.equalsIgnoreCase(device.getRoProductBrand(), device.getRoProductModel()))).forEach((device) -> {
+                filteredDevices.add(device);
+            });
         }
         return new CheckedDeviceFilter().filter(filteredDevices);
     }
@@ -98,12 +96,16 @@ public class ExcludeFilter implements Filter {
 
     private boolean valueMatches(String operator, String prop, String value) {
         boolean matches = false;
-        if ("equals".equals(operator)) {
-            matches = prop.equals(value);
-        } else if ("equalsIgnoreCase".equals(operator)) {
-            matches = prop.equalsIgnoreCase(value);
-        } else if ("regexp".equals(operator)) {
-            matches = Pattern.matches(value, prop);
+        if (null != operator) switch (operator) {
+            case "equals":
+                matches = prop.equals(value);
+                break;
+            case "equalsIgnoreCase":
+                matches = prop.equalsIgnoreCase(value);
+                break;
+            case "regexp":
+                matches = Pattern.matches(value, prop);
+                break;
         }
         return matches;
     }

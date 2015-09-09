@@ -82,9 +82,7 @@ public class DeviceDaoTest {
     public void testQueryByBrand() throws SQLException {
         DeviceDao dao = new DeviceDao();
         List<AndroidDeviceRanking> devices = dao.queryByBrand("samsung");
-        for (AndroidDeviceRanking device : devices) {
-            System.out.println(device);
-        }
+        Assert.assertNotNull(devices);
     }
 
     @Test
@@ -108,9 +106,8 @@ public class DeviceDaoTest {
     public void testListModels() throws SQLException{
         DeviceDao dao = new DeviceDao();
        List<AndroidDeviceRanking> devices= dao.listModes();
-       for(AndroidDeviceRanking device:devices){
-           System.out.println(device);
-       }
+       Assert.assertNotNull(devices);
+       Assert.assertNotEquals(0, devices.size());
     }
 
 }

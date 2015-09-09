@@ -47,18 +47,18 @@ public class AndroidDeviceDaoTest {
     public void testGetUnidentifiedDevices() throws IOException, JSchException {
         int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevices(days);
-        for (AndroidDeviceRanking androidDevice : androidDevices) {
+        androidDevices.stream().forEach((androidDevice) -> {
             System.out.println(androidDevice);
-        }
+        });
     }
     
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {
         int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevicesOfRootSpirit(days);
-        for (AndroidDeviceRanking androidDevice : androidDevices) {
+        androidDevices.stream().forEach((androidDevice) -> {
             System.out.println(androidDevice);
-        }
+        });
     }
 
 }

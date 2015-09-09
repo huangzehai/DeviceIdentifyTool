@@ -11,7 +11,6 @@ import com.shuame.wandoujia.bean.StaticMapFile;
 import com.shuame.wandoujia.bean.VID;
 import com.shuame.wandoujia.bean.Value;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
@@ -39,43 +38,36 @@ public final class StaticMapFileUtils {
     }
 
     private static void sortDevices(List<Device> devices) {
-        Collections.sort(devices, new Comparator<Device>() {
-
-            @Override
-            public int compare(Device o1, Device o2) {
-                return o1.getProductId().compareTo(o2.getProductId());
-            }
-        });
+        Collections.sort(devices, (o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
     }
 
     private static void sortModels(List<VID> vids) {
-        for (VID vid : vids) {
+        vids.stream().forEach((vid) -> {
             sortModels(vid);
-        }
+        });
     }
 
     private static void sortModels(List<VID> vids, Set<String> changedVids) {
-        for (VID vid : vids) {
-            if (changedVids.contains(vid.getValue())) {
-                sortModels(vid);
-            }
-        }
+        vids.stream().filter((vid) -> (changedVids.contains(vid.getValue()))).forEach((vid) -> {
+            sortModels(vid);
+        });
     }
 
     private static void sortModels(VID vid) {
-         List<Modal> models = vid.getModals();
+        List<Modal> models = vid.getModals();
         //Sort model values.
-        for (Modal model : models) {
+        models.stream().forEach((model) -> {
             sortValue(model.getValues());
-        }
+        });
 
         //Sort models.
-        Collections.sort(models, new Comparator<Modal>() {
-            @Override
-            public int compare(Modal o1, Modal o2) {
-                return o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue());
-            }
-        });
+//        Collections.sort(models, new Comparator<Modal>() {
+//            @Override
+//            public int compare(Modal o1, Modal o2) {
+//                return o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue());
+//            }
+//        });
+        Collections.sort(models, (o1, o2) -> o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue()));
 
         //Merge models.
         fastMmergeModels(models);
@@ -121,12 +113,13 @@ public final class StaticMapFileUtils {
     }
 
     private static void sortValue(List<Value> values) {
-        Collections.sort(values, new Comparator<Value>() {
-            @Override
-            public int compare(Value o1, Value o2) {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
+//        Collections.sort(values, new Comparator<Value>() {
+//            @Override
+//            public int compare(Value o1, Value o2) {
+//                return o1.getValue().compareTo(o2.getValue());
+//            }
+//        });
+        Collections.sort(values, (v1, v2) -> v1.getValue().compareTo(v2.getValue()));
     }
 
 }
