@@ -41,22 +41,6 @@ public class NonRecognitionRankingDaoTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getNonRecognizedDevicesRanking method, of class NonRecognitionRankingDao.
-     */
-    @Test
-        @Ignore
-    public void testGetNonRecognizedDevicesRanking() throws Exception {
-        System.out.println("getNonRecognizedDevicesRanking");
-        int days = 0;
-        List<AndroidDeviceRanking> expResult = null;
-        List<AndroidDeviceRanking> result = new NonRecognitionRankingDao().getNonRecognizedDevicesRanking(days);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of getWhiteListNonRecognizedDevicesRanking method, of class NonRecognitionRankingDao.
      */
@@ -71,16 +55,4 @@ public class NonRecognitionRankingDaoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getMobileRootSpiritDevices method, of class NonRecognitionRankingDao.
-     */
-    @Test
-    public void testGetMobileRootSpiritDevices() throws Exception {
-        System.out.println("getMobileRootSpiritDevices");
-        int days = 1;
-        List<AndroidDeviceRanking> result = new NonRecognitionRankingDao().getMobileRootSpiritDevices(days);
-        Assert.assertNotNull("Device list should not be null", result);
-    }
-    
 }

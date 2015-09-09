@@ -83,9 +83,9 @@ public class DeviceLogDao {
 
     private List<Document> convertProductIds(List<ProductId> productIds) {
         List<Document> documents = new LinkedList<>();
-        for (ProductId productId : productIds) {
+        productIds.stream().forEach((productId) -> {
             documents.add(convertProductId(productId));
-        }
+        });
         return documents;
     }
 
