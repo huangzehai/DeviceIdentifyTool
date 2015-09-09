@@ -19,7 +19,6 @@ import com.u2apple.tool.ui.worker.ModelWorker;
 import com.u2apple.tool.ui.worker.DeviceQueryWorker;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.dao.DeviceDao;
-import com.u2apple.tool.dao.DeviceDetailsDao;
 import com.u2apple.tool.service.IdentifyAnalyticsService;
 import com.u2apple.tool.filter.DevicePatternFilter;
 import com.u2apple.tool.model.AndroidDevice;
@@ -148,7 +147,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         daysSpinner = new javax.swing.JSpinner();
         deviceRankingButton = new javax.swing.JButton();
-        detailCheckBox = new javax.swing.JCheckBox();
         errorRecognitionButton = new javax.swing.JButton();
         queryTextField = new javax.swing.JTextField();
         queryButton = new javax.swing.JButton();
@@ -740,14 +738,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        detailCheckBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        detailCheckBox.setText("Detail");
-        detailCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                detailCheckBoxActionPerformed(evt);
-            }
-        });
-
         errorRecognitionButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         errorRecognitionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/error.png"))); // NOI18N
         errorRecognitionButton.setToolTipText("Query incorrect recognized devices");
@@ -865,12 +855,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(queryPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(detailCheckBox))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(queryTextField))
@@ -903,18 +890,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(filterButton)
-                            .addGroup(queryPanelLayout.createSequentialGroup()
-                                .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(detailCheckBox))
+                            .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
                             .addComponent(othersDevicesButton)
                             .addComponent(matchButton)
                             .addComponent(newDeviceFilterButton)
                             .addComponent(excludeFilterButton)
                             .addComponent(queryFilterButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(queryButton)
                     .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -995,40 +979,20 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initRowSelectionEvent() {
-        deviceTable.getSelectionModel().addListSelectionListener(
-                new javax.swing.event.ListSelectionListener() {
-                    @Override
-                    public void valueChanged(ListSelectionEvent e) {
-                        int row = deviceTable.getSelectedRow();
-                        //When refresh table model data, row will be -1.
-                        if (row >= 0) {
-                            String vid = (String) deviceTable.getValueAt(row, 0);
-                            String model = (String) deviceTable.getValueAt(row, 1);
-                            String brand = (String) deviceTable.getValueAt(row, 2);
-                            vidTextField.setText(vid);
-                            modelTextField.setText(model);
-                            brandTextField.setText(brand);
-                            //check if model exist
-                            // existCheckBox.setSelected(RecognitionTool.isTextExist(model));
-                            //  existInVidCheckBox.setSelected(RecognitionTool.isTextExist(vid, model));
-                            //Details.
-                            if (detailCheckBox.isSelected()) {
-                                DeviceDetailsDao dao = new DeviceDetailsDao();
-                                if (StringUtils.isNotBlank(vid) && StringUtils.isNotBlank(brand) && StringUtils.isNotBlank(model)) {
-
-                                    AndroidDevice device = dao.getDevice(vid, brand, model);
-                                    if (device != null) {
-                                        resolutionComboBox.setSelectedItem(device.getResolution());
-                                        partitionTextField.setText(device.getPartitions());
-                                    }
-                                }
-                            }
-                        }
-                        //Auto fullfil device information.
-                        initDevice();
-                    }
-                }
-        );
+        deviceTable.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            int row = deviceTable.getSelectedRow();
+            //When refresh table model data, row will be -1.
+            if (row >= 0) {
+                String vid = (String) deviceTable.getValueAt(row, 0);
+                String model = (String) deviceTable.getValueAt(row, 1);
+                String brand = (String) deviceTable.getValueAt(row, 2);
+                vidTextField.setText(vid);
+                modelTextField.setText(model);
+                brandTextField.setText(brand);
+            }
+            //Auto fullfil device information.
+            initDevice();
+        });
 
         deviceTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -1244,10 +1208,6 @@ public class MainFrame extends javax.swing.JFrame {
         int days = (int) daysSpinner.getValue();
         new DeviceRankingWorker(days, this.deviceTable).execute();
     }//GEN-LAST:event_deviceRankingButtonActionPerformed
-
-    private void detailCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_detailCheckBoxActionPerformed
 
     private void productIdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productIdButtonActionPerformed
         initDevice();
@@ -1778,7 +1738,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton connectButton;
     private javax.swing.JSpinner daysSpinner;
     private javax.swing.JButton detailButton;
-    private javax.swing.JCheckBox detailCheckBox;
     private javax.swing.JButton deviceButton;
     private javax.swing.JButton deviceCountButton;
     private javax.swing.JTable deviceDetailTable;
