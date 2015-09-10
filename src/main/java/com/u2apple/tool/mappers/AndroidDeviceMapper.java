@@ -8,6 +8,7 @@ package com.u2apple.tool.mappers;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.Date;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -21,9 +22,10 @@ public interface AndroidDeviceMapper {
     /**
      * 查询刷机精灵PC版未识别机型
      *
-     * @param since
+     * @param tableName
+     * @param start
      * @return AndroidDeviceRanking list .
      */
-    List<AndroidDeviceRanking> selectUnidentifiedDevices(Date since);
+    List<AndroidDeviceRanking> selectUnidentifiedDevices(@Param("table") String tableName,@Param("start")Date start);
 
 }

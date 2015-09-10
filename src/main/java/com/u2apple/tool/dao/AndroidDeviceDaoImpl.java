@@ -11,9 +11,9 @@ import com.u2apple.tool.mappers.RootDeviceMapper;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import com.u2apple.tool.persistence.MyBatisHelper;
+import com.u2apple.tool.util.SqlUtils;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -45,7 +45,7 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
         Calendar calendar=Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
-        return mapper.selectUnidentifiedDevices(calendar.getTime());
+        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_device_init"),calendar.getTime());
     }
 
     @Override
