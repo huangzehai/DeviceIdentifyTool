@@ -34,12 +34,12 @@
         <result property="roProductBrand" column="ro_product_brand"/>
     </resultMap>
 
-    <select id="selectUnidentifiedDevices" parameterType="date" resultMap="androidDeviceRankingResultMap">
-        select vid, ro_product_brand,ro_product_model ,count(*) as count from log_root_solution_201509 where created_at > #{date} and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
+    <select id="selectUnidentifiedDevices" parameterType="map" resultMap="androidDeviceRankingResultMap">
+        select vid, ro_product_brand,ro_product_model ,count(*) as count from ${table} where created_at > #{start} and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
     </select>
     
     <select id="getDeviceByVidAndModel" parameterType="map" resultMap="androidDeviceResultMap">
-         select * from log_root_solution_201509 where vid = #{vid} and ro_product_model = #{model} order by id desc limit #{limit}
+         select * from ${table} where vid = #{vid} and ro_product_model = #{model} order by id desc limit #{limit}
     </select>
     
 </mapper>

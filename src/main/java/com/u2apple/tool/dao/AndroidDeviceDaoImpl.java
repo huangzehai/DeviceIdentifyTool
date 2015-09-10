@@ -54,14 +54,14 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
         Calendar calendar=Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
-        return mapper.selectUnidentifiedDevices(calendar.getTime());
+        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_root_solution"),calendar.getTime());
     }
 
     @Override
     public List<AndroidDevice> getRootDeviceByVidAndModel(String vid, String model, int limit) {
         SqlSession sqlSession = rootSqlSessionFactory.openSession();
         RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
-        return mapper.getDeviceByVidAndModel(vid, model, limit);
+        return mapper.getDeviceByVidAndModel(SqlUtils.getMonthlyTable("log_root_solution"),vid, model, limit);
     }
 
 }

@@ -17,9 +17,10 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface RootDeviceMapper {
     /** 列出最近几天未识别机型，按连接次数到排序，列出前1000个型号
-     * @param since.
+     * @param tableName
+     * @param start.
      * @return */
-     List<AndroidDeviceRanking> selectUnidentifiedDevices(Date since);
+     List<AndroidDeviceRanking> selectUnidentifiedDevices(@Param("table")String tableName,@Param("start")Date start);
      
-      List<AndroidDevice> getDeviceByVidAndModel(@Param("vid")String vid,@Param("model")String model,@Param("limit")int limit);
+      List<AndroidDevice> getDeviceByVidAndModel(@Param("table")String tableName,@Param("vid")String vid,@Param("model")String model,@Param("limit")int limit);
 }
