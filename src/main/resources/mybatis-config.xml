@@ -6,6 +6,7 @@
     <properties resource="config.properties"/>
      <typeAliases>
         <typeAlias type="com.u2apple.tool.model.AndroidDeviceRanking" alias="AndroidDeviceRanking"/>
+         <typeAlias type="com.u2apple.tool.model.AndroidDevice" alias="AndroidDevice"/>
     </typeAliases>
     
     <environments default="stat">

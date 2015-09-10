@@ -9,9 +9,37 @@
         <result property="roProductBrand" column="ro_product_brand"/>
         <result property="count" column="count"/>
     </resultMap>
+    
+    <resultMap id="androidDeviceResultMap" type="AndroidDevice">
+        <result property="vid" column="vid"/>
+        <result property="macAddress" column="mac_address"/>
+        <result property="pid" column="pid"/>
+        <result property="prot" column="prot"/>
+        <result property="sn" column="sn"/>
+        <result property="adbDevice" column="adb_device"/>
+        <result property="roProductDevice" column="ro_product_device"/>
+        <result property="roProductBoard" column="ro_product_board"/>
+        <result property="roProductManufacturer" column="ro_product_manufacturer"/>
+        <result property="roHardware" column="ro_hardware"/>
+        <!--<result property="roBuildDisplayId" column="vid"/>-->
+       <!-- <result property="customProps" column="vid"/>-->
+        <!--<result property="androidVersion" column="vid"/>-->
+        <result property="createdAt" column="created_at"/>
+       <!-- <result property="identified" column="vid"/>-->
+       <!-- <result property="resolution" column="vid"/>-->
+       <!-- <result property="partitions" column="vid"/>-->
+        <result property="cpuHardware" column="cpu_hardware"/>
+        <result property="returnProductId" column="product_id"/>
+        <result property="roProductModel" column="ro_product_model"/>
+        <result property="roProductBrand" column="ro_product_brand"/>
+    </resultMap>
 
-    <select id="selectUnidentifiedDevices" parameterType="int" resultMap="androidDeviceRankingResultMap">
-        select vid, ro_product_brand,ro_product_model ,count(*) as count from log_root_solution_201509 where created_at > subdate(curdate(), #{days}) and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
+    <select id="selectUnidentifiedDevices" parameterType="date" resultMap="androidDeviceRankingResultMap">
+        select vid, ro_product_brand,ro_product_model ,count(*) as count from log_root_solution_201509 where created_at > #{date} and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
+    </select>
+    
+    <select id="getDeviceByVidAndModel" parameterType="map" resultMap="androidDeviceResultMap">
+         select * from log_root_solution_201509 where vid = #{vid} and ro_product_model = #{model} order by id desc limit #{limit}
     </select>
     
 </mapper>

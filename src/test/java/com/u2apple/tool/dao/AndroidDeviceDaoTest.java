@@ -6,6 +6,7 @@
 package com.u2apple.tool.dao;
 
 import com.jcraft.jsch.JSchException;
+import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.persistence.SshTunnel;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class AndroidDeviceDaoTest {
             System.out.println(androidDevice);
         });
     }
-    
+
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {
         int days = 1;
@@ -59,6 +60,14 @@ public class AndroidDeviceDaoTest {
         androidDevices.stream().forEach((androidDevice) -> {
             System.out.println(androidDevice);
         });
+    }
+
+    @Test
+    public void testGetRootDeviceByVidAndModel() {
+        List<AndroidDevice> devices = dao.getRootDeviceByVidAndModel("22D9", "A31", 10);
+        if (devices != null) {
+            devices.stream().forEach(System.out::println);
+        }
     }
 
 }

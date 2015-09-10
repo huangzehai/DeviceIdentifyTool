@@ -5,13 +5,21 @@
  */
 package com.u2apple.tool.mappers;
 
+import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
+import java.util.Date;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
  * @author Adam
  */
 public interface RootDeviceMapper {
-     List<AndroidDeviceRanking> selectUnidentifiedDevices(int days);
+    /** 列出最近几天未识别机型，按连接次数到排序，列出前1000个型号
+     * @param since.
+     * @return */
+     List<AndroidDeviceRanking> selectUnidentifiedDevices(Date since);
+     
+      List<AndroidDevice> getDeviceByVidAndModel(@Param("vid")String vid,@Param("model")String model,@Param("limit")int limit);
 }

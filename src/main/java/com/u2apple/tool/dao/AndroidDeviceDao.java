@@ -5,6 +5,7 @@
  */
 package com.u2apple.tool.dao;
 
+import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface AndroidDeviceDao {
     int getCount();
 
     List<AndroidDeviceRanking> getUnidentifiedDevices(int days);
-     List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days);
 
+    List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days);
+
+    List<AndroidDevice> getRootDeviceByVidAndModel(String vid,String model,int limit);
 }

@@ -9,6 +9,8 @@ import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.ProductId;
 import com.shuame.wandoujia.bean.Value;
+import com.u2apple.tool.Profile;
+import com.u2apple.tool.Source;
 import com.u2apple.tool.cache.DeviceCache;
 import com.u2apple.tool.ui.worker.FilterWorker;
 import com.u2apple.tool.ui.worker.WhiteListDeviceRankingWorker;
@@ -1207,6 +1209,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void deviceRankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deviceRankingButtonActionPerformed
         int days = (int) daysSpinner.getValue();
         new DeviceRankingWorker(days, this.deviceTable).execute();
+        Profile.SOURCE = Source.Shuame;
     }//GEN-LAST:event_deviceRankingButtonActionPerformed
 
     private void productIdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productIdButtonActionPerformed
@@ -1395,6 +1398,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void whiteListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListButtonActionPerformed
         int days = (int) daysSpinner.getValue();
         new WhiteListDeviceRankingWorker(days, this.deviceTable).execute();
+        Profile.SOURCE = Source.Shuame;
     }//GEN-LAST:event_whiteListButtonActionPerformed
 
     private void detailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailButtonActionPerformed
@@ -1407,7 +1411,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (StringUtils.isBlank(model)) {
             JOptionPane.showMessageDialog(jPanel1, "Model should not be blank.");
         } else {
-            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll, this.deviceDetailTable);
+            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll,Profile.SOURCE, this.deviceDetailTable);
             deviceWorker.execute();
         }
 
@@ -1484,6 +1488,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void rootSpritButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rootSpritButtonActionPerformed
         int days = (int) daysSpinner.getValue();
         new RootRankingWorker(days, this.deviceTable).execute();
+        Profile.SOURCE = Source.RootSpirit;
     }//GEN-LAST:event_rootSpritButtonActionPerformed
 
 
