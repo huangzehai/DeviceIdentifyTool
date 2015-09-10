@@ -43,7 +43,9 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
     public List<AndroidDeviceRanking> getUnidentifiedDevices(int days) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
-        return mapper.selectUnidentifiedDevices(days);
+        Calendar calendar=Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -days);
+        return mapper.selectUnidentifiedDevices(calendar.getTime());
     }
 
     @Override

@@ -6,6 +6,7 @@
 package com.u2apple.tool.mappers;
 
 import com.u2apple.tool.model.AndroidDeviceRanking;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +21,9 @@ public interface AndroidDeviceMapper {
     /**
      * 查询刷机精灵PC版未识别机型
      *
-     * @param days
+     * @param since
      * @return AndroidDeviceRanking list .
      */
-    List<AndroidDeviceRanking> selectUnidentifiedDevices(int days);
+    List<AndroidDeviceRanking> selectUnidentifiedDevices(Date since);
 
 }
