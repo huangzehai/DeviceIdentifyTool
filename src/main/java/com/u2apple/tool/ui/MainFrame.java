@@ -613,6 +613,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         conditionComboBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         conditionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID" }));
+        conditionComboBox.setSelectedIndex(1);
         conditionComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conditionComboBoxActionPerformed(evt);
@@ -633,6 +634,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         condition2ComboBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         condition2ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID" }));
+        condition2ComboBox.setSelectedIndex(2);
         condition2ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 condition2ComboBoxActionPerformed(evt);
