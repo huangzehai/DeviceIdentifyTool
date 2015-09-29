@@ -745,7 +745,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         errorRecognitionButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         errorRecognitionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/error.png"))); // NOI18N
-        errorRecognitionButton.setToolTipText("Query incorrect recognized devices");
+        errorRecognitionButton.setToolTipText("Error detection");
         errorRecognitionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 errorRecognitionButtonActionPerformed(evt);
