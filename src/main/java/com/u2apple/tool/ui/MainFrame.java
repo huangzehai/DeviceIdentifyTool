@@ -31,6 +31,7 @@ import com.u2apple.tool.core.KnockOffTool;
 import com.u2apple.tool.core.TestCaseTool;
 import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
+import com.u2apple.tool.ui.worker.ErrorDetectionWorker;
 import com.u2apple.tool.ui.worker.ExcludeFilterWorker;
 import com.u2apple.tool.ui.worker.NewDeviceFilterWorker;
 import com.u2apple.tool.ui.worker.QueryFilterWorker;
@@ -1311,16 +1312,17 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void errorRecognitionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_errorRecognitionButtonActionPerformed
-//        new ErrorDeviceWorker(this.deviceTable).execute();
-        IdentifyAnalyticsService service = new IdentifyAnalyticsService();
-        try {
-            List<List<AndroidDeviceRanking>> deviceList = service.analytics();
-            String csv = CsvUtils.toCsv(deviceList);
-            Files.write(Paths.get(Constants.IDENTIFY_ANALYTICS_FILE), csv.getBytes());
-        } catch (SQLException | IOException ex) {
-            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
-        }
-        JOptionPane.showMessageDialog(jPanel13, "Identity analytics result has been generated.");
+        new ErrorDetectionWorker(this.deviceTable).execute();
+         Profile.SOURCE = Source.Shuame;
+//        IdentifyAnalyticsService service = new IdentifyAnalyticsService();
+//        try {
+//            List<List<AndroidDeviceRanking>> deviceList = service.analytics();
+//            String csv = CsvUtils.toCsv(deviceList);
+//            Files.write(Paths.get(Constants.IDENTIFY_ANALYTICS_FILE), csv.getBytes());
+//        } catch (SQLException | IOException ex) {
+//            JOptionPane.showMessageDialog(jPanel13, ex.getMessage());
+//        }
+//        JOptionPane.showMessageDialog(jPanel13, "Identity analytics result has been generated.");
     }//GEN-LAST:event_errorRecognitionButtonActionPerformed
 
     private void updateModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateModelButtonActionPerformed
