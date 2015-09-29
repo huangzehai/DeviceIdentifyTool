@@ -20,7 +20,7 @@
     </select>
     
     <select id="listModelWithRanking" parameterType="map" resultMap="androidDeviceRankingResultMap">
-        select vid,return_product_id as product_id,ro_product_model, count(*) as count from ${table} where created_at > #{start} and return_product_id !='' and return_product_id  != 'android-device' and return_product_id not like '%emulator' and ro_product_model !='' group by vid,ro_product_model,product_id order by product_id, count desc
+        select vid,return_product_id as product_id,ro_product_model,ro_product_brand, count(*) as count from ${table} where created_at > #{start} and return_product_id !='' and return_product_id  != 'android-device' and return_product_id not like '%emulator' and ro_product_model !='' group by vid,ro_product_model,ro_product_brand,product_id order by product_id, count desc
     </select>
 
 </mapper>

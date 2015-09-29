@@ -45,9 +45,10 @@ public final class AndroidDeviceUtils {
     public static List<AndroidDeviceRanking> parse(List<AndroidDevice> devices) {
         List<AndroidDeviceRanking> androidDevices = new ArrayList<>();
         if (devices != null && !devices.isEmpty()) {
-            for (AndroidDevice device : devices) {
-                androidDevices.add(new AndroidDeviceRanking(device));
-            }
+//            devices.stream().forEach((device) -> {
+//                androidDevices.add(new AndroidDeviceRanking(device));
+//            });
+            devices.stream().map(device->new AndroidDeviceRanking(device)).forEach(androidDevices::add);
         }
         return androidDevices;
     }
@@ -78,8 +79,9 @@ public final class AndroidDeviceUtils {
         }
     }
 
-    private static String formatModel(String model) {
-        return model == null ? null : model.replaceAll("-", "").replaceAll("\\s", "").replaceAll("_", "").replaceAll("\\(", "").replaceAll("\\)", "").trim();
+    public static String formatModel(String model) {
+//        return model == null ? null : model.replaceAll("-", "").replaceAll("\\s", "").replaceAll("_", "").replaceAll("\\(", "").replaceAll("\\)", "").trim();
+         return model == null ? null : model.replaceAll("[-_\\s()]", "").trim().toLowerCase();
     }
 
     public static String getProductId(String brand, String model) {

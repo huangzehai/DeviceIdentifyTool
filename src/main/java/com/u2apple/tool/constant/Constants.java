@@ -16,6 +16,7 @@ public class Constants {
     public static final String BRAND_CONF = "/com/u2apple/tool/conf/brand.properties";
     public static final String DATA_SOURCE_CONF = "/com/u2apple/tool/conf/dataSource.properties";
     public static final String CONFIGURATION = "/com/u2apple/tool/conf/configuration.properties";
+     public static final String MODELS = "/com/u2apple/tool/conf/models.properties";
 
     public static final String EXCLUDED_BRANDS = "4G,qcom,LTE 4G,Android,G4,M3,4G-4G,M!,custom version,MT6589";
 
