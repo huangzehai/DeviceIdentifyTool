@@ -22,4 +22,6 @@ public interface AndroidDeviceDao {
     List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days);
 
     List<AndroidDevice> getRootDeviceByVidAndModel(String vid,String model,int limit);
+    
+    List<AndroidDeviceRanking> listModelWithRanking(int days);
 }

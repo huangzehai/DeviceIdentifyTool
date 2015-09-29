@@ -52,6 +52,13 @@ public class AndroidDeviceDaoTest {
             System.out.println(androidDevice);
         });
     }
+    
+       @Test
+    public void testListModelWithRanking() throws IOException, JSchException {
+        int days = 1;
+        List<AndroidDeviceRanking> androidDevices = dao.listModelWithRanking(days);
+        androidDevices.stream().forEach(System.out::println);
+    }
 
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {

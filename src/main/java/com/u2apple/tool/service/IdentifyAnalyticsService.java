@@ -5,15 +5,17 @@
  */
 package com.u2apple.tool.service;
 
-import com.u2apple.tool.dao.DeviceDao;
+import com.jcraft.jsch.JSchException;
+import com.u2apple.tool.dao.AndroidDeviceDao;
+import com.u2apple.tool.dao.AndroidDeviceDaoImpl;
 import com.u2apple.tool.model.AndroidDeviceRanking;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -21,9 +23,11 @@ import java.util.Map;
  */
 public class IdentifyAnalyticsService {
 
-    public List<List<AndroidDeviceRanking>> analytics() throws SQLException {
-        DeviceDao dao = new DeviceDao();
-        List<AndroidDeviceRanking> devices = dao.listModes();
+    public List<List<AndroidDeviceRanking>> analytics() throws SQLException, IOException, JSchException {
+//        DeviceDao dao = new DeviceDao();
+//        List<AndroidDeviceRanking> devices = dao.listModes();
+        AndroidDeviceDao dao = new AndroidDeviceDaoImpl();
+        List<AndroidDeviceRanking> devices = dao.listModelWithRanking(1);
         Map<String, List<AndroidDeviceRanking>> map = new HashMap<>();
         String productId;
         for (AndroidDeviceRanking device : devices) {
@@ -37,23 +41,10 @@ public class IdentifyAnalyticsService {
             }
         }
 
-        List<List<AndroidDeviceRanking>> deviceList = new ArrayList<>();
-        for (List<AndroidDeviceRanking> models : map.values()) {
-            if (models.size() > 1) {
-                deviceList.add(models);
-            }
-        }
-
-        //
-        Collections.sort(deviceList, new Comparator<List<AndroidDeviceRanking>>() {
-
-            @Override
-            public int compare(List<AndroidDeviceRanking> list1, List<AndroidDeviceRanking> list2) {
-                return list2.get(0).getCount() - list1.get(0).getCount();
-            }
-        });
-        
-        return deviceList;
+        return map.values().parallelStream().filter(m -> m.size() > 1).sorted((List<AndroidDeviceRanking> list1, List<AndroidDeviceRanking> list2) -> list2.get(0).getCount() - list1.get(0).getCount()).collect(Collectors.toList());
+        //Sort
+//       return deviceList.parallelStream().sorted((List<AndroidDeviceRanking> list1, List<AndroidDeviceRanking> list2) -> list2.get(0).getCount() - list1.get(0).getCount()).collect(Collectors.toList());
+//        Collections.sort(deviceList, (List<AndroidDeviceRanking> list1, List<AndroidDeviceRanking> list2) -> list2.get(0).getCount() - list1.get(0).getCount());
     }
 
 }

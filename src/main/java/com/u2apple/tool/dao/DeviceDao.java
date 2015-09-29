@@ -519,6 +519,7 @@ public class DeviceDao {
         return macAddress;
     }
     
+    @Deprecated
      public List<AndroidDeviceRanking> listModes() throws SQLException {
         List<AndroidDeviceRanking> devices = new ArrayList<>();
         Connection connection = null;

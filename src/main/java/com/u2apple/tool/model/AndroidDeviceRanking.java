@@ -50,8 +50,7 @@ public class AndroidDeviceRanking extends AndroidDevice {
 
     @Override
     public String toString() {
-        return "AndroidDeviceRanking [count=" + count + ", vid=" + getVid() + ", roProductModel=" + getRoProductModel()
-                + ", roProductBrand=" + getRoProductBrand() + ", checkDate=" + checkDate + "]";
+        return "AndroidDeviceRanking{" + "count=" + count + ", checkDate=" + checkDate + '}'+super.toString();
     }
 
 }

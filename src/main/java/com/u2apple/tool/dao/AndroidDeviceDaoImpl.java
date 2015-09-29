@@ -64,4 +64,13 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         return mapper.getDeviceByVidAndModel(SqlUtils.getMonthlyTable("log_root_solution"),vid, model, limit);
     }
 
+    @Override
+    public List<AndroidDeviceRanking> listModelWithRanking(int days) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
+        Calendar calendar=Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -days);
+        return mapper.listModelWithRanking(SqlUtils.getMonthlyTable("log_device_init"),calendar.getTime());
+    }
+
 }
