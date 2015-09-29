@@ -34,7 +34,7 @@ public class DevicePatternFilter implements Filter {
 
     private static final String OTHERS_PATTERN_FILE = "/com/u2apple/rt/conf/device-pattern-others.xml";
 
-    private Rules rules;
+    private final Rules rules;
 
     public DevicePatternFilter() {
         rules = loadRules(DEFAULT_PATTERN_FILE);

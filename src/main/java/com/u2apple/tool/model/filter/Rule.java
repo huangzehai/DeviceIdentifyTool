@@ -5,6 +5,7 @@
  */
 package com.u2apple.tool.model.filter;
 
+import java.util.Arrays;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -30,7 +31,7 @@ public class Rule {
 
     @Override
     public String toString() {
-        return "Rule{" + "ruleItems=" + ruleItems + '}';
+        return "Rule{" + "ruleItems=" + Arrays.toString(ruleItems) + '}';
     }
     
 }
