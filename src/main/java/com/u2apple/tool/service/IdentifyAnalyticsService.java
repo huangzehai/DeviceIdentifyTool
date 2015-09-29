@@ -37,9 +37,16 @@ public class IdentifyAnalyticsService {
         try {
             props.load(IdentifyAnalyticsService.class.getResourceAsStream(Constants.MODELS));
             props.forEach((Object key, Object value) -> {
-                String model = AndroidDeviceUtils.formatModel((String) value);
                 String productId = (String) key;
-                map.put(model, productId);
+                String model = AndroidDeviceUtils.formatModel((String) value);
+                if (model.contains(",")) {
+                    String[] models = model.split(",");
+                    for (String m : models) {
+                        map.put(m.trim(), productId);
+                    }
+                } else {
+                    map.put(model, productId);
+                }
             });
         } catch (IOException ex) {
             Logger.getLogger(IdentifyAnalyticsService.class.getName()).log(Level.SEVERE, null, ex);
