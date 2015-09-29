@@ -34,7 +34,7 @@ public class DeviceDao {
     final Logger logger = LoggerFactory.getLogger(DeviceDao.class);
     private static final String SQL = "select vid, ro_product_brand, ro_product_model, return_product_id as product_id from %s where mac_address_new='74-27-EA-B0-4D-2C' order by id desc limit 1";
     private static final String SQL_FULL = "select partitions,resolution from %s where mac_address='74-27-EA-B0-4D-2C' and ro_product_model= ? order by id desc limit 1";
-    private static final String QUERY_BY_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  ro_product_model= ?  order by id desc limit 10;";
+    private static final String QUERY_BY_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  ro_product_model= ?  order by id desc limit 1";
     private static final String QUERY_LIKE_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  lower(ro_product_model) like ? order by id desc limit 10;";
 
     private static final String DEVICE_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
@@ -47,7 +47,7 @@ public class DeviceDao {
 
     private static final String GET_MAC_ADDRESS_BY_QQ = "select pc_mac_address as mac_address from api_device_binding where qq=?  order by id desc limit 1";
     
-    private static final String  MODEL_AND_PRODUCT_ID_ANALYTICS_SQL="select return_product_id,ro_product_model, count(*) as count from %s where created_at > subdate(curdate(), INTERVAL 3 DAY) and return_product_id !='' and return_product_id  != 'android-device' and ro_product_model !='' group by return_product_id,ro_product_model order by return_product_id, count desc";
+    private static final String  MODEL_AND_PRODUCT_ID_ANALYTICS_SQL="select return_product_id,ro_product_model, count(*) as count from %s where created_at > subdate(curdate(), INTERVAL 1 DAY) and return_product_id !='' and return_product_id  != 'android-device' and ro_product_model !='' group by return_product_id,ro_product_model order by return_product_id, count desc";
 
     public AndroidDevice getLatestDevice() {
         AndroidDevice device = null;

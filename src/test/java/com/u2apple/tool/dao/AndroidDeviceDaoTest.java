@@ -55,7 +55,7 @@ public class AndroidDeviceDaoTest {
 
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {
-        int days = 1;
+        int days = 2;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevicesOfRootSpirit(days);
         androidDevices.stream().forEach((androidDevice) -> {
             System.out.println(androidDevice);
