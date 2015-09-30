@@ -8,6 +8,7 @@
         <result property="roProductModel" column="ro_product_model"/>
         <result property="roProductBrand" column="ro_product_brand"/>
         <result property="productId" column="product_id"/>
+        <result property="cpuHardware" column="cpu_hardware"/>
         <result property="count" column="count"/>
     </resultMap>
     
@@ -21,6 +22,10 @@
     
     <select id="listModelWithRanking" parameterType="map" resultMap="androidDeviceRankingResultMap">
         select vid,return_product_id as product_id,ro_product_model,ro_product_brand, count(*) as count from ${table} where created_at > #{start} and return_product_id !='' and return_product_id  != 'android-device' and return_product_id not like '%emulator' and ro_product_model !='' group by vid,ro_product_model,ro_product_brand,product_id order by product_id, count desc
+    </select>
+    
+    <select id="listCpu" parameterType="map" resultMap="androidDeviceRankingResultMap">
+        select cpu_hardware,return_product_id as product_id, count(*) as count from ${table} where created_at > #{start} and return_product_id != '' and return_product_id !='android-device'  and return_product_id not like '%emulator' and cpu_hardware!='' group by return_product_id, cpu_hardware order by product_id
     </select>
 
 </mapper>

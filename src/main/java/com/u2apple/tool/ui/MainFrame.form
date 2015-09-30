@@ -1013,7 +1013,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="filterButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1026,31 +1026,33 @@
                               <Component id="excludeFilterButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="queryFilterButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="daysSpinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="deviceRankingButton" min="-2" pref="68" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="rootSpritButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="queryTextField" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="rootSpritButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="whiteListButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="errorRecognitionButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="queryButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="removeDeviceButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="whiteListButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="errorRecognitionButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="fakeDetectionButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="20" max="32767" attributes="0"/>
+                      <EmptySpace min="88" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1060,16 +1062,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="errorRecognitionButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="whiteListButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rootSpritButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="deviceRankingButton" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="errorRecognitionButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fakeDetectionButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="filterButton" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="daysSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1080,6 +1078,9 @@
                                   <Component id="newDeviceFilterButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="excludeFilterButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="queryFilterButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deviceRankingButton" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="rootSpritButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="whiteListButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="12" max="32767" attributes="0"/>
                           </Group>
@@ -1267,6 +1268,16 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="othersDevicesButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="fakeDetectionButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/u2apple/tool/icon/fake.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fakeDetectionButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

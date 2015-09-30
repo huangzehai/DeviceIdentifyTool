@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 /**
  *
@@ -24,53 +23,54 @@ import org.apache.ibatis.session.SqlSessionFactory;
  */
 public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
 
-    private final SqlSessionFactory sqlSessionFactory;
-    private final SqlSessionFactory rootSqlSessionFactory;
-
-    public AndroidDeviceDaoImpl() throws IOException, JSchException {
-        this.sqlSessionFactory = MyBatisHelper.getStatSqlSessionFactory();
-        this.rootSqlSessionFactory = MyBatisHelper.getRootSqlSessionFactory();
-    }
-
     @Override
-    public int getCount() {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public int getCount() throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
         return mapper.selectCount();
     }
 
     @Override
-    public List<AndroidDeviceRanking> getUnidentifiedDevices(int days) {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public List<AndroidDeviceRanking> getUnidentifiedDevices(int days) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
-        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_device_init"),calendar.getTime());
+        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_device_init"), calendar.getTime());
     }
 
     @Override
-    public List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days) {
-        SqlSession sqlSession = rootSqlSessionFactory.openSession();
+    public List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getRootSqlSessionFactory().openSession();
         RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
-        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_root_solution"),calendar.getTime());
+        return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_root_solution"), calendar.getTime());
     }
 
     @Override
-    public List<AndroidDevice> getRootDeviceByVidAndModel(String vid, String model, int limit) {
-        SqlSession sqlSession = rootSqlSessionFactory.openSession();
+    public List<AndroidDevice> getRootDeviceByVidAndModel(String vid, String model, int limit) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getRootSqlSessionFactory().openSession();
         RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
-        return mapper.getDeviceByVidAndModel(SqlUtils.getMonthlyTable("log_root_solution"),vid, model, limit);
+        return mapper.getDeviceByVidAndModel(SqlUtils.getMonthlyTable("log_root_solution"), vid, model, limit);
     }
 
     @Override
-    public List<AndroidDeviceRanking> listModelWithRanking(int days) {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public List<AndroidDeviceRanking> listModelWithRanking(int days) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
         AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
-        return mapper.listModelWithRanking(SqlUtils.getMonthlyTable("log_device_init"),calendar.getTime());
+        return mapper.listModelWithRanking(SqlUtils.getMonthlyTable("log_device_init"), calendar.getTime());
+    }
+
+    @Override
+    public List<AndroidDeviceRanking> listCpu(int days) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
+        AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -days);
+        return mapper.listCpu(SqlUtils.getMonthlyTable("log_device_init"), calendar.getTime());
     }
 
 }

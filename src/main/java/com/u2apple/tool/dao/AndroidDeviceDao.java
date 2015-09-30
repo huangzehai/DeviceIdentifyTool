@@ -5,8 +5,10 @@
  */
 package com.u2apple.tool.dao;
 
+import com.jcraft.jsch.JSchException;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,13 +17,15 @@ import java.util.List;
  */
 public interface AndroidDeviceDao {
 
-    int getCount();
+    int getCount()throws IOException, JSchException;
 
-    List<AndroidDeviceRanking> getUnidentifiedDevices(int days);
+    List<AndroidDeviceRanking> getUnidentifiedDevices(int days) throws IOException, JSchException;
 
-    List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days);
+    List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days) throws IOException, JSchException;
 
-    List<AndroidDevice> getRootDeviceByVidAndModel(String vid,String model,int limit);
+    List<AndroidDevice> getRootDeviceByVidAndModel(String vid,String model,int limit)throws IOException, JSchException;
     
-    List<AndroidDeviceRanking> listModelWithRanking(int days);
+    List<AndroidDeviceRanking> listModelWithRanking(int days)throws IOException, JSchException;
+    
+    List<AndroidDeviceRanking> listCpu(int days)throws IOException, JSchException;
 }

@@ -33,6 +33,7 @@ import com.u2apple.tool.dao.DeviceXmlDao;
 import com.u2apple.tool.dao.DeviceXmlDaoJaxbImpl;
 import com.u2apple.tool.ui.worker.ErrorDetectionWorker;
 import com.u2apple.tool.ui.worker.ExcludeFilterWorker;
+import com.u2apple.tool.ui.worker.FakeDetectionWorker;
 import com.u2apple.tool.ui.worker.NewDeviceFilterWorker;
 import com.u2apple.tool.ui.worker.QueryFilterWorker;
 import com.u2apple.tool.util.AndroidDeviceUtils;
@@ -162,6 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
         queryFilterButton = new javax.swing.JButton();
         removeDeviceButton = new javax.swing.JButton();
         othersDevicesButton = new javax.swing.JButton();
+        fakeDetectionButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         deviceDetailTable = new javax.swing.JTable();
@@ -841,12 +843,19 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        fakeDetectionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/fake.png"))); // NOI18N
+        fakeDetectionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fakeDetectionButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout queryPanelLayout = new javax.swing.GroupLayout(queryPanel);
         queryPanel.setLayout(queryPanelLayout);
         queryPanelLayout.setHorizontalGroup(
             queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(queryPanelLayout.createSequentialGroup()
-                .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addComponent(filterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -859,25 +868,27 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(excludeFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryFilterButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rootSpritButton))
                     .addComponent(queryTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(queryPanelLayout.createSequentialGroup()
-                        .addComponent(rootSpritButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(whiteListButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorRecognitionButton))
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addComponent(queryButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeDeviceButton)))
+                        .addComponent(removeDeviceButton))
+                    .addGroup(queryPanelLayout.createSequentialGroup()
+                        .addComponent(whiteListButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(errorRecognitionButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fakeDetectionButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         queryPanelLayout.setVerticalGroup(
@@ -886,14 +897,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(queryPanelLayout.createSequentialGroup()
-                        .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorRecognitionButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(whiteListButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rootSpritButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(deviceRankingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(errorRecognitionButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fakeDetectionButton)
                             .addComponent(filterButton)
                             .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -902,7 +910,10 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(matchButton)
                             .addComponent(newDeviceFilterButton)
                             .addComponent(excludeFilterButton)
-                            .addComponent(queryFilterButton))
+                            .addComponent(queryFilterButton)
+                            .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rootSpritButton)
+                            .addComponent(whiteListButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(queryButton)
@@ -1313,7 +1324,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void errorRecognitionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_errorRecognitionButtonActionPerformed
         new ErrorDetectionWorker(this.deviceTable).execute();
-         Profile.SOURCE = Source.Shuame;
+        Profile.SOURCE = Source.Shuame;
 //        IdentifyAnalyticsService service = new IdentifyAnalyticsService();
 //        try {
 //            List<List<AndroidDeviceRanking>> deviceList = service.analytics();
@@ -1415,7 +1426,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (StringUtils.isBlank(model)) {
             JOptionPane.showMessageDialog(jPanel1, "Model should not be blank.");
         } else {
-            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll,Profile.SOURCE, this.deviceDetailTable);
+            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll, Profile.SOURCE, this.deviceDetailTable);
             deviceWorker.execute();
         }
 
@@ -1694,6 +1705,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_flushButtonActionPerformed
 
+    private void fakeDetectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fakeDetectionButtonActionPerformed
+        new FakeDetectionWorker(this.deviceTable).execute();
+    }//GEN-LAST:event_fakeDetectionButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1754,6 +1769,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable deviceTable;
     private javax.swing.JButton errorRecognitionButton;
     private javax.swing.JButton excludeFilterButton;
+    private javax.swing.JButton fakeDetectionButton;
     private javax.swing.JButton filterButton;
     private javax.swing.JButton flushButton;
     private javax.swing.JButton googleButton;

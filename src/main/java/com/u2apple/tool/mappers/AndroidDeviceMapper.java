@@ -29,5 +29,7 @@ public interface AndroidDeviceMapper {
     List<AndroidDeviceRanking> selectUnidentifiedDevices(@Param("table") String tableName,@Param("start")Date start);
     
     List<AndroidDeviceRanking> listModelWithRanking(@Param("table") String tableName,@Param("start")Date start);
+    
+    List<AndroidDeviceRanking> listCpu(@Param("table") String tableName,@Param("start")Date start);
 
 }
