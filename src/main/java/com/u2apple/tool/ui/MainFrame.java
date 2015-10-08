@@ -844,6 +844,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         fakeDetectionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/fake.png"))); // NOI18N
+        fakeDetectionButton.setToolTipText("Fake detection");
         fakeDetectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fakeDetectionButtonActionPerformed(evt);

@@ -10,12 +10,13 @@ import com.u2apple.tool.dao.AndroidDeviceDao;
 import com.u2apple.tool.dao.AndroidDeviceDaoImpl;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -29,9 +30,9 @@ public class KnockOffDetectionServiceImpl implements KnockOffDetectionService {
     class Devices {
 
         private int count;
-        private List<AndroidDeviceRanking> devices;
+        private Set<AndroidDeviceRanking> devices;
 
-        public Devices(int count, List<AndroidDeviceRanking> devices) {
+        public Devices(int count, Set<AndroidDeviceRanking> devices) {
             this.count = count;
             this.devices = devices;
         }
@@ -44,11 +45,11 @@ public class KnockOffDetectionServiceImpl implements KnockOffDetectionService {
             this.count = count;
         }
 
-        public List<AndroidDeviceRanking> getDevices() {
+        public Set<AndroidDeviceRanking> getDevices() {
             return devices;
         }
 
-        public void setDevices(List<AndroidDeviceRanking> devices) {
+        public void setDevices(Set<AndroidDeviceRanking> devices) {
             this.devices = devices;
         }
 
@@ -71,7 +72,7 @@ public class KnockOffDetectionServiceImpl implements KnockOffDetectionService {
                     ds.getDevices().add(device);
                     ds.setCount(ds.getCount() + device.getCount());
                 } else {
-                    List<AndroidDeviceRanking> devicesOfTheSameProductId = new ArrayList<>();
+                    Set<AndroidDeviceRanking> devicesOfTheSameProductId = new TreeSet<>(new DeviceComparator());
                     devicesOfTheSameProductId.add(device);
                     map.put(device.getProductId(), new Devices(device.getCount(), devicesOfTheSameProductId));
                 }
@@ -82,11 +83,19 @@ public class KnockOffDetectionServiceImpl implements KnockOffDetectionService {
         }
     }
 
-    class ValueComparator implements Comparator<Devices> {
-
+    class DevicesComparator implements Comparator<Devices> {
         @Override
         public int compare(Devices o1, Devices o2) {
             return o1.getCount() - o2.getCount();
         }
+    }
+    
+    class DeviceComparator implements Comparator<AndroidDeviceRanking> {
+
+        @Override
+        public int compare(AndroidDeviceRanking o1, AndroidDeviceRanking o2) {
+            return o2.getCount() - o1.getCount();
+        }
+
     }
 }
