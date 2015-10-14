@@ -66,7 +66,7 @@ public class KnockOffDetectionServiceImpl implements KnockOffDetectionService {
         if (devices != null && !devices.isEmpty()) {
             //Group by product id.
             Map<String, Devices> map = new HashMap<>();
-            devices.parallelStream().forEach(device -> {
+            devices.stream().forEach(device -> {
                 if (map.containsKey(device.getProductId())) {
                     Devices ds = map.get(device.getProductId());
                     ds.getDevices().add(device);

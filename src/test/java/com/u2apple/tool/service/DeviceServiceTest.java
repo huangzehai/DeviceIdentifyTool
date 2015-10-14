@@ -6,6 +6,7 @@
 package com.u2apple.tool.service;
 
 import java.util.List;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -22,9 +23,8 @@ public class DeviceServiceTest {
     @Test
     public void testListFullProductId() {
         List<String> productIds = deviceService.listFullProductId();
-        for (String productId : productIds) {
-            System.out.println(productId);
-        }
+        Assert.assertNotNull(productIds);
+        Assert.assertTrue(productIds.size() > 0);
     }
 
 }

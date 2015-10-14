@@ -22,14 +22,6 @@ import org.apache.ibatis.session.SqlSession;
  * @author Adam
  */
 public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
-
-    @Override
-    public int getCount() throws IOException, JSchException {
-        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
-        AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
-        return mapper.selectCount();
-    }
-
     @Override
     public List<AndroidDeviceRanking> getUnidentifiedDevices(int days) throws IOException, JSchException {
         SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();

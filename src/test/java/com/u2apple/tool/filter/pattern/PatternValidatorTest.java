@@ -5,7 +5,6 @@
  */
 package com.u2apple.tool.filter.pattern;
 
-import com.u2apple.tool.filter.pattern.PatternValidator;
 import org.junit.Test;
 
 /**

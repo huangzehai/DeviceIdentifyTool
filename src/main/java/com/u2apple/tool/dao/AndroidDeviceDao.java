@@ -17,8 +17,6 @@ import java.util.List;
  */
 public interface AndroidDeviceDao {
 
-    int getCount()throws IOException, JSchException;
-
     List<AndroidDeviceRanking> getUnidentifiedDevices(int days) throws IOException, JSchException;
 
     List<AndroidDeviceRanking> getUnidentifiedDevicesOfRootSpirit(int days) throws IOException, JSchException;

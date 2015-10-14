@@ -16,9 +16,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface AndroidDeviceMapper {
 
-    // @Select("SELECT count(*) FROM log_device_init_201507")
-    public int selectCount();
-
     /**
      * 查询刷机精灵PC版未识别机型
      *

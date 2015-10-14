@@ -48,34 +48,20 @@ public class DeviceDaoTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void testQueryByVidAndModel() {
-        for (int i = 0; i < 20; i++) {
-            DeviceDao dao = new DeviceDao();
-            try {
-                List<AndroidDevice> androidDevices = dao.queryByVidAndModel("12D1", "PE-TL20", 10);
-                System.out.println(androidDevices.size());
-//            for (AndroidDevice device : androidDevices) {
-//                System.out.println(device);
-//            }
-            } catch (SQLException ex) {
-                Logger.getLogger(DeviceDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public void testQueryByVidAndModel() throws SQLException {
+        DeviceDao dao = new DeviceDao();
+        List<AndroidDevice> androidDevices = dao.queryByVidAndModel("12D1", "PE-TL20", 10);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test
     @Ignore
-    public void testQueryAllDetailByVidAndModel() {
+    public void testQueryAllDetailByVidAndModel() throws SQLException {
         DeviceDao dao = new DeviceDao();
-        List<AndroidDevice> androidDevices;
-        try {
-            androidDevices = dao.queryAllDetailByVidAndModel("0BB4", "ELIYA S898", 10);
-            for (AndroidDevice device : androidDevices) {
-                System.out.println(device);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DeviceDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<AndroidDevice> androidDevices = dao.queryAllDetailByVidAndModel("0BB4", "ELIYA S898", 10);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertNotEquals(0, androidDevices.size());
     }
 
     @Test
@@ -89,25 +75,25 @@ public class DeviceDaoTest {
     @Ignore
     public void testQueryByMacAddress() throws SQLException {
         DeviceDao dao = new DeviceDao();
-        List<AndroidDevice> devices = dao.queryByMacAddress("5C-AC-4C-99-02-1E", 2);
-        for (AndroidDevice device : devices) {
-            System.out.println(device);
-        }
+        List<AndroidDevice> androidDevices = dao.queryByMacAddress("5C-AC-4C-99-02-1E", 2);
+         Assert.assertNotNull(androidDevices);
+        Assert.assertNotEquals(0, androidDevices.size());
     }
 
     @Test
+    @Ignore
     public void testGetMacAddressByQQ() throws SQLException {
         DeviceDao dao = new DeviceDao();
         String macAddress = dao.getMacAddressByQQ("8557040");
         Assert.assertEquals("The actual mac addrss should be the same as expected.", "5C-AC-4C-99-02-1E", macAddress);
     }
-    
+
     @Test
-    public void testListModels() throws SQLException{
+    public void testListModels() throws SQLException {
         DeviceDao dao = new DeviceDao();
-       List<AndroidDeviceRanking> devices= dao.listModes();
-       Assert.assertNotNull(devices);
-       Assert.assertNotEquals(0, devices.size());
+        List<AndroidDeviceRanking> androidDevices = dao.listModes();
+        Assert.assertNotNull(androidDevices);
+        Assert.assertNotEquals(0, androidDevices.size());
     }
 
 }

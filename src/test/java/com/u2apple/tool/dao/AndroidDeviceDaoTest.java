@@ -34,15 +34,8 @@ public class AndroidDeviceDaoTest {
 
     @After
     public void destroy() {
-        SshTunnel.close();
-    }
-
-    @Test
-    public void testGetCount() throws IOException, JSchException {
-
-        int count = dao.getCount();
-        System.out.println(count);
-
+//        System.out.println("destroy");
+//        SshTunnel.close();
     }
 
     @Test
