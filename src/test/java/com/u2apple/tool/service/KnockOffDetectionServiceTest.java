@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -43,14 +43,15 @@ public class KnockOffDetectionServiceTest {
 
     /**
      * Test of analyticsByCpu method, of class KnockOffDetectionService.
+     * @throws java.io.IOException
+     * @throws com.jcraft.jsch.JSchException
      */
     @Test
-    public void testAnalyticsByCpu() throws Exception {
-        System.out.println("analyticsByCpu");
+    public void testAnalyticsByCpu() throws IOException, JSchException{
         KnockOffDetectionService instance = new KnockOffDetectionServiceImpl();
-        List<AndroidDeviceRanking> expResult = null;
         List<AndroidDeviceRanking> devices = instance.analyticsByCpu();
-        devices.stream().forEach(System.out::println);
+        Assert.assertNotNull(devices);
+        Assert.assertTrue(devices.size() > 0);
     }
     
 }

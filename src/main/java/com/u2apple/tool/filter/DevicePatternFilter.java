@@ -30,9 +30,9 @@ public class DevicePatternFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(DevicePatternFilter.class);
 
-    private static final String DEFAULT_PATTERN_FILE = "/com/u2apple/rt/conf/device-pattern.xml";
+    private static final String DEFAULT_PATTERN_FILE = "/com/u2apple/tool/conf/device-pattern.xml";
 
-    private static final String OTHERS_PATTERN_FILE = "/com/u2apple/rt/conf/device-pattern-others.xml";
+    private static final String OTHERS_PATTERN_FILE = "/com/u2apple/tool/conf/device-pattern-others.xml";
 
     private final Rules rules;
 
