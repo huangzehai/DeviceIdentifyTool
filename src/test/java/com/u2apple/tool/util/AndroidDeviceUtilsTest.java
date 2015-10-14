@@ -5,7 +5,6 @@
  */
 package com.u2apple.tool.util;
 
-import com.u2apple.tool.util.AndroidDeviceUtils;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;

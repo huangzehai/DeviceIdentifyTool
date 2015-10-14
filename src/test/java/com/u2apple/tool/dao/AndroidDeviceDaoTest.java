@@ -12,6 +12,7 @@ import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.io.IOException;
 import java.util.List;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,40 +49,38 @@ public class AndroidDeviceDaoTest {
     public void testGetUnidentifiedDevices() throws IOException, JSchException {
         int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevices(days);
-        androidDevices.stream().forEach((androidDevice) -> {
-            System.out.println(androidDevice);
-        });
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test
     public void testListModelWithRanking() throws IOException, JSchException {
         int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.listModelWithRanking(days);
-        androidDevices.stream().forEach(System.out::println);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test
     public void testListCpu() throws IOException, JSchException {
         int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.listCpu(days);
-        androidDevices.stream().forEach(System.out::println);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {
-        int days = 2;
+        int days = 1;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevicesOfRootSpirit(days);
-        androidDevices.stream().forEach((androidDevice) -> {
-            System.out.println(androidDevice);
-        });
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test
-    public void testGetRootDeviceByVidAndModel() {
-        List<AndroidDevice> devices = dao.getRootDeviceByVidAndModel("22D9", "A31", 10);
-        if (devices != null) {
-            devices.stream().forEach(System.out::println);
-        }
+    public void testGetRootDeviceByVidAndModel() throws IOException, JSchException {
+        List<AndroidDevice> androidDevices = dao.getRootDeviceByVidAndModel("04E8", "SM-G9200", 1);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
     }
-
 }
