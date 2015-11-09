@@ -734,7 +734,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setText("Days:");
 
         daysSpinner.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        daysSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        daysSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
 
         deviceRankingButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         deviceRankingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/trend.png"))); // NOI18N

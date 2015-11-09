@@ -15,6 +15,7 @@ import com.u2apple.tool.util.SqlUtils;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.ibatis.session.SqlSession;
 
 /**
@@ -37,6 +38,7 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         RootDeviceMapper mapper = sqlSession.getMapper(RootDeviceMapper.class);
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -days);
+        calendar = DateUtils.truncate(calendar, Calendar.DATE);
         return mapper.selectUnidentifiedDevices(SqlUtils.getMonthlyTable("log_root_solution"), calendar.getTime());
     }
 
