@@ -21,7 +21,6 @@ import com.u2apple.tool.ui.worker.ModelWorker;
 import com.u2apple.tool.ui.worker.DeviceQueryWorker;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.dao.DeviceDao;
-import com.u2apple.tool.service.IdentifyAnalyticsService;
 import com.u2apple.tool.filter.DevicePatternFilter;
 import com.u2apple.tool.model.AndroidDevice;
 import com.u2apple.tool.model.AndroidDeviceRanking;
@@ -36,18 +35,15 @@ import com.u2apple.tool.ui.worker.ExcludeFilterWorker;
 import com.u2apple.tool.ui.worker.FakeDetectionWorker;
 import com.u2apple.tool.ui.worker.NewDeviceFilterWorker;
 import com.u2apple.tool.ui.worker.QueryFilterWorker;
+import com.u2apple.tool.ui.worker.ShuameMobileDeviceWorker;
 import com.u2apple.tool.util.AndroidDeviceUtils;
 import com.u2apple.tool.util.ConditionUtils;
-import com.u2apple.tool.util.CsvUtils;
 import com.u2apple.tool.util.QueryPattern;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -164,6 +160,7 @@ public class MainFrame extends javax.swing.JFrame {
         removeDeviceButton = new javax.swing.JButton();
         othersDevicesButton = new javax.swing.JButton();
         fakeDetectionButton = new javax.swing.JButton();
+        shuameMobileButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         deviceDetailTable = new javax.swing.JTable();
@@ -851,6 +848,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        shuameMobileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/mobile.png"))); // NOI18N
+        shuameMobileButton.setToolTipText("List unidentified devices of Shuame mobile");
+        shuameMobileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shuameMobileButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout queryPanelLayout = new javax.swing.GroupLayout(queryPanel);
         queryPanel.setLayout(queryPanelLayout);
         queryPanelLayout.setHorizontalGroup(
@@ -883,7 +888,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addComponent(queryButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeDeviceButton))
+                        .addComponent(removeDeviceButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(shuameMobileButton))
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addComponent(whiteListButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -920,7 +927,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(queryButton)
                     .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(queryTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(removeDeviceButton)))
+                        .addComponent(removeDeviceButton))
+                    .addComponent(shuameMobileButton))
                 .addContainerGap())
         );
 
@@ -1710,6 +1718,12 @@ public class MainFrame extends javax.swing.JFrame {
         new FakeDetectionWorker(this.deviceTable).execute();
     }//GEN-LAST:event_fakeDetectionButtonActionPerformed
 
+    private void shuameMobileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shuameMobileButtonActionPerformed
+        int days = (int) daysSpinner.getValue();
+        new ShuameMobileDeviceWorker(days, this.deviceTable).execute();
+        Profile.SOURCE = Source.ShuameMobile;
+    }//GEN-LAST:event_shuameMobileButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1813,6 +1827,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel resolutionLabel;
     private javax.swing.JTextArea resultTextArea;
     private javax.swing.JButton rootSpritButton;
+    private javax.swing.JButton shuameMobileButton;
     private javax.swing.JButton sortButton;
     private javax.swing.JButton testCaseButton;
     private javax.swing.JComboBox typeComboBox;

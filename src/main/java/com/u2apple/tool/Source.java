@@ -10,5 +10,5 @@ package com.u2apple.tool;
  * @author Adam
  */
 public enum Source {
-    Shuame,RootSpirit
+    Shuame,ShuameMobile,RootSpirit
 }

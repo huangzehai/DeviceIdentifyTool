@@ -38,6 +38,8 @@ public class DeviceDao {
     private static final String QUERY_LIKE_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  lower(ro_product_model) like ? order by id desc limit 10;";
 
     private static final String DEVICE_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
+    
+     private static final String DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL = "select mac_address,vid,pid,prot,sn,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
 
     private static final String DEVICE_ALL_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,resolution,partitions from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
 
@@ -241,6 +243,82 @@ public class DeviceDao {
                 device.setRoProductManufacturer(roProductManufacturer);
                 device.setRoHardware(roHardware);
                 device.setRoBuildDisplayId(roBuildDisplayId);
+                device.setCustomProps(customProps);
+                device.setCreatedAt(createdAt);
+                device.setReturnProductId(returnProductId);
+                device.setIdentified(identified);
+                device.setVid(vid);
+                device.setRoProductBrand(brand);
+                device.setRoProductModel(roProductModel);
+                device.setProductId(productId);
+                device.setAndroidVersion(androidVersion);
+                device.setCpuHardware(cpuHardware);
+                devices.add(device);
+            }
+        } catch (JSchException | ClassNotFoundException | PropertyVetoException | IOException ex) {
+            logger.error("SQL fail", ex);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                logger.error("Fail when conection was closed", ex);
+            }
+        }
+        return devices;
+    }
+    
+    
+     public List<AndroidDevice> queryByVidAndModelForShuameMobile(String aVid, String model, int limit) throws SQLException {
+        List<AndroidDevice> devices = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            connection = Pool.getStatConnection();
+            String sql = SqlUtils.createMonthlyQuery(DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL, "log_m_device_init");
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, model);
+            statement.setString(2, aVid);
+            statement.setInt(3, limit);
+            statement.setQueryTimeout(Constants.TIMEOUT_SHORT);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                AndroidDevice device = new AndroidDevice();
+                String macAddress = rs.getString("mac_address");
+                String vid = rs.getString("vid");
+                String pid = rs.getString("pid");
+                String prot = rs.getString("prot");
+                String sn = rs.getString("sn");
+                String productId = rs.getString("product_id");
+                String toProductDevice = rs.getString("ro_product_device");
+                String roProductModel = rs.getString("ro_product_model");
+                String brand = rs.getString("ro_product_brand");
+                String roProductBoard = rs.getString("ro_product_board");
+                String roProductManufacturer = rs.getString("ro_product_manufacturer");
+                String roHardware = rs.getString("ro_hardware");
+                String customProps = rs.getString("custom_props");
+                String createdAt = rs.getString("created_at");
+                String returnProductId = rs.getString("return_product_id");
+                String identified = rs.getString("identified");
+                String androidVersion = rs.getString("android_version");
+                String cpuHardware = rs.getString("cpu_hardware");
+
+                device.setMacAddress(macAddress);
+                device.setPid(pid);
+                device.setProt(prot);
+                device.setSn(sn);
+                device.setRoProductDevice(toProductDevice);
+                device.setRoProductBoard(roProductBoard);
+                device.setRoProductManufacturer(roProductManufacturer);
+                device.setRoHardware(roHardware);
                 device.setCustomProps(customProps);
                 device.setCreatedAt(createdAt);
                 device.setReturnProductId(returnProductId);

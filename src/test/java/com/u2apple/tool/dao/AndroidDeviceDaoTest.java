@@ -64,10 +64,9 @@ public class AndroidDeviceDaoTest {
 
     @Test
     public void testGetUnidentifiedDevicesOfRootSpirit() throws IOException, JSchException {
-        int days = 1;
+        int days = 0;
         List<AndroidDeviceRanking> androidDevices = dao.getUnidentifiedDevicesOfRootSpirit(days);
         Assert.assertNotNull(androidDevices);
-        Assert.assertTrue(androidDevices.size() > 0);
     }
 
     @Test

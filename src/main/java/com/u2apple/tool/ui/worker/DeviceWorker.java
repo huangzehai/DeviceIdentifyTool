@@ -25,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Adam
  */
 public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
+
     private String vid;
     private String model;
     private final int limit;
@@ -33,8 +34,6 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
     private String qq;
     private Source source;
     private final JTable deviceDetailTable;
-    
-    
 
     public DeviceWorker(String vid, String model, int limit, boolean isAll, Source source, JTable deviceDetailTable) {
         this.vid = vid;
@@ -57,7 +56,7 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
 
     @Override
     protected List<AndroidDevice> doInBackground() throws Exception {
-        List<AndroidDevice> androidDevices=null;
+        List<AndroidDevice> androidDevices = null;
         DeviceDao dao = new DeviceDao();
         if (this.qq != null) {
             String macAddr = dao.getMacAddressByQQ(this.qq);
@@ -69,15 +68,17 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
         } else if (this.macAddress != null) {
             androidDevices = dao.queryByMacAddress(this.macAddress.trim(), limit);
         } else {
-            if (Source.Shuame==this.source) {
+            if (Source.Shuame == this.source) {
                 if (isAll) {
                     androidDevices = dao.queryAllDetailByVidAndModel(vid.trim(), model.trim(), limit);
                 } else {
                     androidDevices = dao.queryByVidAndModel(vid.trim(), model.trim(), limit);
                 }
-            }else if(Source.RootSpirit==this.source){
-                AndroidDeviceDao androidDeviceDao=new AndroidDeviceDaoImpl();
-                androidDevices=androidDeviceDao.getRootDeviceByVidAndModel(this.vid, this.model, this.limit);
+            } else if (Source.ShuameMobile == this.source) {
+                androidDevices = dao.queryByVidAndModelForShuameMobile(vid.trim(), model.trim(), limit);
+            } else if (Source.RootSpirit == this.source) {
+                AndroidDeviceDao androidDeviceDao = new AndroidDeviceDaoImpl();
+                androidDevices = androidDeviceDao.getRootDeviceByVidAndModel(this.vid, this.model, this.limit);
             }
 
         }

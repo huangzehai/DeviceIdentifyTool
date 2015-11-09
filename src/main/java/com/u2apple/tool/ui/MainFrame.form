@@ -1043,6 +1043,8 @@
                               <Component id="queryButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="removeDeviceButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="shuameMobileButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="whiteListButton" min="-2" max="-2" attributes="0"/>
@@ -1091,6 +1093,7 @@
                               <Component id="queryTextField" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="removeDeviceButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="shuameMobileButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1279,6 +1282,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fakeDetectionButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="shuameMobileButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/u2apple/tool/icon/mobile.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="List unidentified devices of Shuame mobile"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shuameMobileButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
