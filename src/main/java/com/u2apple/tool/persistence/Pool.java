@@ -29,20 +29,7 @@ public final class Pool {
     private static DataSource testDataSource;
 
     private static DataSource testStatDataSource;
-
-//    private static void doSshTunnel(String strSshUser, String strSshPassword, String strSshHost, int nSshPort,
-//            String strRemoteHost, int nLocalPort, int nRemotePort) throws JSchException {
-//        final JSch jsch = new JSch();
-//        session = jsch.getSession(strSshUser, strSshHost, nSshPort);
-//        session.setPassword(strSshPassword);
-//
-//        final Properties config = new Properties();
-//        config.put("StrictHostKeyChecking", "no");
-//        session.setConfig(config);
-//
-//        session.connect();
-//        session.setPortForwardingL(nLocalPort, strRemoteHost, nRemotePort);
-//    }
+    
     public static void close() {
         //Close SSH session.
         if (session != null) {
@@ -154,18 +141,10 @@ public final class Pool {
     private static DataSource initRootDataSource() throws JSchException, SQLException, ClassNotFoundException, IOException, PropertyVetoException {
         Properties dataSource = new Properties();
         dataSource.load(Pool.class.getResourceAsStream(Constants.DATA_SOURCE_CONF));
-//        String strSshUser = dataSource.getProperty("sshUser"); // SSH loging username
-//        String strSshPassword = dataSource.getProperty("sshPassword");// SSH login password
-//        String strSshHost = dataSource.getProperty("sshHost");// hostname or ip or SSH server
-//        int nSshPort = Integer.parseInt(dataSource.getProperty("sshPort")); // remote SSH host port number
-//        String strRemoteHost = dataSource.getProperty("dbHost"); // hostname or ip of your database server
-        int nLocalPort = Integer.parseInt(dataSource.getProperty("statLocalPort")); // local port number use to bind SSH tunnel
-//        int nRemotePort = Integer.parseInt(dataSource.getProperty("statDbPort")); // remote port number of your database
-        String strDbUser = dataSource.getProperty("dbUser");// database loging username
-        String strDbPassword = dataSource.getProperty("statDbPassword"); // database login password
-//        Pool
-//                .doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
-        SshTunnel.doStatSshTunnel();
+        int nLocalPort = Integer.parseInt(dataSource.getProperty("rootLocalPort")); // local port number use to bind SSH tunnel
+        String strDbUser = dataSource.getProperty("rootDbUser");// database loging username
+        String strDbPassword = dataSource.getProperty("rootDbPassword"); // database login password
+        SshTunnel.doRootSshTunnel();
         //Pooling.
         String dbUrl = dataSource.getProperty("dbUrl") + nLocalPort + "/" + dataSource.getProperty("rootDbName");
         BasicDataSource ds = new BasicDataSource();

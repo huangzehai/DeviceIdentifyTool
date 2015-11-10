@@ -35,7 +35,23 @@ public class SshTunnel {
             String strRemoteHost = dataSource.getProperty("dbHost"); // hostname or ip of your database server
             int nLocalPort = Integer.parseInt(dataSource.getProperty("statLocalPort")); // local port number use to bind SSH tunnel
             int nRemotePort = Integer.parseInt(dataSource.getProperty("statDbPort")); // remote port number of your database
-            doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
+            statSession = doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
+        }
+    }
+
+    public static void doRootSshTunnel() throws JSchException, IOException {
+        if (rootSession == null) {
+            Properties dataSource = new Properties();
+            dataSource.load(MyBatisHelper.class.getResourceAsStream(Constants.DATA_SOURCE_CONF));
+            String strSshUser = dataSource.getProperty("sshUser"); // SSH loging username
+            String strSshPassword = dataSource.getProperty("sshPassword");// SSH login password
+            String strSshHost = dataSource.getProperty("sshHost");// hostname or ip or SSH server
+            int nSshPort = Integer.parseInt(dataSource.getProperty("sshPort")); // remote SSH host port number
+            //Setting root server IP and port.
+            String strRemoteHost = dataSource.getProperty("rootDbHost"); // hostname or ip of your database server
+            int nRemotePort = Integer.parseInt(dataSource.getProperty("rootDbPort")); // remote port number of your database
+            int nLocalPort = Integer.parseInt(dataSource.getProperty("rootLocalPort")); // local port number use to bind SSH tunnel
+            rootSession = doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
         }
     }
 
@@ -51,20 +67,21 @@ public class SshTunnel {
             //The difference.
             int nLocalPort = Integer.parseInt(dataSource.getProperty("localPort")); // local port number use to bind SSH tunnel
             int nRemotePort = Integer.parseInt(dataSource.getProperty("dbPort")); // remote port number of your database
-            doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
+            apiSession = doSshTunnel(strSshUser, strSshPassword, strSshHost, nSshPort, strRemoteHost, nLocalPort, nRemotePort);
         }
     }
 
-    private static void doSshTunnel(String strSshUser, String strSshPassword, String strSshHost, int nSshPort,
+    private static Session doSshTunnel(String strSshUser, String strSshPassword, String strSshHost, int nSshPort,
             String strRemoteHost, int nLocalPort, int nRemotePort) throws JSchException {
         final JSch jsch = new JSch();
-        statSession = jsch.getSession(strSshUser, strSshHost, nSshPort);
-        statSession.setPassword(strSshPassword);
+        Session session = jsch.getSession(strSshUser, strSshHost, nSshPort);
+        session.setPassword(strSshPassword);
         final Properties config = new Properties();
         config.put("StrictHostKeyChecking", "no");
-        statSession.setConfig(config);
-        statSession.connect();
-        statSession.setPortForwardingL(nLocalPort, strRemoteHost, nRemotePort);
+        session.setConfig(config);
+        session.connect();
+        session.setPortForwardingL(nLocalPort, strRemoteHost, nRemotePort);
+        return session;
     }
 
     /**

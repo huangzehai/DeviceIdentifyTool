@@ -47,7 +47,7 @@ public final class MyBatisHelper {
     }
 
     private static void createRootSqlSessionFactory() throws IOException, JSchException {
-        SshTunnel.doStatSshTunnel();
+        SshTunnel.doRootSshTunnel();
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         rootSqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream,"root");
