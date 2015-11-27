@@ -97,21 +97,21 @@ public final class AndroidDeviceUtils {
             }
 
             //预处理model.
-            if ("samsung".equalsIgnoreCase(brand) && modelWithoutBrand.contains("-")) {
-                int index = modelWithoutBrand.indexOf("-");
-                //When "-" is the last char.
-                if (index < modelWithoutBrand.length() - 1) {
-                    modelWithoutBrand = modelWithoutBrand.substring(index + 1);
-                }
-            }
+//            if ("samsung".equalsIgnoreCase(brand) && modelWithoutBrand.contains("-")) {
+//                int index = modelWithoutBrand.indexOf("-");
+//                //When "-" is the last char.
+//                if (index < modelWithoutBrand.length() - 1) {
+//                    modelWithoutBrand = modelWithoutBrand.substring(index + 1);
+//                }
+//            }
 
             String formattedModel = formatModel(modelWithoutBrand);
             //处理特殊品牌
-            if ("vivo".equalsIgnoreCase(brand)) {
-                productId = "bbk-vivo" + formattedModel;
-            } else {
+//            if ("vivo".equalsIgnoreCase(brand)) {
+//                productId = "bbk-vivo" + formattedModel;
+//            } else {
                 productId = brand + "-" + formattedModel;
-            }
+//            }
         }
         return productId;
     }

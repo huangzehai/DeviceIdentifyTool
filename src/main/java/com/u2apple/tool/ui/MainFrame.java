@@ -1245,7 +1245,7 @@ public class MainFrame extends javax.swing.JFrame {
         String productId = AndroidDeviceUtils.getProductId(brand, model);
         String productName = AndroidDeviceUtils.getProductName(brand, model);
         productIdTextField.setText(productId);
-        brandTextField.setText(AndroidDeviceUtils.formatBrand(brand));
+        brandTextField.setText(AndroidDeviceUtils.getBrandByProductId(productId));
         productTextField.setText(productName);
         aliasTextField.setText("");
         //Update condition checkbox.
@@ -1432,7 +1432,7 @@ public class MainFrame extends javax.swing.JFrame {
         boolean isAll = allCheckBox.isSelected();
         if (StringUtils.isBlank(vid)) {
             JOptionPane.showMessageDialog(jPanel1, "Vid should not be blank.");
-        } else if (StringUtils.isBlank(model)) {
+        } else if (model==null) {
             JOptionPane.showMessageDialog(jPanel1, "Model should not be blank.");
         } else {
             SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll, Profile.SOURCE, this.deviceDetailTable);
