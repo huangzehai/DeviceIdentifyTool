@@ -56,6 +56,8 @@ public class AndroidDevice {
     private String cpuHardware;
     @XmlTransient
     private String returnProductId;
+     @XmlTransient
+    private String roProductName;
     // Only for generate unit test case.
     @XmlTransient
     private String[] vids;
@@ -253,6 +255,14 @@ public class AndroidDevice {
 
     public void setReturnProductId(String returnProductId) {
         this.returnProductId = returnProductId;
+    }
+
+    public String getRoProductName() {
+        return roProductName;
+    }
+
+    public void setRoProductName(String roProductName) {
+        this.roProductName = roProductName;
     }
 
     public String[] getVids() {

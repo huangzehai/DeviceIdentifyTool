@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class DeviceDetailTableModel extends AbstractTableModel {
 
-    private final String[] columnNames = {"Mac", "VID", "PID", "PROT", "SN", "ADB", "Product ID", "device", "model", "brand", "board", "manufacturer", "hardware", "display id", "custom props", "android version", "cpu hardware", "created at", "return product id", "identified","resolution","partitions"};
+    private final String[] columnNames = {"Mac", "VID", "PID", "PROT", "SN", "ADB", "Product ID", "device", "model", "brand", "board", "manufacturer", "hardware", "display id", "custom props", "android version", "cpu hardware", "created at", "return product id", "identified","resolution","partitions","name"};
     private List<AndroidDevice> androidDevices;
 
     public DeviceDetailTableModel(List<AndroidDevice> androidDevices) {
@@ -116,6 +116,9 @@ public class DeviceDetailTableModel extends AbstractTableModel {
                 break;
             case 21:
                 value = device.getPartitions();
+                break;
+            case 22:
+                value = device.getRoProductName();
                 break;
             default:
                 value=null;
