@@ -58,6 +58,8 @@ public class AndroidDevice {
     private String returnProductId;
      @XmlTransient
     private String roProductName;
+    @XmlTransient
+    private String roBuildFingerprint;
     // Only for generate unit test case.
     @XmlTransient
     private String[] vids;
@@ -273,8 +275,16 @@ public class AndroidDevice {
         this.vids = vids;
     }
 
+    public String getRoBuildFingerprint() {
+        return roBuildFingerprint;
+    }
+
+    public void setRoBuildFingerprint(String roBuildFingerprint) {
+        this.roBuildFingerprint = roBuildFingerprint;
+    }
+
     @Override
     public String toString() {
-        return "AndroidDevice{" + "macAddress=" + macAddress + ", vid=" + vid + ", pid=" + pid + ", prot=" + prot + ", sn=" + sn + ", adbDevice=" + adbDevice + ", roProductModel=" + roProductModel + ", roProductBrand=" + roProductBrand + ", roProductDevice=" + roProductDevice + ", roProductBoard=" + roProductBoard + ", roProductManufacturer=" + roProductManufacturer + ", roHardWare=" + roHardware + ", roBuildDisplayId=" + roBuildDisplayId + ", customProps=" + customProps + ", androidVersion=" + androidVersion + ", createdAt=" + createdAt + ", identified=" + identified + ", productId=" + productId + ", resolution=" + resolution + ", partitions=" + partitions + ", cpuHardware=" + cpuHardware + ", returnProductId=" + returnProductId + ", vids=" + vids + '}';
+        return "AndroidDevice{" + "macAddress=" + macAddress + ", vid=" + vid + ", pid=" + pid + ", prot=" + prot + ", sn=" + sn + ", adbDevice=" + adbDevice + ", roProductModel=" + roProductModel + ", roProductBrand=" + roProductBrand + ", roProductDevice=" + roProductDevice + ", roProductBoard=" + roProductBoard + ", roProductManufacturer=" + roProductManufacturer + ", roHardware=" + roHardware + ", roBuildDisplayId=" + roBuildDisplayId + ", customProps=" + customProps + ", androidVersion=" + androidVersion + ", createdAt=" + createdAt + ", identified=" + identified + ", productId=" + productId + ", resolution=" + resolution + ", partitions=" + partitions + ", cpuHardware=" + cpuHardware + ", returnProductId=" + returnProductId + ", roProductName=" + roProductName + ", roBuildFingerprint=" + roBuildFingerprint + ", vids=" + vids + '}';
     }
 }

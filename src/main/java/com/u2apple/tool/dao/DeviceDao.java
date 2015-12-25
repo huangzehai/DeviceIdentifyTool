@@ -39,7 +39,7 @@ public class DeviceDao {
 
     private static final String DEVICE_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=? and ro_product_brand =? order by id desc limit ?";
     
-     private static final String DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL = "select mac_address,vid,pid,prot,sn,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=? and ro_product_brand =?  order by id desc limit ?";
+     private static final String DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL = "select mac_address,vid,pid,prot,sn,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name,ro_build_fingerprint from %s where ro_product_model = ? and vid=? and ro_product_brand =?  order by id desc limit ?";
 
     private static final String DEVICE_ALL_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,resolution,partitions from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
 
@@ -315,6 +315,7 @@ public class DeviceDao {
                 String androidVersion = rs.getString("android_version");
                 String cpuHardware = rs.getString("cpu_hardware");
                 String roProductName = rs.getString("ro_product_name");
+                String roBuildFingerprint = rs.getString("ro_build_fingerprint");
 
                 device.setMacAddress(macAddress);
                 device.setPid(pid);
@@ -335,6 +336,7 @@ public class DeviceDao {
                 device.setAndroidVersion(androidVersion);
                 device.setCpuHardware(cpuHardware);
                 device.setRoProductName(roProductName);
+                device.setRoBuildFingerprint(roBuildFingerprint);
                 devices.add(device);
             }
         } catch (JSchException | ClassNotFoundException | PropertyVetoException | IOException ex) {
