@@ -612,8 +612,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         conditionComboBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        conditionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID" }));
-        conditionComboBox.setSelectedIndex(1);
+        conditionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID", "Product_Name" }));
         conditionComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conditionComboBoxActionPerformed(evt);
@@ -633,8 +632,7 @@ public class MainFrame extends javax.swing.JFrame {
         vid2TextField.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
 
         condition2ComboBox.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        condition2ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID" }));
-        condition2ComboBox.setSelectedIndex(2);
+        condition2ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Board", "Brand", "Cpu", "Device", "Hardware", "Manufacturer", "Adb_Device", "Display_ID", "Product_Name" }));
         condition2ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 condition2ComboBoxActionPerformed(evt);
@@ -1177,6 +1175,10 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case "Display_ID":
                         androidDevice.setRoBuildDisplayId(conditionValue);
+                        break;
+                    case "Product_Name":
+                        androidDevice.setRoProductName(conditionValue);
+                        break;
                 }
             }
 
@@ -1207,7 +1209,11 @@ public class MainFrame extends javax.swing.JFrame {
                         androidDevice.setAdbDevice(condition2Value);
                         break;
                     case "Display_ID":
-                        androidDevice.setRoBuildDisplayId(conditionValue);
+                        androidDevice.setRoBuildDisplayId(condition2Value);
+                        break;
+                    case "Product_Name":
+                        androidDevice.setRoProductName(condition2Value);
+                        break;
                 }
             }
 
@@ -1245,7 +1251,8 @@ public class MainFrame extends javax.swing.JFrame {
         String productId = AndroidDeviceUtils.getProductId(brand, model);
         String productName = AndroidDeviceUtils.getProductName(brand, model);
         productIdTextField.setText(productId);
-        brandTextField.setText(AndroidDeviceUtils.getBrandByProductId(productId));
+        String brandOfProductId = AndroidDeviceUtils.getBrandByProductId(productId);
+        brandTextField.setText(brandOfProductId);
         productTextField.setText(productName);
         aliasTextField.setText("");
         //Update condition checkbox.
@@ -1253,12 +1260,11 @@ public class MainFrame extends javax.swing.JFrame {
             conditionCheckBox.setSelected(false);
         }
         //Initialize conditon text field.
-        String brandOfProductId = AndroidDeviceUtils.getBrandByProductId(productId);
         if (conditionComboBox.getSelectedIndex() != 1) {
             conditionComboBox.setSelectedIndex(1);
         }
         //ConditionComboBox must be set before conditionTextField.
-        conditionTextField.setText(brandOfProductId);
+        conditionTextField.setText(brand);
         condition2TextField.setText("");
         typeComboBox.setSelectedIndex(0);
         vid2TextField.setText("");
@@ -1427,6 +1433,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void detailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailButtonActionPerformed
         String vid = vidTextField.getText();
+        String brand =conditionTextField.getText();
         String model = modelTextField.getText();
         int limit = (int) queryLimitSpinner.getValue();
         boolean isAll = allCheckBox.isSelected();
@@ -1435,7 +1442,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (model==null) {
             JOptionPane.showMessageDialog(jPanel1, "Model should not be blank.");
         } else {
-            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, model, limit, isAll, Profile.SOURCE, this.deviceDetailTable);
+            SwingWorker<List<AndroidDevice>, Void> deviceWorker = new DeviceWorker(vid, brand,model, limit, isAll, Profile.SOURCE, this.deviceDetailTable);
             deviceWorker.execute();
         }
 
@@ -1659,6 +1666,9 @@ public class MainFrame extends javax.swing.JFrame {
                     case "Display_ID":
                         condition2TextField.setText(device.getRoBuildDisplayId());
                         break;
+                    case "Product_Name":
+                        condition2TextField.setText(device.getRoProductName());
+                        break;
                 }
             }
         }
@@ -1699,6 +1709,9 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case "Display_ID":
                         conditionTextField.setText(device.getRoBuildDisplayId());
+                        break;
+                    case "Product_Name":
+                        condition2TextField.setText(device.getRoProductName());
                         break;
                 }
             }

@@ -50,7 +50,7 @@ public class DeviceDaoTest {
     @Test
     public void testQueryByVidAndModel() throws SQLException {
         DeviceDao dao = new DeviceDao();
-        List<AndroidDevice> androidDevices = dao.queryByVidAndModel("12D1", "PE-TL20", 10);
+        List<AndroidDevice> androidDevices = dao.queryByVidAndModel("12D1","Huawei", "PE-TL20", 10);
         Assert.assertNotNull(androidDevices);
         Assert.assertTrue(androidDevices.size() > 0);
     }

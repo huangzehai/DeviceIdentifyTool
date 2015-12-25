@@ -28,6 +28,7 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
 
     private String vid;
     private String model;
+    private String brand;
     private final int limit;
     private boolean isAll;
     private String macAddress;
@@ -35,8 +36,9 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
     private Source source;
     private final JTable deviceDetailTable;
 
-    public DeviceWorker(String vid, String model, int limit, boolean isAll, Source source, JTable deviceDetailTable) {
+    public DeviceWorker(String vid,String brand, String model, int limit, boolean isAll, Source source, JTable deviceDetailTable) {
         this.vid = vid;
+        this.brand = brand;
         this.model = model;
         this.limit = limit;
         this.isAll = isAll;
@@ -72,10 +74,10 @@ public class DeviceWorker extends SwingWorker<List<AndroidDevice>, Void> {
                 if (isAll) {
                     androidDevices = dao.queryAllDetailByVidAndModel(vid.trim(), model.trim(), limit);
                 } else {
-                    androidDevices = dao.queryByVidAndModel(vid.trim(), model.trim(), limit);
+                    androidDevices = dao.queryByVidAndModel(vid.trim(),brand.trim(), model.trim(), limit);
                 }
             } else if (Source.ShuameMobile == this.source) {
-                androidDevices = dao.queryByVidAndModelForShuameMobile(vid.trim(), model.trim(), limit);
+                androidDevices = dao.queryByVidAndModelForShuameMobile(vid.trim(),brand.trim(), model.trim(), limit);
             } else if (Source.RootSpirit == this.source) {
                 AndroidDeviceDao androidDeviceDao = new AndroidDeviceDaoImpl();
                 androidDevices = androidDeviceDao.getRootDeviceByVidAndModel(this.vid, this.model, this.limit);

@@ -57,6 +57,9 @@ public final class StaticMapFileUtils {
         List<Modal> models = vid.getModals();
         //Sort model values.
         models.stream().forEach((model) -> {
+            if(model.getValues()==null || model.getValues().isEmpty()){
+                System.out.println(model);
+             }
             sortValue(model.getValues());
         });
 
@@ -67,6 +70,7 @@ public final class StaticMapFileUtils {
 //                return o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue());
 //            }
 //        });
+        
         Collections.sort(models, (o1, o2) -> o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue()));
 
         //Merge models.

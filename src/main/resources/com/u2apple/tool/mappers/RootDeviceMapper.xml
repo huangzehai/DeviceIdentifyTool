@@ -35,7 +35,7 @@
     </resultMap>
 
     <select id="selectUnidentifiedDevices" parameterType="map" resultMap="androidDeviceRankingResultMap">
-        select vid, ro_product_brand,ro_product_model ,count(*) as count from ${table} where created_at > #{start} and ( product_id is  null or product_id ='' or product_id='query-empty' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
+        select vid, ro_product_brand,ro_product_model ,count(*) as count from ${table} where created_at > #{start} and ( product_id is  null or product_id ='' or product_id like 'query-%' ) and ro_product_model is not null and ro_product_model !='' and ro_product_brand is not null and ro_product_brand !='' group by vid,ro_product_brand,ro_product_model order by count desc limit 1000
     </select>
     
     <select id="getDeviceByVidAndModel" parameterType="map" resultMap="androidDeviceResultMap">

@@ -37,9 +37,9 @@ public class DeviceDao {
     private static final String QUERY_BY_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  ro_product_model= ?  order by id desc limit 1";
     private static final String QUERY_LIKE_MODEL_SQL = "select vid,ro_product_brand,ro_product_model, return_product_id as product_id from %s where  lower(ro_product_model) like ? order by id desc limit 10;";
 
-    private static final String DEVICE_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
+    private static final String DEVICE_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=? and ro_product_brand =? order by id desc limit ?";
     
-     private static final String DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL = "select mac_address,vid,pid,prot,sn,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
+     private static final String DEVICE_DETAIL_OF_SHUAME_MOBILE_SQL = "select mac_address,vid,pid,prot,sn,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,ro_product_name from %s where ro_product_model = ? and vid=? and ro_product_brand =?  order by id desc limit ?";
 
     private static final String DEVICE_ALL_DETAIL_SQL = "select mac_address_new as mac_address,vid,pid,prot,sn,adb_device,product_id,ro_product_device,ro_product_model,ro_product_brand,ro_product_board,ro_product_manufacturer,ro_hardware,ro_build_display_id,custom_props,android_version,cpu_hardware,created_at,return_product_id,identified,resolution,partitions from %s where ro_product_model = ? and vid=?  order by id desc limit ?";
 
@@ -196,7 +196,7 @@ public class DeviceDao {
         return devices;
     }
 
-    public List<AndroidDevice> queryByVidAndModel(String aVid, String model, int limit) throws SQLException {
+    public List<AndroidDevice> queryByVidAndModel(String aVid, String pBrand, String model, int limit) throws SQLException {
         List<AndroidDevice> devices = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -207,7 +207,8 @@ public class DeviceDao {
             statement = connection.prepareStatement(sql);
             statement.setString(1, model);
             statement.setString(2, aVid);
-            statement.setInt(3, limit);
+            statement.setString(3, pBrand);
+            statement.setInt(4, limit);
             statement.setQueryTimeout(Constants.TIMEOUT_SHORT);
             rs = statement.executeQuery();
             while (rs.next()) {
@@ -278,7 +279,7 @@ public class DeviceDao {
     }
     
     
-     public List<AndroidDevice> queryByVidAndModelForShuameMobile(String aVid, String model, int limit) throws SQLException {
+     public List<AndroidDevice> queryByVidAndModelForShuameMobile(String aVid,String pBrand, String model, int limit) throws SQLException {
         List<AndroidDevice> devices = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -289,7 +290,8 @@ public class DeviceDao {
             statement = connection.prepareStatement(sql);
             statement.setString(1, model);
             statement.setString(2, aVid);
-            statement.setInt(3, limit);
+            statement.setString(3, pBrand);
+            statement.setInt(4, limit);
             statement.setQueryTimeout(Constants.TIMEOUT_SHORT);
             rs = statement.executeQuery();
             while (rs.next()) {
