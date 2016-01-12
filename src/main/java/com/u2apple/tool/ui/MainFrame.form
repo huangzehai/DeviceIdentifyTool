@@ -102,11 +102,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jPanel13" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel13" alignment="0" pref="899" max="32767" attributes="0"/>
                           <Component id="jPanel14" alignment="0" pref="899" max="32767" attributes="0"/>
                           <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel12" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel12" pref="899" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="88" max="32767" attributes="0"/>
                   </Group>
@@ -525,7 +525,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/calendar.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/New Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Get the latest device information."/>
                   </Properties>
@@ -539,7 +539,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/device.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Android-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Add device"/>
                   </Properties>
@@ -553,7 +553,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/add.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Ruler Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Add model to system mode and recovery mode"/>
                   </Properties>
@@ -567,7 +567,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/test.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Checked Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Add test case"/>
                   </Properties>
@@ -581,7 +581,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/knockoff.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Biotech Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Generate Knock-Off configuration"/>
                   </Properties>
@@ -603,7 +603,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/robot.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/RFID Signal-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Fullfill device information"/>
                   </Properties>
@@ -617,7 +617,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/fix.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Ruler-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Add model to current vid"/>
                   </Properties>
@@ -639,7 +639,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/info.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/View Details Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Device detail"/>
                   </Properties>
@@ -671,7 +671,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/google.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Google Logo-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Google"/>
                   </Properties>
@@ -685,7 +685,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/baidu.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/B-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Baidu"/>
                   </Properties>
@@ -699,7 +699,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/sort.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Descending Sorting-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Sort models under a vid"/>
                   </Properties>
@@ -713,7 +713,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/updateTestCase.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Checkmark Filled-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Update test case"/>
                   </Properties>
@@ -727,7 +727,7 @@
                       <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/calculator.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Sigma-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Device Count"/>
                   </Properties>
@@ -738,7 +738,7 @@
                 <Component class="javax.swing.JButton" name="addButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/new.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Plus Math-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Add new device and model"/>
                   </Properties>
@@ -749,7 +749,7 @@
                 <Component class="javax.swing.JButton" name="updateButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/update.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Available Updates-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Update"/>
                   </Properties>
@@ -760,7 +760,7 @@
                 <Component class="javax.swing.JButton" name="flushButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/u2apple/tool/icon/disk.png"/>
+                      <Image iconType="3" name="/com/u2apple/tool/icon/Save-32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Flush devices to file"/>
                   </Properties>
@@ -1197,7 +1197,7 @@
                   <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/trend.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Question Mark Filled-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Unrecognized devices trend"/>
               </Properties>
@@ -1211,7 +1211,7 @@
                   <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/error.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Bug Filled-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Error detection"/>
               </Properties>
@@ -1235,7 +1235,7 @@
                   <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/search.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Search Filled-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Query by model"/>
               </Properties>
@@ -1249,7 +1249,7 @@
                   <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="12" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/list.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/List-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="White List"/>
               </Properties>
@@ -1260,7 +1260,7 @@
             <Component class="javax.swing.JButton" name="rootSpritButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/root.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Restriction Shield Filled-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Mobile root spirit device ranking list"/>
               </Properties>
@@ -1271,7 +1271,7 @@
             <Component class="javax.swing.JButton" name="filterButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/filter.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Like-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Pattern Filter"/>
               </Properties>
@@ -1282,7 +1282,7 @@
             <Component class="javax.swing.JButton" name="matchButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/match.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Define Location-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Check if model pattern matches"/>
               </Properties>
@@ -1293,7 +1293,7 @@
             <Component class="javax.swing.JButton" name="newDeviceFilterButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/brand-new.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/New-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Brand new devices filter"/>
               </Properties>
@@ -1304,7 +1304,7 @@
             <Component class="javax.swing.JButton" name="excludeFilterButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/exclude.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Not Equal-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Exclude filter"/>
               </Properties>
@@ -1315,7 +1315,7 @@
             <Component class="javax.swing.JButton" name="queryFilterButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/query.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Filter-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Query filter"/>
               </Properties>
@@ -1326,7 +1326,7 @@
             <Component class="javax.swing.JButton" name="removeDeviceButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/remove.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Delete-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Remove row"/>
               </Properties>
@@ -1337,7 +1337,7 @@
             <Component class="javax.swing.JButton" name="othersDevicesButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/others.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/More-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Others"/>
               </Properties>
@@ -1348,7 +1348,7 @@
             <Component class="javax.swing.JButton" name="fakeDetectionButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/fake.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Copy-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Fake detection"/>
               </Properties>
@@ -1359,7 +1359,7 @@
             <Component class="javax.swing.JButton" name="shuameMobileButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/u2apple/tool/icon/mobile.png"/>
+                  <Image iconType="3" name="/com/u2apple/tool/icon/Question Mark-32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="List unidentified devices of Shuame mobile"/>
               </Properties>

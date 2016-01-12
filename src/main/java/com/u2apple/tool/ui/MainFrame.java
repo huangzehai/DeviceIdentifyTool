@@ -348,7 +348,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Action"));
 
         connectButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/calendar.png"))); // NOI18N
+        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/New Filled-32.png"))); // NOI18N
         connectButton.setToolTipText("Get the latest device information.");
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +357,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         deviceButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        deviceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/device.png"))); // NOI18N
+        deviceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Android-32.png"))); // NOI18N
         deviceButton.setToolTipText("Add device");
         deviceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,7 +366,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         modelButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        modelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/add.png"))); // NOI18N
+        modelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Ruler Filled-32.png"))); // NOI18N
         modelButton.setToolTipText("Add model to system mode and recovery mode");
         modelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,7 +375,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         testCaseButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        testCaseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/test.png"))); // NOI18N
+        testCaseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Checked Filled-32.png"))); // NOI18N
         testCaseButton.setToolTipText("Add test case");
         testCaseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,7 +384,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         knockOffButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        knockOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/knockoff.png"))); // NOI18N
+        knockOffButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Biotech Filled-32.png"))); // NOI18N
         knockOffButton.setToolTipText("Generate Knock-Off configuration");
         knockOffButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +396,7 @@ public class MainFrame extends javax.swing.JFrame {
         knockOffCheckBox.setText("Knock-Off");
 
         productIdButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        productIdButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/robot.png"))); // NOI18N
+        productIdButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/RFID Signal-32.png"))); // NOI18N
         productIdButton.setToolTipText("Fullfill device information");
         productIdButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +405,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         updateModelButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        updateModelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/fix.png"))); // NOI18N
+        updateModelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Ruler-32.png"))); // NOI18N
         updateModelButton.setToolTipText("Add model to current vid");
         updateModelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +417,7 @@ public class MainFrame extends javax.swing.JFrame {
         conditionCheckBox.setText("Condition");
 
         detailButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        detailButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/info.png"))); // NOI18N
+        detailButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/View Details Filled-32.png"))); // NOI18N
         detailButton.setToolTipText("Device detail");
         detailButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,7 +432,7 @@ public class MainFrame extends javax.swing.JFrame {
         allCheckBox.setText("All");
 
         googleButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        googleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/google.png"))); // NOI18N
+        googleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Google Logo-32.png"))); // NOI18N
         googleButton.setToolTipText("Google");
         googleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,7 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         baiduButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        baiduButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/baidu.png"))); // NOI18N
+        baiduButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/B-32.png"))); // NOI18N
         baiduButton.setToolTipText("Baidu");
         baiduButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +450,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         sortButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        sortButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/sort.png"))); // NOI18N
+        sortButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Descending Sorting-32.png"))); // NOI18N
         sortButton.setToolTipText("Sort models under a vid");
         sortButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,7 +459,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         updateTestCaseButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        updateTestCaseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/updateTestCase.png"))); // NOI18N
+        updateTestCaseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Checkmark Filled-32.png"))); // NOI18N
         updateTestCaseButton.setToolTipText("Update test case");
         updateTestCaseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,7 +468,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         deviceCountButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        deviceCountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/calculator.png"))); // NOI18N
+        deviceCountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Sigma-32.png"))); // NOI18N
         deviceCountButton.setToolTipText("Device Count");
         deviceCountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,7 +476,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/new.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Plus Math-32.png"))); // NOI18N
         addButton.setToolTipText("Add new device and model");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,7 +484,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/update.png"))); // NOI18N
+        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Available Updates-32.png"))); // NOI18N
         updateButton.setToolTipText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,7 +492,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        flushButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/disk.png"))); // NOI18N
+        flushButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Save-32.png"))); // NOI18N
         flushButton.setToolTipText("Flush devices to file");
         flushButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -742,11 +742,11 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -776,7 +776,7 @@ public class MainFrame extends javax.swing.JFrame {
         daysSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, 10, 1));
 
         deviceRankingButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        deviceRankingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/trend.png"))); // NOI18N
+        deviceRankingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Question Mark Filled-32.png"))); // NOI18N
         deviceRankingButton.setToolTipText("Unrecognized devices trend");
         deviceRankingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -785,7 +785,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         errorRecognitionButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        errorRecognitionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/error.png"))); // NOI18N
+        errorRecognitionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Bug Filled-32.png"))); // NOI18N
         errorRecognitionButton.setToolTipText("Error detection");
         errorRecognitionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -801,7 +801,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         queryButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        queryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/search.png"))); // NOI18N
+        queryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Search Filled-32.png"))); // NOI18N
         queryButton.setToolTipText("Query by model");
         queryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -810,7 +810,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         whiteListButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        whiteListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/list.png"))); // NOI18N
+        whiteListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/List-32.png"))); // NOI18N
         whiteListButton.setToolTipText("White List");
         whiteListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -818,7 +818,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        rootSpritButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/root.png"))); // NOI18N
+        rootSpritButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Restriction Shield Filled-32.png"))); // NOI18N
         rootSpritButton.setToolTipText("Mobile root spirit device ranking list");
         rootSpritButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -826,7 +826,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/filter.png"))); // NOI18N
+        filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Like-32.png"))); // NOI18N
         filterButton.setToolTipText("Pattern Filter");
         filterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -834,7 +834,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        matchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/match.png"))); // NOI18N
+        matchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Define Location-32.png"))); // NOI18N
         matchButton.setToolTipText("Check if model pattern matches");
         matchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -842,7 +842,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        newDeviceFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/brand-new.png"))); // NOI18N
+        newDeviceFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/New-32.png"))); // NOI18N
         newDeviceFilterButton.setToolTipText("Brand new devices filter");
         newDeviceFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -850,7 +850,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        excludeFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/exclude.png"))); // NOI18N
+        excludeFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Not Equal-32.png"))); // NOI18N
         excludeFilterButton.setToolTipText("Exclude filter");
         excludeFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -858,7 +858,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        queryFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/query.png"))); // NOI18N
+        queryFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Filter-32.png"))); // NOI18N
         queryFilterButton.setToolTipText("Query filter");
         queryFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -866,7 +866,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        removeDeviceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/remove.png"))); // NOI18N
+        removeDeviceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Delete-32.png"))); // NOI18N
         removeDeviceButton.setToolTipText("Remove row");
         removeDeviceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -874,7 +874,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        othersDevicesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/others.png"))); // NOI18N
+        othersDevicesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/More-32.png"))); // NOI18N
         othersDevicesButton.setToolTipText("Others");
         othersDevicesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -882,7 +882,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        fakeDetectionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/fake.png"))); // NOI18N
+        fakeDetectionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Copy-32.png"))); // NOI18N
         fakeDetectionButton.setToolTipText("Fake detection");
         fakeDetectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -890,7 +890,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        shuameMobileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/mobile.png"))); // NOI18N
+        shuameMobileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Question Mark-32.png"))); // NOI18N
         shuameMobileButton.setToolTipText("List unidentified devices of Shuame mobile");
         shuameMobileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
