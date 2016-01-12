@@ -80,8 +80,7 @@ public final class AndroidDeviceUtils {
     }
 
     public static String formatModel(String model) {
-//        return model == null ? null : model.replaceAll("-", "").replaceAll("\\s", "").replaceAll("_", "").replaceAll("\\(", "").replaceAll("\\)", "").trim();
-         return model == null ? null : model.replaceAll("[-_\\s()]", "").trim().toLowerCase();
+         return model == null ? null : model.replaceAll("\\+","plus").replaceAll("[-_\\s()]", "").trim().toLowerCase();
     }
 
     public static String getProductId(String brand, String model) {
