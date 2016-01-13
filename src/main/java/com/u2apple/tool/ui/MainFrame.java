@@ -1306,9 +1306,14 @@ public class MainFrame extends javax.swing.JFrame {
         String productName = AndroidDeviceUtils.getProductName(brand, model);
         productIdTextField.setText(productId);
         String brandOfProductId = AndroidDeviceUtils.getBrandByProductId(productId);
+        //Chinese
         brandTextField.setText(brandOfProductId);
         productTextField.setText(productName);
         aliasTextField.setText("");
+        //English
+        enBrandTextField.setText(brandOfProductId);
+        enProductTextField.setText(productName);
+        enAliasTextField.setText("");
         //Update condition checkbox.
         if (StringUtils.containsIgnoreCase(model, brand)) {
             conditionCheckBox.setSelected(false);

@@ -67,6 +67,10 @@ public class Device {
     @XmlElement(name = "Rotate")
     private Integer _rotate;
 
+    private String englishBrand;
+    private String englishProduct;
+    private String englishAlias;
+    
     public Device() {
     }
 
@@ -179,6 +183,30 @@ public class Device {
 
     public void setLargeIconPathMd5(String largeIconPathMd5) {
         _largeIconPathMd5 = largeIconPathMd5;
+    }
+
+    public String getEnglishBrand() {
+        return englishBrand;
+    }
+
+    public void setEnglishBrand(String englishBrand) {
+        this.englishBrand = englishBrand;
+    }
+
+    public String getEnglishProduct() {
+        return englishProduct;
+    }
+
+    public void setEnglishProduct(String englishProduct) {
+        this.englishProduct = englishProduct;
+    }
+
+    public String getEnglishAlias() {
+        return englishAlias;
+    }
+
+    public void setEnglishAlias(String englishAlias) {
+        this.englishAlias = englishAlias;
     }
 
 }
