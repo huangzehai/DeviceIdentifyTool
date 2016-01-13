@@ -95,7 +95,7 @@ public class DevicePatternFilterTest {
         androidDevice.setRoProductModel("GT-C9388");
         DevicePatternFilter instance = new DevicePatternFilter();
         boolean matches = instance.matches(androidDevice);
-        Assert.assertFalse(matches);
+        Assert.assertTrue(matches);
     }
 
     @Test

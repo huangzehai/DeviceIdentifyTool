@@ -64,13 +64,7 @@ public class DeviceI18nDaoImplTest {
      */
     @Test
     public void testGetChineseProductNames() {
-        System.out.println("getChineseProductNames");
-        DeviceI18nDaoImpl instance = new DeviceI18nDaoImpl();
-        Properties expResult = null;
-        Properties result = instance.getChineseProductNames();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -78,13 +72,7 @@ public class DeviceI18nDaoImplTest {
      */
     @Test
     public void testGetEnglishProductNames() {
-        System.out.println("getEnglishProductNames");
-        DeviceI18nDaoImpl instance = new DeviceI18nDaoImpl();
-        Properties expResult = null;
-        Properties result = instance.getEnglishProductNames();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -92,13 +80,7 @@ public class DeviceI18nDaoImplTest {
      */
     @Test
     public void testGetChineseAliases() {
-        System.out.println("getChineseAliases");
-        DeviceI18nDaoImpl instance = new DeviceI18nDaoImpl();
-        Properties expResult = null;
-        Properties result = instance.getChineseAliases();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -106,13 +88,7 @@ public class DeviceI18nDaoImplTest {
      */
     @Test
     public void testGetEnglishAliases() {
-        System.out.println("getEnglishAliases");
-        DeviceI18nDaoImpl instance = new DeviceI18nDaoImpl();
-        Properties expResult = null;
-        Properties result = instance.getEnglishAliases();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**

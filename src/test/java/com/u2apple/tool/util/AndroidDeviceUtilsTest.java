@@ -89,7 +89,7 @@ public class AndroidDeviceUtilsTest {
         System.out.println("getProductId");
         String brand = "Samsung";
         String model = "SM-N9008";
-        String expResult = "samsung-n9008";
+        String expResult = "samsung-smn9008";
         String result = AndroidDeviceUtils.getProductId(brand, model);
         assertEquals(expResult, result);
     }
