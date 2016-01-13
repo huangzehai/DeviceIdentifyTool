@@ -10,7 +10,7 @@ import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.StaticMapFile;
 import com.shuame.wandoujia.bean.VID;
 import com.shuame.wandoujia.bean.Value;
-import com.u2apple.tool.constant.Configuration;
+import com.u2apple.tool.conf.Configuration;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.util.StaticMapFileUtils;
 import java.io.File;
@@ -43,6 +43,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     private static final String VID_FILE_NAME_PATTERN = "^[0-9a-zA-Z]{4}\\.xml$";
     private static final Set<String> changedVids = new HashSet<>();
     private static boolean isDeviceChanged = false;
+    private DeviceI18nDao deviceI18nDao = new DeviceI18nDaoImpl();
 
     /**
      * 加载机型识别配置文件.
@@ -100,6 +101,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             StaticMapFileUtils.format(staticMapFile, isDeviceChanged, changedVids);
             flushDevices();
             flushVids();
+            deviceI18nDao.store();
         }
     }
 
@@ -132,6 +134,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     @Override
     public void addDevice(Device device) {
         getStaticMapFile().getDevices().add(device);
+        deviceI18nDao.addDevice(device);
         isDeviceChanged = true;
     }
 
@@ -230,6 +233,21 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             }
         }
         return exists;
+    }
+
+    @Override
+    public boolean brandExists(String brandKey) {
+        return deviceI18nDao.brandExists(brandKey);
+    }
+
+    @Override
+    public String getChineseBrand(String brandKey) {
+        return deviceI18nDao.getChineseBrand(brandKey);
+    }
+
+    @Override
+    public String getEnglishBrand(String brandKey) {
+       return deviceI18nDao.getEnglishBrand(brandKey);
     }
 
 }

@@ -48,7 +48,7 @@ public class KnockOffDetectionServiceTest {
      */
     @Test
     public void testAnalyticsByCpu() throws IOException, JSchException{
-        KnockOffDetectionService instance = new KnockOffDetectionServiceImpl();
+        FakeDetectionService instance = new FakeDetectionServiceImpl();
         List<AndroidDeviceRanking> devices = instance.analyticsByCpu();
         Assert.assertNotNull(devices);
         Assert.assertTrue(devices.size() > 0);

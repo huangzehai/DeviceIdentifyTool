@@ -242,7 +242,7 @@
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="productIdTextFieldPropertyChange"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="productIdTextField.getDocument().addDocumentListener(new DocumentListener(){&#xa;    public void changedUpdate(DocumentEvent e) { &#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceXmlDao.productIdExists(productId);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceXmlDao.productIdExists(productId);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }  &#xa;  }&#xa;});"/>
+                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="productIdTextField.getDocument().addDocumentListener(new DocumentListener(){&#xa;    public void changedUpdate(DocumentEvent e) { &#xa;  }&#xa;  public void removeUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceDao.productIdExists(productId);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }&#xa;  }&#xa;  public void insertUpdate(DocumentEvent e) {&#xa;       String productId=productIdTextField.getText();&#xa;       boolean exists=deviceDao.productIdExists(productId);&#xa;       if(exists){&#xa;           productIdTextField.setBackground(Color.GREEN);&#xa;       }else{&#xa;            productIdTextField.setBackground(Color.WHITE);&#xa;       }  &#xa;  }&#xa;});"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="brandLabel">
@@ -488,9 +488,9 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="detailButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="connectButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="detailButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="connectButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="queryLimitSpinner" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                       <Component id="allCheckBox" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                   </Group>
@@ -515,10 +515,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="testCaseButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="knockOffButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="testCaseButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="knockOffButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="updateTestCaseButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="sortButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="knockOffCheckBox" min="-2" max="-2" attributes="0"/>

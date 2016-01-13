@@ -33,6 +33,12 @@ public interface DeviceXmlDao {
 
     boolean productIdExists(String productId);
 
+    boolean brandExists(String brandKey);
+
+    String getChineseBrand(String brandKey);
+
+    String getEnglishBrand(String brandKey);
+
     StaticMapFile getStaticMapFile();
 
 }

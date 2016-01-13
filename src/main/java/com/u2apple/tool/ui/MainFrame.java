@@ -69,7 +69,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private final DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
+    private final DeviceXmlDao deviceDao = new DeviceXmlDaoJaxbImpl();
 
     /**
      * Creates new form RecognitionToolJFrame
@@ -198,7 +198,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
             public void removeUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                boolean exists=deviceXmlDao.productIdExists(productId);
+                boolean exists=deviceDao.productIdExists(productId);
                 if(exists){
                     productIdTextField.setBackground(Color.GREEN);
                 }else{
@@ -207,7 +207,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
             public void insertUpdate(DocumentEvent e) {
                 String productId=productIdTextField.getText();
-                boolean exists=deviceXmlDao.productIdExists(productId);
+                boolean exists=deviceDao.productIdExists(productId);
                 if(exists){
                     productIdTextField.setBackground(Color.GREEN);
                 }else{
@@ -558,9 +558,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(detailButton)
+                        .addComponent(connectButton)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(detailButton)
-                            .addComponent(connectButton)
                             .addComponent(queryLimitSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(allCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(productIdButton, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -580,9 +580,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(updateButton))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(testCaseButton)
-                                .addComponent(knockOffButton))
+                            .addComponent(testCaseButton)
+                            .addComponent(knockOffButton)
                             .addComponent(updateTestCaseButton)
                             .addComponent(sortButton)
                             .addComponent(knockOffCheckBox)))
@@ -753,10 +752,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1106,6 +1105,12 @@ public class MainFrame extends javax.swing.JFrame {
         String brand = brandTextField.getText();
         String product = productTextField.getText();
         String alias = aliasTextField.getText();
+        
+        //English
+        String englishBrand = enBrandTextField.getText();
+        String englishProductName = enProductTextField.getText();
+        String englishAlias = enAliasTextField.getText();
+        
         int type = typeComboBox.getSelectedIndex();
         if (StringUtils.isBlank(productId)) {
             JOptionPane.showMessageDialog(jPanel13, "Product ID should not be blank.");
@@ -1114,16 +1119,21 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (StringUtils.isBlank(product)) {
             JOptionPane.showMessageDialog(jPanel13, "Product should not be blank.");
         } else {
-//            RecognitionTool.addDevice(productId, brand, product, alias, type);
+
+            String brandKey = AndroidDeviceUtils.getBrandByProductId(productId);
             Device device = new Device();
             device.setProductId(productId);
-            device.setBrand(brand);
+            device.setBrand(brandKey);
             device.setProduct(product);
             device.setAlias(alias);
+            device.setChineseBrand(brand);
+            device.setEnglishAlias(englishAlias);
+            device.setEnglishBrand(englishBrand);
+            device.setEnglishProduct(englishProductName);
             if (type != 0) {
                 device.setType(type);
             }
-            deviceXmlDao.addDevice(device);
+            deviceDao.addDevice(device);
             resultTextArea.setText("Add device " + productId);
         }
     }
@@ -1307,11 +1317,11 @@ public class MainFrame extends javax.swing.JFrame {
         productIdTextField.setText(productId);
         String brandOfProductId = AndroidDeviceUtils.getBrandByProductId(productId);
         //Chinese
-        brandTextField.setText(brandOfProductId);
+        brandTextField.setText(deviceDao.getChineseBrand(brandOfProductId));
         productTextField.setText(productName);
         aliasTextField.setText("");
         //English
-        enBrandTextField.setText(brandOfProductId);
+        enBrandTextField.setText(deviceDao.getEnglishBrand(brandOfProductId));
         enProductTextField.setText(productName);
         enAliasTextField.setText("");
         //Update condition checkbox.
@@ -1467,7 +1477,7 @@ public class MainFrame extends javax.swing.JFrame {
         List<Value> values = new ArrayList<>();
         values.add(value);
         newModel.setValues(values);
-        deviceXmlDao.addModel(vids, newModel);
+        deviceDao.addModel(vids, newModel);
     }
 
     private void queryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryButtonActionPerformed
@@ -1568,7 +1578,7 @@ public class MainFrame extends javax.swing.JFrame {
         String vid = vidTextField.getText();
         if (StringUtils.isNotBlank(vid) && vid.length() == 4) {
 //            RecognitionTool.sortModel(vid);
-            deviceXmlDao.format(vid);
+            deviceDao.format(vid);
             resultTextArea.setText("Sorting  " + vid + " is done.");
         } else {
             JOptionPane.showMessageDialog(jPanel13, "Vid is blank or invalid.");
@@ -1607,7 +1617,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void deviceCountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deviceCountButtonActionPerformed
 //            int deviceCount = RecognitionTool.getDeviceCount();
-        int deviceCount = deviceXmlDao.deviceCount();
+        int deviceCount = deviceDao.deviceCount();
         resultTextArea.setText("Device count: " + deviceCount);
 
     }//GEN-LAST:event_deviceCountButtonActionPerformed
@@ -1779,7 +1789,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void flushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flushButtonActionPerformed
         try {
-            deviceXmlDao.flush();
+            deviceDao.flush();
             resultTextArea.setText("Flush is done.");
         } catch (JAXBException ex) {
             resultTextArea.setText("Flush is failed as " + ex.getMessage());

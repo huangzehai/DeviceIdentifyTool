@@ -71,6 +71,8 @@ public class Device {
     private String englishProduct;
     private String englishAlias;
     
+    private String chineseBrand;
+    
     public Device() {
     }
 
@@ -207,6 +209,14 @@ public class Device {
 
     public void setEnglishAlias(String englishAlias) {
         this.englishAlias = englishAlias;
+    }
+
+    public String getChineseBrand() {
+        return chineseBrand;
+    }
+
+    public void setChineseBrand(String chineseBrand) {
+        this.chineseBrand = chineseBrand;
     }
 
 }

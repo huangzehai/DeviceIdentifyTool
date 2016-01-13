@@ -6,8 +6,8 @@
 package com.u2apple.tool.ui.worker;
 
 import com.u2apple.tool.model.AndroidDeviceRanking;
-import com.u2apple.tool.service.KnockOffDetectionService;
-import com.u2apple.tool.service.KnockOffDetectionServiceImpl;
+import com.u2apple.tool.service.FakeDetectionService;
+import com.u2apple.tool.service.FakeDetectionServiceImpl;
 import java.util.List;
 import javax.swing.JTable;
 
@@ -23,7 +23,7 @@ public class FakeDetectionWorker extends AbstractDeviceRankingWorker {
 
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
-        KnockOffDetectionService service = new KnockOffDetectionServiceImpl();
+        FakeDetectionService service = new FakeDetectionServiceImpl();
         return service.analyticsByCpu();
     }
 
