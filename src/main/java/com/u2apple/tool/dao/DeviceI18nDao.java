@@ -6,6 +6,8 @@
 package com.u2apple.tool.dao;
 
 import com.shuame.wandoujia.bean.Device;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -28,5 +30,5 @@ public interface DeviceI18nDao {
   
   boolean brandExists(String brandKey);
   
-  void store();
+  void store()throws FileNotFoundException, IOException;
 }

@@ -61,6 +61,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.PropertyException;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -1791,9 +1792,9 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             deviceDao.flush();
             resultTextArea.setText("Flush is done.");
-        } catch (JAXBException ex) {
+        } catch (JAXBException|IOException ex) {
             resultTextArea.setText("Flush is failed as " + ex.getMessage());
-        }
+        }  
     }//GEN-LAST:event_flushButtonActionPerformed
 
     private void fakeDetectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fakeDetectionButtonActionPerformed

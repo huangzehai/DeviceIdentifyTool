@@ -8,6 +8,8 @@ package com.u2apple.tool.dao;
 import com.shuame.wandoujia.bean.Device;
 import com.shuame.wandoujia.bean.Modal;
 import com.shuame.wandoujia.bean.StaticMapFile;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.PropertyException;
 
@@ -25,7 +27,7 @@ public interface DeviceXmlDao {
 
     void format(String vid);
 
-    void flush() throws PropertyException, JAXBException;
+    void flush() throws PropertyException, JAXBException,FileNotFoundException, IOException;
 
     boolean modelExists(String vid, String text);
 

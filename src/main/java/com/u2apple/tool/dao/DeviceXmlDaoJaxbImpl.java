@@ -14,7 +14,9 @@ import com.u2apple.tool.conf.Configuration;
 import com.u2apple.tool.constant.Constants;
 import com.u2apple.tool.util.StaticMapFileUtils;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -96,7 +98,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     }
 
     @Override
-    public void flush() throws PropertyException, JAXBException {
+    public void flush() throws PropertyException, JAXBException,FileNotFoundException, IOException {
         if (staticMapFile != null) {
             StaticMapFileUtils.format(staticMapFile, isDeviceChanged, changedVids);
             flushDevices();

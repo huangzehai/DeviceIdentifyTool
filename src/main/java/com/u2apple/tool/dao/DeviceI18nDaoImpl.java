@@ -33,9 +33,9 @@ public class DeviceI18nDaoImpl implements DeviceI18nDao {
     private Properties englishProductNames;
     private Properties chineseAliases;
     private Properties englishAliases;
-    
-    private boolean isBrandChanged=false;
-    private boolean isProductNameChanged=false;
+
+    private boolean isBrandChanged = false;
+    private boolean isProductNameChanged = false;
 
     public Properties getChineseBrands() {
         if (chineseBrands == null) {
@@ -117,7 +117,7 @@ public class DeviceI18nDaoImpl implements DeviceI18nDao {
 
     @Override
     public String getChineseBrand(String brandKey) {
-         if(StringUtils.isBlank(brandKey)){
+        if (StringUtils.isBlank(brandKey)) {
             return StringUtils.EMPTY;
         }
         return getChineseBrands().getProperty(brandKey);
@@ -135,7 +135,7 @@ public class DeviceI18nDaoImpl implements DeviceI18nDao {
 
     @Override
     public String getEnglishBrand(String brandKey) {
-         if(StringUtils.isBlank(brandKey)){
+        if (StringUtils.isBlank(brandKey)) {
             return StringUtils.EMPTY;
         }
         return getEnglishBrands().getProperty(brandKey);
@@ -167,16 +167,32 @@ public class DeviceI18nDaoImpl implements DeviceI18nDao {
     }
 
     @Override
-    public void store() {
-        if(isBrandChanged){
-            
+    public void store()throws FileNotFoundException, IOException {
+        if (isBrandChanged) {
+             storeProperties(getChineseBrands(),Constants.ChineseBrands);
+             storeProperties(getEnglishBrands(),Constants.EnglishBrands);
         }
-        
-        if(isProductNameChanged){
-            
+
+        if (isProductNameChanged) {
+            storeProperties(getChineseProductNames(),Constants.ChineseProducts);
+            storeProperties(getEnglishProductNames(),Constants.EnglishProducts);
+            storeProperties(getChineseAliases(),Constants.ChineseAliases);
+            storeProperties(getEnglishAliases(),Constants.EnglishAliases);
         }
         this.isBrandChanged = false;
         this.isProductNameChanged = false;
+    }
+    
+    private void storeProperties(Properties properties,String fileKey) throws FileNotFoundException, IOException {
+        Properties tempProperties = new Properties() {
+            @Override
+            public synchronized Enumeration<Object> keys() {
+                return Collections.enumeration(new TreeSet<Object>(super.keySet()));
+            }
+        };
+        tempProperties.putAll(properties);
+        String file = Configuration.getProperty(fileKey);
+        tempProperties.store(new FileOutputStream(file), null);
     }
 
     @Override
