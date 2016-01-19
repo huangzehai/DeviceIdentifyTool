@@ -80,10 +80,10 @@ public final class AndroidDeviceUtils {
     }
 
     public static String formatModel(String model) {
-         return model == null ? null : model.replaceAll("\\+","plus").replaceAll("[-_\\s()]", "").trim().toLowerCase();
+         return model == null ? null : model.replaceAll("\\+","plus").replaceAll("[^a-zA-Z0-9]", "").trim().toLowerCase();
     }
 
-    public static String getProductId(String brand, String model) {
+    public static String buildProductId(String brand, String model) {
         String productId = null;
         if (StringUtils.isNotBlank(brand) && StringUtils.isNotBlank(model)) {
             brand = brand.toLowerCase();

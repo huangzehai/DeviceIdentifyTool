@@ -1313,7 +1313,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initDevice() {
         String brand = brandTextField.getText();
         String model = modelTextField.getText();
-        String productId = AndroidDeviceUtils.getProductId(brand, model);
+        String productId = AndroidDeviceUtils.buildProductId(brand, model);
         String productName = AndroidDeviceUtils.getProductName(brand, model);
         productIdTextField.setText(productId);
         String brandOfProductId = AndroidDeviceUtils.getBrandByProductId(productId);
@@ -1328,7 +1328,10 @@ public class MainFrame extends javax.swing.JFrame {
         //Update condition checkbox.
         if (StringUtils.containsIgnoreCase(model, brand)) {
             conditionCheckBox.setSelected(false);
+        }else{
+           conditionCheckBox.setSelected(true); 
         }
+        
         //Initialize conditon text field.
         if (conditionComboBox.getSelectedIndex() != 1) {
             conditionComboBox.setSelectedIndex(1);
@@ -1526,6 +1529,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void googleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_googleButtonActionPerformed
         String model = modelTextField.getText();
         String brand = brandTextField.getText();
+        if(StringUtils.isBlank(brand)){
+             String productId = productIdTextField.getText();
+             brand = AndroidDeviceUtils.getBrandByProductId(productId);
+        }
         if (StringUtils.isNotBlank(brand) || StringUtils.isNotBlank(model)) {
 
             StringBuilder commandBuilder = new StringBuilder();
@@ -1552,6 +1559,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void baiduButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baiduButtonActionPerformed
         String model = modelTextField.getText();
         String brand = brandTextField.getText();
+        if(StringUtils.isBlank(brand)){
+             String productId = productIdTextField.getText();
+             brand = AndroidDeviceUtils.getBrandByProductId(productId);
+        }
+       
         if (StringUtils.isNotBlank(brand) || StringUtils.isNotBlank(model)) {
 
             StringBuilder commandBuilder = new StringBuilder();

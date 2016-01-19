@@ -29,7 +29,7 @@ public class NewDeviceFilter implements Filter {
         if (devices != null) {
             String productId;
             for (AndroidDeviceRanking device : devices) {
-                productId = AndroidDeviceUtils.getProductId(device.getRoProductBrand(), device.getRoProductModel());
+                productId = AndroidDeviceUtils.buildProductId(device.getRoProductBrand(), device.getRoProductModel());
                 //When product id doesn't exist and model doesn't exist, it is a brand new device.
 //                boolean productIdExists = RecognitionTool.isProductIdExist(productId);
                 boolean productIdExists = deviceXmlDao.productIdExists(productId);
