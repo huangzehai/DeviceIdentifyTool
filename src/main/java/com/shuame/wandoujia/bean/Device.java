@@ -67,10 +67,13 @@ public class Device {
     @XmlElement(name = "Rotate")
     private Integer _rotate;
 
+    @XmlTransient
     private String englishBrand;
+    @XmlTransient
     private String englishProduct;
+    @XmlTransient
     private String englishAlias;
-    
+    @XmlTransient
     private String chineseBrand;
     
     public Device() {
