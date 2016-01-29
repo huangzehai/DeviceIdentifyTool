@@ -158,7 +158,6 @@ public class MainFrame extends javax.swing.JFrame {
         errorRecognitionButton = new javax.swing.JButton();
         queryTextField = new javax.swing.JTextField();
         queryButton = new javax.swing.JButton();
-        whiteListButton = new javax.swing.JButton();
         rootSpritButton = new javax.swing.JButton();
         filterButton = new javax.swing.JButton();
         unnormalDeviceFilterButton = new javax.swing.JButton();
@@ -820,15 +819,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        whiteListButton.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        whiteListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/List-32.png"))); // NOI18N
-        whiteListButton.setToolTipText("White List");
-        whiteListButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                whiteListButtonActionPerformed(evt);
-            }
-        });
-
         rootSpritButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Restriction Shield Filled-32.png"))); // NOI18N
         rootSpritButton.setToolTipText("Mobile root spirit device ranking list");
         rootSpritButton.addActionListener(new java.awt.event.ActionListener() {
@@ -933,19 +923,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rootSpritButton))
-                    .addComponent(queryTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(shuameMobileButton))
+                    .addComponent(queryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(queryPanelLayout.createSequentialGroup()
                         .addComponent(queryButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeDeviceButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(shuameMobileButton))
+                        .addComponent(removeDeviceButton))
                     .addGroup(queryPanelLayout.createSequentialGroup()
-                        .addComponent(whiteListButton)
+                        .addComponent(rootSpritButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(errorRecognitionButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -974,14 +962,13 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(queryFilterButton)
                             .addComponent(deviceRankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rootSpritButton)
-                            .addComponent(whiteListButton))
+                            .addComponent(shuameMobileButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(queryButton)
                     .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(queryTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(removeDeviceButton))
-                    .addComponent(shuameMobileButton))
+                        .addComponent(removeDeviceButton)))
                 .addContainerGap())
         );
 
@@ -1499,12 +1486,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_queryButtonActionPerformed
 
-    private void whiteListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListButtonActionPerformed
-        int days = (int) daysSpinner.getValue();
-        new WhiteListDeviceRankingWorker(days, this.deviceTable).execute();
-        Profile.SOURCE = Source.Shuame;
-    }//GEN-LAST:event_whiteListButtonActionPerformed
-
     private void detailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailButtonActionPerformed
         String vid = vidTextField.getText();
         String brand =conditionTextField.getText();
@@ -1948,6 +1929,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField vid2TextField;
     private javax.swing.JLabel vidLabel;
     private javax.swing.JTextField vidTextField;
-    private javax.swing.JButton whiteListButton;
     // End of variables declaration//GEN-END:variables
 }

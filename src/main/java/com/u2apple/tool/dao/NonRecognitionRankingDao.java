@@ -60,6 +60,7 @@ public class NonRecognitionRankingDao {
         return queryBuilder.toString();
     }
 
+    @Deprecated
     public List<AndroidDeviceRanking> getWhiteListNonRecognizedDevicesRanking(int days) throws SQLException {
         List<AndroidDeviceRanking> list = new ArrayList<>();
         Connection connection = null;

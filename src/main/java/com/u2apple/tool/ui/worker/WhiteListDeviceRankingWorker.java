@@ -14,6 +14,7 @@ import javax.swing.JTable;
  *
  * @author Adam
  */
+@Deprecated
 public class WhiteListDeviceRankingWorker extends AbstractDeviceRankingWorker {
 
     private final int days;
