@@ -1161,8 +1161,6 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jPanel13, "Product ID should not be blank.");
         } else if (StringUtils.isBlank(vid)) {
             JOptionPane.showMessageDialog(jPanel13, "Vid should not be blank.");
-        } else if (StringUtils.isBlank(roProductModel)) {
-            JOptionPane.showMessageDialog(jPanel13, "ro.product.model should not be blank.");
         } else {
             //Generate test case.
             Set<String> vidSet = new HashSet<>();
@@ -1421,8 +1419,6 @@ public class MainFrame extends javax.swing.JFrame {
         String vid = vidTextField.getText();
         if (StringUtils.isBlank(productId)) {
             JOptionPane.showMessageDialog(jPanel13, "Product ID should not be blank.");
-        } else if (StringUtils.isBlank(model)) {
-            JOptionPane.showMessageDialog(jPanel13, "Model should not be blank.");
         } else if (StringUtils.isBlank(vid)) {
             JOptionPane.showMessageDialog(jPanel13, "vid should not be blank.");
         } else {
@@ -1449,14 +1445,8 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+    /** 添加型号到Modals节点下*/
     private void addModel(String productId, Map<String, String> conditions, String model, String[] vids) {
-        //TODO
-//            ProductId aProductId = new ProductId(productId, conditions);
-//            Model aModel = new Model(model, aProductId);
-//            RecognitionTool.addModel(vids, aModel);
-        //Update log
-//            DeviceLogDao dao = new DeviceLogDao();
-//            dao.updateDeviceLog(productId, vids, aModel);
         Modal newModel = new Modal();
         ProductId newProductId = new ProductId();
         newProductId.setValue(productId);
@@ -1465,6 +1455,10 @@ public class MainFrame extends javax.swing.JFrame {
         productIds.add(newProductId);
         newModel.setProductId(productIds);
         Value value = new Value();
+        if(StringUtils.isBlank(model)){
+            //如果型号为空字符串，使用占位符来表示.
+            model=Constants.BLANK;
+        }
         value.setValue(model);
         List<Value> values = new ArrayList<>();
         values.add(value);
@@ -1600,9 +1594,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jPanel13, "Product ID should not be blank.");
         } else if (StringUtils.isBlank(vid)) {
             JOptionPane.showMessageDialog(jPanel13, "Vid should not be blank.");
-        } else if (StringUtils.isBlank(roProductModel)) {
-            JOptionPane.showMessageDialog(jPanel13, "ro.product.model should not be blank.");
-        } else {
+        }else {
             //Generate test case.
             Set<String> vidSet = new HashSet<>();
             vidSet.add(vid);

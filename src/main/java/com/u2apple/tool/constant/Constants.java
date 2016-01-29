@@ -46,4 +46,6 @@ public class Constants {
     public static final String EnglishProducts = "EnglishProducts";
     public static final String ChineseAliases = "ChineseAliases";
     public static final String EnglishAliases = "EnglishAliases";
+    
+    public static final String BLANK="blank";
 }
