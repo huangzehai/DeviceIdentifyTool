@@ -36,6 +36,7 @@ import com.u2apple.tool.ui.worker.FakeDetectionWorker;
 import com.u2apple.tool.ui.worker.NewDeviceFilterWorker;
 import com.u2apple.tool.ui.worker.QueryFilterWorker;
 import com.u2apple.tool.ui.worker.ShuameMobileDeviceWorker;
+import com.u2apple.tool.ui.worker.UnnormalDeviceFilterWorker;
 import com.u2apple.tool.util.AndroidDeviceUtils;
 import com.u2apple.tool.util.ConditionUtils;
 import com.u2apple.tool.util.QueryPattern;
@@ -160,7 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
         whiteListButton = new javax.swing.JButton();
         rootSpritButton = new javax.swing.JButton();
         filterButton = new javax.swing.JButton();
-        matchButton = new javax.swing.JButton();
+        unnormalDeviceFilterButton = new javax.swing.JButton();
         newDeviceFilterButton = new javax.swing.JButton();
         excludeFilterButton = new javax.swing.JButton();
         queryFilterButton = new javax.swing.JButton();
@@ -753,10 +754,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -844,11 +845,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        matchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Define Location-32.png"))); // NOI18N
-        matchButton.setToolTipText("Check if model pattern matches");
-        matchButton.addActionListener(new java.awt.event.ActionListener() {
+        unnormalDeviceFilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/u2apple/tool/icon/Define Location-32.png"))); // NOI18N
+        unnormalDeviceFilterButton.setToolTipText("Unnormal device filter");
+        unnormalDeviceFilterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matchButtonActionPerformed(evt);
+                unnormalDeviceFilterButtonActionPerformed(evt);
             }
         });
 
@@ -919,7 +920,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(othersDevicesButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(matchButton)
+                        .addComponent(unnormalDeviceFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newDeviceFilterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -967,7 +968,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(daysSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
                             .addComponent(othersDevicesButton)
-                            .addComponent(matchButton)
+                            .addComponent(unnormalDeviceFilterButton)
                             .addComponent(newDeviceFilterButton)
                             .addComponent(excludeFilterButton)
                             .addComponent(queryFilterButton)
@@ -1643,22 +1644,27 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_filterButtonActionPerformed
 
-    private void matchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchButtonActionPerformed
-        String vid = vidTextField.getText();
-        String model = modelTextField.getText();
-        String brand = conditionTextField.getText();
-        AndroidDevice androidDevice = new AndroidDevice();
-        androidDevice.setVid(vid);
-        androidDevice.setRoProductModel(model);
-        androidDevice.setRoProductBrand(brand);
-        DevicePatternFilter filter = new DevicePatternFilter();
-        boolean matches = filter.matches(androidDevice);
-        if (matches) {
-            resultTextArea.setText(model + " Match");
-        } else {
-            resultTextArea.setText(model + " Not match");
+    private void unnormalDeviceFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unnormalDeviceFilterButtonActionPerformed
+//        String vid = vidTextField.getText();
+//        String model = modelTextField.getText();
+//        String brand = conditionTextField.getText();
+//        AndroidDevice androidDevice = new AndroidDevice();
+//        androidDevice.setVid(vid);
+//        androidDevice.setRoProductModel(model);
+//        androidDevice.setRoProductBrand(brand);
+//        DevicePatternFilter filter = new DevicePatternFilter();
+//        boolean matches = filter.matches(androidDevice);
+//        if (matches) {
+//            resultTextArea.setText(model + " Match");
+//        } else {
+//            resultTextArea.setText(model + " Not match");
+//        }
+         DeviceTableModel deviceTableModel = (DeviceTableModel) deviceTable.getModel();
+        List<AndroidDeviceRanking> androidDevices = deviceTableModel.getAndroidDevices();
+        if (androidDevices != null && androidDevices.size() > 0) {
+            new UnnormalDeviceFilterWorker(androidDevices, deviceTable).execute();
         }
-    }//GEN-LAST:event_matchButtonActionPerformed
+    }//GEN-LAST:event_unnormalDeviceFilterButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         addDevice();
@@ -1909,7 +1915,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton knockOffButton;
     private javax.swing.JCheckBox knockOffCheckBox;
-    private javax.swing.JButton matchButton;
     private javax.swing.JButton modelButton;
     private javax.swing.JLabel modelLabel;
     private javax.swing.JTextField modelTextField;
@@ -1936,6 +1941,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton sortButton;
     private javax.swing.JButton testCaseButton;
     private javax.swing.JComboBox typeComboBox;
+    private javax.swing.JButton unnormalDeviceFilterButton;
     private javax.swing.JButton updateButton;
     private javax.swing.JButton updateModelButton;
     private javax.swing.JButton updateTestCaseButton;

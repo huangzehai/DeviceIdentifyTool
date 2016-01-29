@@ -6,7 +6,7 @@
 package com.u2apple.tool.ui.worker;
 
 import com.u2apple.tool.filter.NewDeviceFilter;
-import com.u2apple.tool.filter.Filter;
+import com.u2apple.tool.filter.DeviceFilter;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
 import javax.swing.JTable;
@@ -26,7 +26,7 @@ public class NewDeviceFilterWorker extends AbstractDeviceRankingWorker {
 
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
-        Filter filter = new NewDeviceFilter();
+        DeviceFilter filter = new NewDeviceFilter();
         return filter.filter(androidDevices);
     }
 

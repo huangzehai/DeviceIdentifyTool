@@ -11,10 +11,10 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ *查询过滤器。可以过滤vid,brand,model。查询格式,例如vid:0BB4
  * @author Adam
  */
-public class QueryFilter implements Filter {
+public class QueryFilter implements DeviceFilter {
 
     private final String query;
 

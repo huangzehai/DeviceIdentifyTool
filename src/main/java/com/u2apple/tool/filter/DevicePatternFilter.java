@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Adam
  */
-public class DevicePatternFilter implements Filter {
+public class DevicePatternFilter implements DeviceFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(DevicePatternFilter.class);
 

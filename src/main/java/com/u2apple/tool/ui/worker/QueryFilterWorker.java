@@ -5,7 +5,7 @@
  */
 package com.u2apple.tool.ui.worker;
 
-import com.u2apple.tool.filter.Filter;
+import com.u2apple.tool.filter.DeviceFilter;
 import com.u2apple.tool.filter.QueryFilter;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
@@ -29,7 +29,7 @@ public class QueryFilterWorker extends AbstractDeviceRankingWorker {
 
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
-        Filter filter = new QueryFilter(this.query);
+        DeviceFilter filter = new QueryFilter(this.query);
         return filter.filter(androidDevices);
     }
 

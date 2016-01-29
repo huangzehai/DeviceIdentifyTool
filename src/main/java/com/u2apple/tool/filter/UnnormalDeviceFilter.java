@@ -5,20 +5,20 @@
  */
 package com.u2apple.tool.filter;
 
-import com.u2apple.tool.cache.DeviceCache;
 import com.u2apple.tool.model.AndroidDeviceRanking;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * 返回brand和model相同的设备列表.
  * @author Adam
  */
-public class CheckedDeviceFilter implements DeviceFilter {
+public class UnnormalDeviceFilter implements DeviceFilter{
 
     @Override
     public List<AndroidDeviceRanking> filter(List<AndroidDeviceRanking> androidDevices) {
-        return androidDevices.stream().filter(device -> !DeviceCache.isChecked(device)).collect(Collectors.toList());
+        return androidDevices.stream().filter(device->StringUtils.equalsIgnoreCase(device.getRoProductBrand(), device.getRoProductModel())).collect(Collectors.toList());
     }
-
+    
 }

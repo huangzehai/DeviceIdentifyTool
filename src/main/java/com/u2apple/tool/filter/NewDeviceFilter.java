@@ -15,10 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ *过滤掉product ID已存在的设备.
  * @author Adam
  */
-public class NewDeviceFilter implements Filter {
+public class NewDeviceFilter implements DeviceFilter {
 
     private final DeviceXmlDao deviceXmlDao = new DeviceXmlDaoJaxbImpl();
     final Logger logger = LoggerFactory.getLogger(NewDeviceFilter.class);

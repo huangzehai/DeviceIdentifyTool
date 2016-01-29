@@ -1104,7 +1104,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="othersDevicesButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="matchButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="unnormalDeviceFilterButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="newDeviceFilterButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1161,7 +1161,7 @@
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="othersDevicesButton" min="-2" max="-2" attributes="0"/>
-                                  <Component id="matchButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="unnormalDeviceFilterButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="newDeviceFilterButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="excludeFilterButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="queryFilterButton" min="-2" max="-2" attributes="0"/>
@@ -1292,15 +1292,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filterButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="matchButton">
+            <Component class="javax.swing.JButton" name="unnormalDeviceFilterButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/u2apple/tool/icon/Define Location-32.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Check if model pattern matches"/>
+                <Property name="toolTipText" type="java.lang.String" value="Unnormal device filter"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matchButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unnormalDeviceFilterButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="newDeviceFilterButton">

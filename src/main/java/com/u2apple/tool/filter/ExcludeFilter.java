@@ -24,10 +24,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ *过滤掉exclude-filter.xml中匹配规则的设备.
  * @author Adam
  */
-public class ExcludeFilter implements Filter {
+public class ExcludeFilter implements DeviceFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(ExcludeFilter.class);
     private static final String RULES_CONF = "/com/u2apple/tool/conf/exclude-filter.xml";

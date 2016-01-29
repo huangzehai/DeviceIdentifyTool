@@ -45,7 +45,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     private static final String VID_FILE_NAME_PATTERN = "^[0-9a-zA-Z]{4}\\.xml$";
     private static final Set<String> changedVids = new HashSet<>();
     private static boolean isDeviceChanged = false;
-    private DeviceI18nDao deviceI18nDao = new DeviceI18nDaoImpl();
+   final private DeviceI18nDao deviceI18nDao = new DeviceI18nDaoImpl();
 
     /**
      * 加载机型识别配置文件.
