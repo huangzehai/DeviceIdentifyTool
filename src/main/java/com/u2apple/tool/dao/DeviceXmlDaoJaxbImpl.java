@@ -100,6 +100,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
     @Override
     public void flush() throws PropertyException, JAXBException,FileNotFoundException, IOException {
         if (staticMapFile != null) {
+            //格式化配置文件（合并型号等）
             StaticMapFileUtils.format(staticMapFile, isDeviceChanged, changedVids);
             flushDevices();
             flushVids();

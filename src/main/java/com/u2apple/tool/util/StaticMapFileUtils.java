@@ -57,20 +57,13 @@ public final class StaticMapFileUtils {
         List<Modal> models = vid.getModals();
         //Sort model values.
         models.stream().forEach((model) -> {
-            if(model.getValues()==null || model.getValues().isEmpty()){
+            if (model.getValues() == null || model.getValues().isEmpty()) {
                 System.out.println(model);
-             }
+            }
             sortValue(model.getValues());
         });
 
         //Sort models.
-//        Collections.sort(models, new Comparator<Modal>() {
-//            @Override
-//            public int compare(Modal o1, Modal o2) {
-//                return o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue());
-//            }
-//        });
-        
         Collections.sort(models, (o1, o2) -> o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue()));
 
         //Merge models.
@@ -88,18 +81,18 @@ public final class StaticMapFileUtils {
     }
 
     /**
-     * Merage after sorting.
-     *合并Values节点相同的Modal节点。
-     * TODO: 同时添加多个相同Value的Modal节点时不能正确合并.
+     * Merage after sorting. 合并Values节点相同的Modal节点。 TODO:
+     * 同时添加多个相同Value的Modal节点时不能正确合并.
+     *
      * @param models
      */
     private static void fastMergeModels(List<Modal> models) {
-        for (int i = 0; i < models.size() - 1; i++) {
-            {
-                if (models.get(i).getValues().equals(models.get(i + 1).getValues())) {
-                    models.get(i).getProductId().addAll(models.get(i + 1).getProductId());
-                    models.remove(i + 1);
-                }
+        for (int i = 0; i < models.size() - 1;) {
+            if (models.get(i).getValues().equals(models.get(i + 1).getValues())) {
+                models.get(i).getProductId().addAll(models.get(i + 1).getProductId());
+                models.remove(i + 1);
+            }else{
+                i++;
             }
         }
     }
@@ -118,12 +111,6 @@ public final class StaticMapFileUtils {
     }
 
     private static void sortValue(List<Value> values) {
-//        Collections.sort(values, new Comparator<Value>() {
-//            @Override
-//            public int compare(Value o1, Value o2) {
-//                return o1.getValue().compareTo(o2.getValue());
-//            }
-//        });
         Collections.sort(values, (v1, v2) -> v1.getValue().compareTo(v2.getValue()));
     }
 
