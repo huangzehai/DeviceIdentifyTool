@@ -150,6 +150,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
         for (String vid : vids) {
             List<VID> vs = getStaticMapFile().getVids();
             VID v = getVid(vs, vid);
+            //如果VID节点不存在，创建新的VID.
             if (v == null) {
                 v = new VID();
                 v.setValue(vid);
@@ -157,6 +158,7 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
             }
             v.getModals().add(model);
         }
+        //记录改动。
         changedVids.addAll(Arrays.asList(vids));
     }
 
@@ -177,6 +179,10 @@ public class DeviceXmlDaoJaxbImpl implements DeviceXmlDao {
         StaticMapFileUtils.format(getStaticMapFile(), false, changedVids);
     }
 
+    /** 检测型号是否存在
+     * @param vid
+     * @param text
+     * @return */
     @Override
     public boolean modelExists(String vid, String text) {
         boolean exists = false;

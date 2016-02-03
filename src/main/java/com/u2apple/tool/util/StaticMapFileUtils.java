@@ -74,7 +74,7 @@ public final class StaticMapFileUtils {
         Collections.sort(models, (o1, o2) -> o1.getValues().get(0).getValue().compareToIgnoreCase(o2.getValues().get(0).getValue()));
 
         //Merge models.
-        fastMmergeModels(models);
+        fastMergeModels(models);
 
         //Reverse contained model.
         for (int i = 0; i < models.size(); i++) {
@@ -89,10 +89,11 @@ public final class StaticMapFileUtils {
 
     /**
      * Merage after sorting.
-     *
+     *合并Values节点相同的Modal节点。
+     * TODO: 同时添加多个相同Value的Modal节点时不能正确合并.
      * @param models
      */
-    private static void fastMmergeModels(List<Modal> models) {
+    private static void fastMergeModels(List<Modal> models) {
         for (int i = 0; i < models.size() - 1; i++) {
             {
                 if (models.get(i).getValues().equals(models.get(i + 1).getValues())) {

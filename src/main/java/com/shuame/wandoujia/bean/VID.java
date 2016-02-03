@@ -59,7 +59,7 @@ public class VID {
 
 	public List<PID> getPIDs() {
 		if (_PIDs == null) {
-			_PIDs = new ArrayList<PID>();
+			_PIDs = new ArrayList<>();
 		}
 		return _PIDs;
 	}
@@ -70,7 +70,7 @@ public class VID {
 
 	public List<Name> getNames() {
 		if (_names == null) {
-			_names = new ArrayList<Name>();
+			_names = new ArrayList<>();
 		}
 		return _names;
 	}
@@ -81,7 +81,7 @@ public class VID {
 
 	public List<Modal> getModals() {
 		if (_modals == null) {
-			_modals = new ArrayList<Modal>();
+			_modals = new ArrayList<>();
 		}
 		return _modals;
 	}
