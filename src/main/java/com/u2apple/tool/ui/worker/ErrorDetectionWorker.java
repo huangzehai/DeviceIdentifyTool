@@ -25,7 +25,7 @@ public class ErrorDetectionWorker extends AbstractDeviceRankingWorker {
     @Override
     protected List<AndroidDeviceRanking> doInBackground() throws Exception {
         IdentifyAnalyticsService service = new IdentifyAnalyticsService();
-        List<List<AndroidDeviceRanking>> deviceList = service.analytics();
+        List<List<AndroidDeviceRanking>> deviceList = service.listErrorIdentifiedDevicesForShuamePC();
         List<AndroidDeviceRanking> devices = new ArrayList<>();
         if (deviceList != null && !deviceList.isEmpty()) {
             devices = deviceList.stream().flatMap(l -> l.stream()).collect(Collectors.toList());

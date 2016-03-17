@@ -27,5 +27,7 @@ public interface AndroidDeviceDao {
     
     List<AndroidDeviceRanking> listModelWithRanking(int days)throws IOException, JSchException;
     
+    List<AndroidDeviceRanking> listDevicesOfShuameMobile(int days)throws IOException, JSchException;
+    
     List<AndroidDeviceRanking> listCpu(int days)throws IOException, JSchException;
 }

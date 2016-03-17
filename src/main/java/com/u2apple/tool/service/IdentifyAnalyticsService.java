@@ -54,9 +54,16 @@ public class IdentifyAnalyticsService {
         return map;
     }
 
-    public List<List<AndroidDeviceRanking>> analytics() throws SQLException, IOException, JSchException {
-        AndroidDeviceDao dao = new AndroidDeviceDaoImpl();
-        List<AndroidDeviceRanking> devices = dao.listModelWithRanking(1);
+    /**
+     * 分析错误识别机型。
+     *
+     * @param devices
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     * @throws JSchException
+     */
+    public List<List<AndroidDeviceRanking>> analytics(List<AndroidDeviceRanking> devices) throws SQLException, IOException, JSchException {
         devices = devices.stream().filter(device -> matches(device.getRoProductModel(), device.getProductId())).collect(Collectors.toList());
         Map<String, List<AndroidDeviceRanking>> map = new HashMap<>();
         String productId;
@@ -70,8 +77,21 @@ public class IdentifyAnalyticsService {
                 map.put(productId, list);
             }
         }
-
         return map.values().parallelStream().filter(m -> m.size() > 1).sorted((List<AndroidDeviceRanking> list1, List<AndroidDeviceRanking> list2) -> list2.get(0).getCount() - list1.get(0).getCount()).collect(Collectors.toList());
+    }
+
+    /**
+     * 列出刷机精灵PC版错误识别机型。
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     * @throws JSchException 
+     */
+    public List<List<AndroidDeviceRanking>> listErrorIdentifiedDevicesForShuamePC() throws SQLException, IOException, JSchException {
+        AndroidDeviceDao dao = new AndroidDeviceDaoImpl();
+        int days = 1;
+        List<AndroidDeviceRanking> devices = dao.listModelWithRanking(days);
+        return analytics(devices);
     }
 
     private boolean matches(String model, String productId) {

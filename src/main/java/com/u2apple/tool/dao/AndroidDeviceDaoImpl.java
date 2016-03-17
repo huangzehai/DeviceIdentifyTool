@@ -66,6 +66,15 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         calendar.add(Calendar.DAY_OF_MONTH, -days);
         return mapper.listModelWithRanking(SqlUtils.getMonthlyTable("log_device_init"), calendar.getTime());
     }
+    
+     @Override
+    public List<AndroidDeviceRanking> listDevicesOfShuameMobile(int days) throws IOException, JSchException {
+        SqlSession sqlSession = MyBatisHelper.getStatSqlSessionFactory().openSession();
+        AndroidDeviceMapper mapper = sqlSession.getMapper(AndroidDeviceMapper.class);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -days);
+        return mapper.listModelWithRanking(SqlUtils.getMonthlyTable("log_m_device_init"), calendar.getTime());
+    }
 
     @Override
     public List<AndroidDeviceRanking> listCpu(int days) throws IOException, JSchException {
@@ -75,5 +84,7 @@ public class AndroidDeviceDaoImpl implements AndroidDeviceDao {
         calendar.add(Calendar.DAY_OF_MONTH, -days);
         return mapper.listCpu(SqlUtils.getMonthlyTable("log_device_init"), calendar.getTime());
     }
+
+   
 
 }

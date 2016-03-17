@@ -21,7 +21,7 @@ public class IdentifyAnalyticsServiceTest {
     @Test
     public void testAnalytics() throws Exception {
         IdentifyAnalyticsService service=new IdentifyAnalyticsService();
-        service.analytics();
+        service.listErrorIdentifiedDevicesForShuamePC();
     }
     
 }

@@ -52,6 +52,14 @@ public class AndroidDeviceDaoTest {
         Assert.assertNotNull(androidDevices);
         Assert.assertTrue(androidDevices.size() > 0);
     }
+    
+    @Test
+    public void testListDevicesOfShuameMobile() throws IOException, JSchException {
+        int days = 1;
+        List<AndroidDeviceRanking> androidDevices = dao.listDevicesOfShuameMobile(days);
+        Assert.assertNotNull(androidDevices);
+        Assert.assertTrue(androidDevices.size() > 0);
+    }
 
     @Test
     public void testListCpu() throws IOException, JSchException {

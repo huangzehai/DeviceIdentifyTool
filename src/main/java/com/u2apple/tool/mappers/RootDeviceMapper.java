@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
- *
+ * Root精灵PC版和手机版设备Mapper.
  * @author Adam
  */
 public interface RootDeviceMapper {
