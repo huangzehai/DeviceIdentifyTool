@@ -93,6 +93,13 @@ public class IdentifyAnalyticsService {
         List<AndroidDeviceRanking> devices = dao.listModelWithRanking(days);
         return analytics(devices);
     }
+    
+    public List<List<AndroidDeviceRanking>> listErrorIdentifiedDevicesForShuameMobile() throws SQLException, IOException, JSchException {
+        AndroidDeviceDao dao = new AndroidDeviceDaoImpl();
+        int days = 1;
+        List<AndroidDeviceRanking> devices = dao.listDevicesOfShuameMobile(days);
+        return analytics(devices);
+    }
 
     private boolean matches(String model, String productId) {
         boolean matches = false;
